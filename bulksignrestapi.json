@@ -1905,7 +1905,7 @@
                         "minLength": 1,
                         "maxLength": 300
                     },
-                    "LanguageCode": {
+                    "Language": {
                         "description": "Language for email notifications",
                         "type": "string"
                     },
@@ -2057,8 +2057,8 @@
                         "description": "The timezone identifier",
                         "type": "string"
                     },
-                    "UILanguageCode": {
-                        "description": "Language code for the user's UI language",
+                    "UserInterfaceLanguage": {
+                        "description": "The user interface language. Call /GetUserInterfaceLanguages to retrieve all supported languages",
                         "type": "string"
                     },
                     "PhoneNumber": {
@@ -2069,12 +2069,12 @@
                         "description": "The user's job title",
                         "type": "string"
                     },
-                    "DefaultDraftLanguageCode": {
-                        "description": "The user's default language code for new drafts",
+                    "DefaultDraftLanguage": {
+                        "description": "The default language for new drafts",
                         "type": "string"
                     },
                     "DefaultSignatureType": {
-                        "description": "Language code for the user's UI language",
+                        "description": "The default signature type for this user",
                         "type": "string"
                     },
                     "DefaultForSendFinishedDocumentsToAllSigners": {
@@ -2137,7 +2137,7 @@
                         "type": "string",
                         "required": false
                     },
-                    "LanguageCode": {
+                    "Language": {
                         "description": "Language for email notifications. If left empty, the default language setting will be used",
                         "type": "string",
                         "required": false
@@ -3416,8 +3416,8 @@
                         "description": "Set the default email body for 'Sign' emails",
                         "type": "string"
                     },
-                    "DefaultEmailTemplateLanguageCode": {
-                        "description": "Set the organization name",
+                    "DefaultEmailTemplateLanguage": {
+                        "description": "Set the default language for new drafts. Call GetEmailTemplateLanguages to obtain the list of all supported languages",
                         "type": "string"
                     },
                     "EmailSenderType": {
@@ -3651,7 +3651,7 @@
                         "description": "The last update date of the template",
                         "type": "string"
                     },
-                    "LanguageCode": {
+                    "Language": {
                         "description": "Language for email notifications. Leave empty for default",
                         "type": "string"
                     },
@@ -3721,7 +3721,7 @@
                         "description": "The last update date of the draft",
                         "type": "string"
                     },
-                    "LanguageCode": {
+                    "Language": {
                         "description": "Language for email notifications. Leave empty for default",
                         "type": "string"
                     },
