@@ -952,7 +952,7 @@
                 "summary": "Gets the list of templates available for user including shared templates",
                 "operationId": "GetTemplateDetails",
                 "parameters": [{
-                    "name": "templatePublicId",
+                    "name": "templateId",
                     "in": "query",
                     "description": "The id of the template",
                     "required": true,
@@ -1283,7 +1283,7 @@
                 "summary": "Gets the details of the specified draft",
                 "operationId": "GetDraftDetails",
                 "parameters": [{
-                    "name": "draftPublicId",
+                    "name": "draftId",
                     "in": "query",
                     "description": "The id of the draft",
                     "required": true,
@@ -1584,38 +1584,6 @@
                         "application/json:": {
                             "schema": {
                                 "$ref": "#/components/schemas/NewUserApiModel"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/BulksignResult"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/UpdateDraftMetadata": {
-            "post": {
-                "tags": [
-                    "Draft"
-                ],
-                "summary": "Update the metadata to a existing draft",
-                "operationId": "UpdateDraftMetadata",
-                "requestBody": {
-                    "required": true,
-                    "description": "Input model",
-                    "content": {
-                        "application/json:": {
-                            "schema": {
-                                "$ref": "#/components/schemas/UpdateDraftMetadataApiModel"
                             }
                         }
                     }
@@ -2577,7 +2545,7 @@
                         "description": "The last modification date of the envelope in ISO 8601 format",
                         "type": "string"
                     },
-                    "PublicId": {
+                    "EnvelopeId": {
                         "description": "The id of the envelope",
                         "type": "string"
                     },
