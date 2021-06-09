@@ -1922,7 +1922,7 @@
                     },
                     "CertifyDocumentsBeforeSending": {
                         "description": "Flag to certify the PDF documents before sending them to signing",
-                        "type": "boolean",
+                        "type": "boolean"
                     },
                     "PreventFormFieldEditOnEnvelopeCompletion": {
                         "description": "If enabled, the form fields in the PDF documents will be marked as read only to prevent editing on envelope completion",
@@ -2519,7 +2519,7 @@
                     },
                     "Status": {
                         "description": "The status of the envelope",
-                        "type": "number"
+                        "$ref": "#/components/schemas/EnvelopeStatusTypeApi"
                     },
                     "SentDateUTC": {
                         "description": "The date at which the envelope was sent for signing",
@@ -4057,7 +4057,7 @@
                 ]
             },
 
-            "EnvelopeStatusApi": {
+            "EnvelopeStatusTypeApi": {
                 "description": "Specifies the envelope status : InProgress - 1 , Completed - 2, Canceled = 3, Expired = 4",
                 "type": "number",
                 "enum": [
