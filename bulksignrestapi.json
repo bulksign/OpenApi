@@ -453,6 +453,161 @@
             }
         },
 
+        "/SearchDrafts": {
+            "post": {
+                "tags": [
+                    "Draft"
+                ],
+                "summary": "Search drafts",
+                "operationId": "SearchDrafts",
+                "parameters": [{
+                    "name": "searchTerm",
+                    "in": "query",
+                    "description": "The search term",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetItemsArrayResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/SearchTeamMembersDrafts": {
+            "post": {
+                "tags": [
+                    "Draft"
+                ],
+                "summary": "Search drafts of team members",
+                "operationId": "SearchTeamMembersDrafts",
+                "parameters": [{
+                    "name": "searchTerm",
+                    "in": "query",
+                    "description": "The search term",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetItemsArrayResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/SearchTeamMembersEnvelopes": {
+            "post": {
+                "tags": [
+                    "Envelope"
+                ],
+                "summary": "Search the envelopes of team members",
+                "operationId": "SearchTeamMembersEnvelopes",
+                "parameters": [{
+                    "name": "searchTerm",
+                    "in": "query",
+                    "description": "The search term",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetItemsArrayResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/SearchTeamMembersTemplates": {
+            "post": {
+                "tags": [
+                    "Template"
+                ],
+                "summary": "Search the templates of team members",
+                "operationId": "SearchTeamMembersTemplates",
+                "parameters": [{
+                    "name": "searchTerm",
+                    "in": "query",
+                    "description": "The search term",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetItemsArrayResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/SearchTemplates": {
+            "post": {
+                "tags": [
+                    "Template"
+                ],
+                "summary": "Search templates",
+                "operationId": "SearchTemplates",
+                "parameters": [{
+                    "name": "searchTerm",
+                    "in": "query",
+                    "description": "The search term",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetItemsArrayResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
         "/GetEnvelopesByStatus": {
             "post": {
                 "tags": [
@@ -877,7 +1032,38 @@
                 }
             }
         },
-
+        "/AddSharedContact": {
+            "post": {
+                "tags": [
+                    "Organization"
+                ],
+                "summary": "Add a new shared contact",
+                "operationId": "AddSharedContact",
+                "requestBody": {
+                    "required": true,
+                    "description": "Input model",
+                    "content": {
+                        "application/json:": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NewContactApiModel"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BulksignResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/GetContacts": {
             "post": {
                 "tags": [
@@ -899,7 +1085,27 @@
                 }
             }
         },
-
+        "/GetSharedContacts": {
+            "post": {
+                "tags": [
+                    "Organization"
+                ],
+                "summary": "Gets the list of shared contacts",
+                "operationId": "GetSharedContacts",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetContactsResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/GetTemplatesCount": {
             "post": {
                 "tags": [
@@ -1508,7 +1714,7 @@
                 "tags": [
                     "Organization"
                 ],
-                "summary": "Updates the organization settings. Requires administrator rights",
+                "summary": "Updates the organization settings.",
                 "operationId": "UpdateOrganizationSettings",
                 "requestBody": {
                     "required": true,
