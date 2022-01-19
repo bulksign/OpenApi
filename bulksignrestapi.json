@@ -2119,8 +2119,10 @@
                         "$ref": "#/components/schemas/SignSettingsApiModel"
                     },
                     "OverwriteSignatureDisclosure": {
-                        "description": "Overwrite the signature disclosure text. If this is empty, the default UI configured value will be used",
-                        "type": "string"
+                        "description": "Overwrites the signature disclosure settings",
+                        "type": "object",
+                        "required": false,
+                        "$ref": "#/components/schemas/SignatureDisclosureApiModel"
                     },
                     "AllowRecipientDelegation": {
                         "description": "Set to true to enable recipient delegation",
@@ -2368,9 +2370,10 @@
                         "$ref": "#/components/schemas/SignSettingsApiModel"
                     },
                     "OverwriteSignatureDisclosure": {
-                        "description": "Overwrite the signature disclosure text. If this is empty, the default UI configured value will be used",
-                        "type": "string",
-                        "required": false
+                        "description": "Overwrites the signature disclosure settings",
+                        "type": "object",
+                        "required": false,
+                        "$ref": "#/components/schemas/SignatureDisclosureApiModel"
                     },
                     "AllowRecipientDelegation": {
                         "description": "Set to true to enable recipient delegation",
@@ -4396,6 +4399,22 @@
                     }
                 },
 
+                "SignatureDisclosureApiModel": {
+                    "description": "SignatureDisclosure model",
+                    "type": "object",
+                    "properties": {
+                        "SignatureDisclosure": {
+                            "description": "The signature disclosure text",
+                            "type": "string",
+                            "required": true
+                        },
+                        "ForceSignatureDisclosureDownload": {
+                            "description": "Flag which determines if the user must download the signature disclosure PDF to continue",
+                            "type": "boolean",
+                            "required": false
+                        }
+                    }
+                },
 
                 "RecipientStatusApi": {
                     "description": "Specifies the recipient status : NotSigned - 0 , Opened - 1, Signed = 2, Rejected = 3",
