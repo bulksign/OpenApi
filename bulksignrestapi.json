@@ -65,6 +65,7 @@
                 }
             }
         },
+
         "/GetLicense": {
             "post": {
                 "tags": [
@@ -87,6 +88,7 @@
                 }
             }
         },
+
         "/PrepareSendEnvelope": {
             "post": {
                 "tags": [
@@ -158,7 +160,6 @@
                 }
             }
         },
-
 
         "/SendEnvelope": {
             "post": {
@@ -911,7 +912,6 @@
             }
         },
 
-
         "/AddOrganizationAutomaticSigningProfile": {
             "post": {
                 "tags": [
@@ -944,7 +944,6 @@
                 }
             }
         },
-
 
         "/GetUserAutomaticSigningProfiles": {
             "post": {
@@ -1024,6 +1023,7 @@
                 }
             }
         },
+
         "/AddSharedContact": {
             "post": {
                 "tags": [
@@ -1056,6 +1056,7 @@
                 }
             }
         },
+
         "/GetContacts": {
             "post": {
                 "tags": [
@@ -1077,6 +1078,7 @@
                 }
             }
         },
+
         "/GetSharedContacts": {
             "post": {
                 "tags": [
@@ -1098,6 +1100,7 @@
                 }
             }
         },
+
         "/GetTemplatesCount": {
             "post": {
                 "tags": [
@@ -1800,6 +1803,38 @@
                 }
             }
         },
+        "/AddUserToOrganizationForOidcLogin": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Add a new user to your organization which can login with a configured authentication provider. Can only be used by organization administrators",
+                "operationId": "AddUserToOrganizationForOidcLogin",
+                "requestBody": {
+                    "required": true,
+                    "description": "Input model",
+                    "content": {
+                        "application/json:": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NewUserApiModel"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BulksignResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/GetVersion": {
             "post": {
                 "tags": [
@@ -2000,10 +2035,49 @@
                     }
                 }
             }
+        },
+
+        "/GetAuthenticationProviders": {
+            "post": {
+                "tags": [
+                    "Organization"
+                ],
+                "summary": "Retrive the organization authentication providers",
+                "operationId": "GetAuthenticationProviders",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/AuthenticationProviderResultApiModel"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
         "schemas": {
+
+            "AuthenticationProviderResultApiModel": {
+                "type": "object",
+                "properties": {
+                    "Name": {
+                        "description": "The name of the authentication provider",
+                        "type": "string"
+                    },
+                    "Identifier": {
+                        "description": "The identifier",
+                        "type": "string"
+                    }
+                }
+            },
 
             "AddDocumentsOrRecipientsToDraftApiModel": {
                 "type": "object",
@@ -2397,7 +2471,7 @@
                         }
 
                     }
-                },
+                }
             },
 
             "UpdateDraftMetadataApiModel": {
@@ -2462,7 +2536,7 @@
                     }
                 }
             },
-            
+
             "TemplateReplaceFormFieldsApiModel": {
                 "description": "TemplateReplaceFormFieldsApiModel type definition",
                 "type": "object",
@@ -2488,7 +2562,7 @@
                     }
                 }
             },
-            
+
             "EnvelopeToSignResultApiModel": {
                 "description": "EnvelopeToSignResultApiModel type definition",
                 "type": "object",
@@ -2507,7 +2581,7 @@
                     }
                 }
             },
-            
+
             "NewUserApiModel": {
                 "description": "NewUserApiModel type definition",
                 "type": "object",
@@ -2822,7 +2896,7 @@
                     }
                 }
             },
-            
+
             "RecipientAccessCodeApiModel": {
                 "description": "Access code for recipient",
                 "type": "object",
@@ -2853,7 +2927,7 @@
                     }
                 }
             },
-           
+
             "TemplateApiModel": {
                 "description": "Create new template type",
                 "type": "object",
@@ -2869,7 +2943,7 @@
                     }
                 }
             },
-            
+
             "DocumentApiModel": {
                 "description": "Defines a document to sign",
                 "type": "object",
@@ -3337,7 +3411,7 @@
                     }
                 }
             },
-          
+
             "RecipientApiModel": {
                 "description": "Model which defines a recipient",
                 "type": "object",
@@ -3383,7 +3457,7 @@
                     }
                 }
             },
-           
+
             "FileAccessApiModel": {
                 "description": "Custom file access type which specified to which recipient is the file assigned",
                 "type": "object",
@@ -3490,7 +3564,7 @@
                     }
                 }
             },
-           
+
             "EmailSenderTypeApi": {
                 "description": "Specifies the signer download document action : 1 - User, 2 - Organization, 3 - ApplicationName",
                 "type": "number",
@@ -3511,7 +3585,7 @@
                 }],
                 "x-ms-enum": []
             },
-          
+
             "OrganizationDocumentRetentionApiModel": {
                 "description": "Type description for organization document expiration model",
                 "type": "object",
@@ -3526,7 +3600,7 @@
                     }
                 }
             },
-          
+
             "OrganizationPoliciesApiModel": {
                 "description": "Type description for UserInvitation model",
                 "type": "object",
@@ -3541,7 +3615,7 @@
                     }
                 }
             },
-           
+
             "MetadataEditorRedirectApiModel": {
                 "description": "Type description for UserInvitation model",
                 "type": "object",
@@ -3556,7 +3630,7 @@
                     }
                 }
             },
-           
+
             "OrganizationVisualCustomizationApiModel": {
                 "description": "Type description for UserInvitation model",
                 "type": "object",
@@ -3571,7 +3645,7 @@
                     }
                 }
             },
-            
+
             "OrganizationUpdateSettingsApiModel": {
                 "description": "Type description for updating organization settings model",
                 "type": "object",
@@ -3614,7 +3688,7 @@
                     }
                 }
             },
-           
+
             "OrganizationSigningSettingsApiModel": {
                 "description": "Type description for organization sign settings",
                 "type": "object",
@@ -3859,7 +3933,7 @@
                     }
                 }
             },
-           
+
             "DraftDetailsResultApiModel": {
                 "description": "Draft details",
                 "type": "object",
@@ -3932,7 +4006,7 @@
                     }
                 }
             },
-            
+
             "ContactResultApiModel": {
                 "description": "Contact result type",
                 "type": "object",
@@ -4794,7 +4868,7 @@
                     }
                 }
             },
- 
+
             "GetEnvelopeDetailsResult": {
                 "description": "The result type",
                 "type": "object",
@@ -4810,7 +4884,7 @@
                     }
                 }
             },
- 
+
             "GetLicenseResult": {
                 "description": "The result type",
                 "type": "object",
@@ -4874,7 +4948,7 @@
                     }
                 }
             },
-           
+
             "BulksignResultStringArray": {
                 "description": "The result type",
                 "type": "object",
@@ -4892,7 +4966,7 @@
                     }
                 }
             },
-           
+
             "BulksignResult": {
                 "description": "The result type",
                 "type": "object",
@@ -4916,7 +4990,6 @@
                 }
             }
         },
-
         "securitySchemes": {
             "ApiKeyAuth": {
                 "type": "apiKey",
