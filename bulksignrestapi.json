@@ -1803,13 +1803,13 @@
                 }
             }
         },
-        "/AddUserToOrganizationForOidcLogin": {
+        "/AddUserToOrganizationForLoginWithExternalProvider": {
             "post": {
                 "tags": [
                     "User"
                 ],
                 "summary": "Add a new user to your organization which can login with a configured authentication provider. Can only be used by organization administrators",
-                "operationId": "AddUserToOrganizationForOidcLogin",
+                "operationId": "AddUserToOrganizationForLoginWithExternalProvider",
                 "requestBody": {
                     "required": true,
                     "description": "Input model",
@@ -4321,38 +4321,44 @@
             },
 
             "EnvelopeStatusTypeApi": {
-                "description": "Specifies the envelope status : InProgress - 1 , Completed - 2, Canceled = 3, Expired = 4",
+                "description": "Specifies the envelope status : InProgress - 3 , Completed - 4, Canceled = 5, Expired = 6, Deleted = 7",
                 "type": "number",
                 "enum": [
-                    "1",
-                    "2",
                     "3",
-                    "4"
+                    "4",
+                    "5",
+                    "6",
+                    "7"
                 ],
                 "x-enum-values": [{
-                    "numericValue": "1",
+                    "numericValue": "3",
                     "identifier": "InProgress"
                 }, {
-                    "numericValue": "2",
+                    "numericValue": "4",
                     "identifier": "Completed"
                 }, {
-                    "numericValue": "3",
+                    "numericValue": "5",
                     "identifier": "Canceled"
                 }, {
-                    "numericValue": "4",
+                    "numericValue": "6",
                     "identifier": "Expired"
+                },{
+                    "numericValue": "7",
+                    "identifier": "Deleted"
                 }],
                 "x-enum-varnames": [
                     "InProgress",
                     "Completed",
                     "Canceled",
-                    "Expired"
+                    "Expired",
+                    "Deleted"
                 ],
                 "x-enum-descriptions": [
                     "InProgress",
                     "Completed",
                     "Canceled",
-                    "Expired"
+                    "Expired",
+                    "Deleted"
                 ]
             },
 
