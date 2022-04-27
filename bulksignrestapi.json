@@ -6,9 +6,9 @@
         "url": "https://localhost/BulksignApi/restapi/"
     }],
     "info": {
-        "version": "4.4",
+        "version": "4.17",
         "title": "Bulksign REST API",
-        "description": "Bulksign OpenAPI definition. For .NET/Core specifically, please use our [.NET SDK](https://www.nuget.org/packages/BulksignSdk). API code samples highlighting different integration scenarios are [on Gihub](https://github.com/bulksign/BulksignApiSamples)",
+        "description": "Bulksign OpenAPI definition. For .NET/Core specifically, please use our [.NET SDK](https://www.nuget.org/packages/BulksignSdk). API code samples highlighting different integration scenarios are [on Github](https://github.com/bulksign/BulksignApiSamples)",
         "contact": {
             "email": "contact@bulksign.com"
         }
@@ -193,39 +193,7 @@
                 }
             }
         },
-
-        "/SendBulkEnvelope": {
-            "post": {
-                "tags": [
-                    "Envelope"
-                ],
-                "summary": "Sends a bulk envelope for signing",
-                "operationId": "SendBulkEnvelope",
-                "requestBody": {
-                    "required": true,
-                    "description": "SendBulkEnvelope input model",
-                    "content": {
-                        "application/json:": {
-                            "schema": {
-                                "$ref": "#/components/schemas/EnvelopeApiModel"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/SendEnvelopeResultApiModel"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
+      
 
         "/SendReminder": {
             "post": {
@@ -1209,39 +1177,6 @@
             }
         },
 
-        "/CreateBulkTemplate": {
-            "post": {
-                "tags": [
-                    "Template"
-                ],
-                "summary": "Creates a new template with bulk recipients",
-                "operationId": "CreateBulkTemplate",
-                "requestBody": {
-                    "required": true,
-                    "description": "Input model",
-                    "content": {
-                        "application/json:": {
-                            "schema": {
-                                "$ref": "#/components/schemas/TemplateApiModel"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/BulksignResultId"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-
         "/DeleteTemplate": {
             "post": {
                 "tags": [
@@ -1401,39 +1336,6 @@
                         "text/plain": {
                             "schema": {
                                 "type": "string"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/BulksignResultId"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-
-        "/CreateBulkDraft": {
-            "post": {
-                "tags": [
-                    "Draft"
-                ],
-                "summary": "Creates a new bulk draft",
-                "operationId": "CreateBulkDraft",
-                "requestBody": {
-                    "required": true,
-                    "description": "Input model",
-                    "content": {
-                        "application/json:": {
-                            "schema": {
-                                "$ref": "#/components/schemas/DraftApiModel"
                             }
                         }
                     }
@@ -2403,6 +2305,10 @@
                         "required": false,
                         "$ref": "#/components/schemas/ReminderOptionsApiModel"
                     },
+                    "EnvelopeType" : {
+                        "description": "The type of the envelope",
+                        "$ref": "#/components/schemas/EnvelopeTypeApi"
+                    },
                     "Name": {
                         "description": "Set the name to identify the envelope/draft/template",
                         "type": "string",
@@ -2794,6 +2700,10 @@
                         "description": "The status of the envelope",
                         "$ref": "#/components/schemas/EnvelopeStatusTypeApi"
                     },
+                    "EnvelopeType" : {
+                        "description": "The type of the envelope",
+                        "$ref": "#/components/schemas/EnvelopeTypeApi"
+                    },
                     "SentDateUTC": {
                         "description": "The date at which the envelope was sent for signing",
                         "type": "string"
@@ -2821,10 +2731,6 @@
                     "EnvelopeId": {
                         "description": "The id of the envelope",
                         "type": "string"
-                    },
-                    "IsBulk": {
-                        "description": "Flag which shows if this is a envelope with bulk recipients",
-                        "type": "boolean"
                     },
                     "ReminderOptions": {
                         "description": "Enable reminders and set specific options",
@@ -3870,10 +3776,6 @@
                         "description": "Template name",
                         "type": "string"
                     },
-                    "IsBulk": {
-                        "description": "Flag which shows if this is a draft with bulk recipients",
-                        "type": "boolean"
-                    },
                     "ReminderOptions": {
                         "description": "Enable reminders and set specific options",
                         "type": "object",
@@ -3946,10 +3848,6 @@
                         "description": "Draft name",
                         "type": "string"
                     },
-                    "IsBulk": {
-                        "description": "Flag which shows if this is a draft with bulk recipients",
-                        "type": "boolean"
-                    },
                     "ReminderOptions": {
                         "description": "Enable reminders and set specific options",
                         "type": "object",
@@ -3964,6 +3862,10 @@
                         "description": "Set the draft recipients",
                         "type": "object",
                         "$ref": "#/components/schemas/RecipientApiModel"
+                    },
+                    "EnvelopeType" : {
+                        "description": "The type of the envelope",
+                        "$ref": "#/components/schemas/EnvelopeTypeApi"
                     },
                     "CreationDateUTC": {
                         "description": "Creation date of the draft",
@@ -4199,6 +4101,27 @@
                 }, {
                     "numericValue": "3",
                     "identifier": "RedirectToUrl"
+                }],
+                "x-ms-enum": []
+            },
+            
+            "EnvelopeTypeApi":{
+           	  "description": "Specifies the type of envelope : 0 - Serial, 1 - Concurrent, 2 - Bulk",
+                "type": "number",
+                "enum": [
+                    "0",
+                    "1",
+                    "2"
+                ],
+                "x-enum-values": [{
+                    "numericValue": "0",
+                    "identifier": "Serial"
+                }, {
+                    "numericValue": "1",
+                    "identifier": "Concurrent"
+                }, {
+                    "numericValue": "2",
+                    "identifier": "Bulk"
                 }],
                 "x-ms-enum": []
             },
