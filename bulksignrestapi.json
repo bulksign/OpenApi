@@ -3,7 +3,7 @@
     "servers": [{
         "url": "https://bulksign.com/webapi/restapi/"
     }, {
-        "url": "https://localhost/BulksignApi/restapi/"
+        "url": "https://localhost/BulksignUnlockConcurrentRecipientApi/restapi/"
     }],
     "info": {
         "version": "4.17",
@@ -42,6 +42,29 @@
         "description": "Version specific APIs"
     }],
     "paths": {
+
+		"/UnlockConcurrentRecipient" :	{
+			"post": {
+                "tags": [
+                    "Recipient"
+                ],
+                "summary": "Unlocks envelope which is currently locked by specific recipient",
+                "operationId": "UnlockConcurrentRecipient",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnlockConcurrentRecipientApiModel"
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+		},
 
         "/GetOrganizationUsers": {
             "post": {
@@ -1966,6 +1989,20 @@
     },
     "components": {
         "schemas": {
+
+			"UnlockConcurrentRecipientApiModel" : {
+                "type": "object",
+                "properties": {
+                    "EnvelopeId": {
+                        "description": "The envelope identifier",
+                        "type": "string"
+                    },
+                    "RecipientEmail": {
+                        "description": "Email of the recipient which has locked the envelope",
+                        "type": "string"
+                    }
+                }
+			},
 
             "AuthenticationProviderResultApiModel": {
                 "type": "object",
