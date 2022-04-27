@@ -1903,7 +1903,7 @@
                     "Template"
                 ],
                 "summary": "Updates the template settings",
-                "operationId": "UpdateDraftSettings",
+                "operationId": "UpdateTemplateSettings",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -2293,36 +2293,32 @@
             "BaseDocumentApiInput": {
                 "description": "",
                 "type": "object",
+                "required": ["EmailSubject", "Recipients", "Name"],
                 "properties": {
 
                     "EmailSubject": {
                         "description": "Envelope email subject. If left empty, will be imported from settings",
                         "type": "string",
                         "minLength": 1,
-                        "maxLength": 300,
-                        "required": false
+                        "maxLength": 300
                     },
                     "EmailMessage": {
                         "description": "Envelope email body. If left empty, will be imported from organization settings",
-                        "type": "string",
-                        "required": false
+                        "type": "string"
                     },
                     "Language": {
                         "description": "Language for email notifications. If left empty, the default language setting will be used",
-                        "type": "string",
-                        "required": false
+                        "type": "string"
                     },
                     "Metadata": {
                         "description": "Metadata for the envelope/draft/template",
                         "type": "string",
                         "minLength": 0,
-                        "maxLength": 4000,
-                        "required": false
+                        "maxLength": 4000
                     },
                     "DaysUntilExpire": {
                         "description": "Sets the expiration day for envelope in days. If not set, default value will be used",
-                        "type": "number",
-                        "required": false
+                        "type": "number"
                     },
                     "Documents": {
                         "description": "Set the PDF documents which will be signed",
@@ -2348,13 +2344,11 @@
                     },
                     "Name": {
                         "description": "Set the name to identify the envelope/draft/template",
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     },
                     "DisableSignersShouldReceiveFinishedDocument": {
                         "description": "Set to true to disable sending finished documents to CC recipients",
-                        "type": "boolean",
-                        "required": false
+                        "type": "boolean"
                     },
                     "OverwriteCallbackUrls": {
                         "description": "Overwrite the envelope callback URLs. If this is not set, the default configured UI values will be used",
@@ -2376,23 +2370,19 @@
                     },
                     "AllowRecipientDelegation": {
                         "description": "Set to true to enable recipient delegation",
-                        "type": "boolean",
-                        "required": false
+                        "type": "boolean"
                     },
                     "CertifyDocumentsBeforeSending": {
                         "description": "Flag to certify the PDF documents before sending them to signing",
-                        "type": "boolean",
-                        "required": false
+                        "type": "boolean"
                     },
                     "PreventFormFieldEditOnEnvelopeCompletion": {
                         "description": "If enabled, the form fields in the PDF documents will be marked as read only to prevent editing on envelope completion",
-                        "type": "boolean",
-                        "required": "false"
+                        "type": "boolean"
                     },
                     "EnableBatchSign": {
                         "description": "Flag to enable support for batch signing. Batch signing allows the signer to sign multiple signature fields with a single click",
-                        "type": "boolean",
-                        "required": "false"
+                        "type": "boolean"
                     },
                     "FileAccessMode": {
                         "description": "Set file access mode",
@@ -2403,33 +2393,32 @@
                     "CustomFileAccess": {
                         "description": "Set the custom file access mode",
                         "type": "array",
-                        "required": false,
                         "items": {
                             "$ref": "#/components/schemas/FileAccessApiModel"
-                        },
-                        "DocumentTimestampType": {
+                        }
+                    },
+                    "DocumentTimestampType": {
                             "description": "Set the type of timestamping for serial envelope. To be set only if EnableDocumentTimestamp is enabled and the the of envelope is serial",
                             "type": "object",
                             "$ref": "#/components/schemas/DocumentTimestampTypeApi"
                         }
 
                     }
-                }
             },
+            
 
             "UpdateDraftMetadataApiModel": {
                 "description": "UpdateDraftMetadataApiModel type definition",
                 "type": "object",
+                "required": ["DraftId","Metadata"],
                 "properties": {
                     "DraftId": {
                         "description": "The id of the draft",
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     },
                     "Metadata": {
                         "description": "The new metadata value",
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     }
                 }
             },
@@ -2456,12 +2445,11 @@
             "EnvelopeFromTemplateApiModel": {
                 "description": "EnvelopeFromTemplateApiModel type definition",
                 "type": "object",
+                "required": ["TemplateId"],
                 "properties": {
-
                     "TemplateId": {
                         "description": "The id of the template",
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     },
                     "ReplaceRecipients": {
                         "description": "The recipients to replace",
@@ -2483,22 +2471,20 @@
             "TemplateReplaceFormFieldsApiModel": {
                 "description": "TemplateReplaceFormFieldsApiModel type definition",
                 "type": "object",
+                "required": ["FindDocumentByIndex","FindDocumentByName","FormFieldValues"],
                 "properties": {
 
                     "FindDocumentByIndex": {
                         "description": "The index of the document",
-                        "type": "number",
-                        "required": "true"
+                        "type": "number"
                     },
                     "FindDocumentByName": {
                         "description": "The name of the document",
-                        "type": "string",
-                        "required": "true"
+                        "type": "string"
                     },
                     "FormFieldValues": {
                         "description": "Form field values",
                         "type": "array",
-                        "required": true,
                         "items": {
                             "$ref": "#/components/schemas/OverwriteFieldValueApiModel"
                         }
@@ -2528,27 +2514,24 @@
             "NewUserApiModel": {
                 "description": "NewUserApiModel type definition",
                 "type": "object",
+                "required": ["FirstName","LastName","Email","IsAdministrator","PhoneNumber"],
                 "properties": {
                     "FirstName": {
                         "description": "The user first name",
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     },
                     "LastName": {
                         "description": "The user last name",
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     },
                     "Email": {
                         "description": "The user email address",
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     },
                     "IsAdministrator": {
                         "description": "Flag to determine if the new user will be a organization administrator",
                         "type": "boolean",
-                        "default": "false",
-                        "required": true
+                        "default": "false"
                     },
                     "JobTitle": {
                         "description": "The user job title",
@@ -2558,8 +2541,7 @@
                     "PhoneNumber": {
                         "description": "The user phone number",
                         "type": "string",
-                        "default": "",
-                        "required": true
+                        "default": ""
                     },
                     "UILanguage": {
                         "description": "The localization identifier for the user UI language, format is ISO 639-1",
@@ -2617,29 +2599,26 @@
             "UserInvitationApiModel": {
                 "description": "Type description for UserInvitation model",
                 "type": "object",
+                "required": ["FirstName","LastName","Email","IsAdministrator"],
                 "properties": {
                     "FirstName": {
                         "description": "The user's first name",
                         "type": "string",
-                        "required": "true",
                         "example": "John"
                     },
                     "LastName": {
                         "description": "The user's last name",
                         "type": "string",
-                        "required": "true",
                         "example": "Fonesca"
                     },
                     "Email": {
                         "description": "The user's email address",
                         "type": "string",
-                        "required": "true",
                         "example": "test@test.com"
                     },
                     "IsAdministrator": {
                         "description": "Flag to determine if the new user will be a organization administrator",
                         "type": "boolean",
-                        "required": "true",
                         "example": "true"
                     }
                 }
@@ -2816,8 +2795,7 @@
                 "properties": {
                     "DisableNotifications": {
                         "description": "Set this to true to disable ALL email notifications for the envelope recipients",
-                        "type": "boolean",
-                        "required": "false"
+                        "type": "boolean"
                     }
                 }
             },
@@ -2865,8 +2843,7 @@
                 "properties": {
                     "EnableEditIncognitoMode": {
                         "description": "Set to true to allow editing the draft in incognito mode, see https://bulksign.com/docs/iframe.htm for example",
-                        "type": "boolean",
-                        "required": "false"
+                        "type": "boolean"
                     }
                 }
             },
@@ -2881,8 +2858,7 @@
                 "properties": {
                     "IsSharedTemplate": {
                         "description": "Boolean flag to set if the template is shared or not",
-                        "type": "boolean",
-                        "required": "false"
+                        "type": "boolean"
                     }
                 }
             },
@@ -2890,6 +2866,7 @@
             "DocumentApiModel": {
                 "description": "Defines a document to sign",
                 "type": "object",
+                "required": ["Index","FileName","FieldAssignments"],
                 "properties": {
                     "FileContentByteArray": {
                         "description": "Type describes a binary file content",
@@ -2913,18 +2890,15 @@
                     },
                     "Index": {
                         "description": "The index of the recipient. In serial signing mode this represents the position at which he signs the document",
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     },
                     "FileName": {
                         "description": "The name of the file",
-                        "type": "string",
-                        "required": "true"
+                        "type": "string"
                     },
                     "FieldAssignments": {
                         "description": "Assign form fields to recipients",
                         "type": "array",
-                        "required": true,
                         "items": {
                             "$ref": "#/components/schemas/AssignmentApiModel"
                         }
@@ -2932,37 +2906,31 @@
                     "NewSignatures": {
                         "description": "Add new signature fields",
                         "type": "object",
-                        "required": "false",
                         "$ref": "#/components/schemas/NewSignatureApiModel"
                     },
                     "NewAnnotations": {
                         "description": "Add new annotations ",
                         "type": "object",
-                        "required": "false",
                         "$ref": "#/components/schemas/NewAnnotationApiModel"
                     },
                     "NewTextBoxes": {
                         "description": "Add new text boxes to document ",
                         "type": "object",
-                        "required": "false",
                         "$ref": "#/components/schemas/NewTextBoxApiModel"
                     },
                     "NewComboBoxes": {
                         "description": "Add new text boxes to document ",
                         "type": "object",
-                        "required": "false",
                         "$ref": "#/components/schemas/NewComboBoxApiModel"
                     },
                     "NewCheckBoxes": {
                         "description": "Add new checkboxes to document ",
                         "type": "object",
-                        "required": "false",
                         "$ref": "#/components/schemas/NewCheckBoxApiModel"
                     },
                     "OverwriteValues": {
                         "description": "Set values for form fields",
                         "type": "object",
-                        "required": "false",
                         "$ref": "#/components/schemas/OverwriteFieldValueApiModel"
                     }
                 }
@@ -2971,11 +2939,11 @@
             "FileIdentifier": {
                 "description": "Type which describes a file identifier obtained from AnalyzeFile request",
                 "type": "object",
+                "required": ["Identifier"],
                 "properties": {
                     "Identifier": {
                         "description": "The file identifier",
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     }
                 }
             },
@@ -2983,11 +2951,11 @@
             "FileNetworkShare": {
                 "description": "Type which describes a internal network share file. This can ONLY be used with Bulksign OnPremise version",
                 "type": "object",
+                "required": ["Path"],
                 "properties": {
                     "Path": {
                         "description": "The full path of the shared file",
-                        "type": "string",
-                        "required": "true"
+                        "type": "string"
                     }
                 }
             },
@@ -2995,12 +2963,12 @@
             "FileContentByteArray": {
                 "description": "Type which describes a binary file content",
                 "type": "object",
+                "required": ["ContentBytes"],
                 "properties": {
                     "ContentBytes": {
                         "description": "The file's content",
                         "type": "string",
-                        "format": "binary",
-                        "required": true
+                        "format": "binary"
                     }
                 }
             },
@@ -3008,11 +2976,11 @@
             "FileContentBase64String": {
                 "description": "Type which describes a BASE64 encoded file content",
                 "type": "object",
+                "required": ["FileContent"],
                 "properties": {
                     "FileContent": {
                         "description": "The BASE64 encoded file content",
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     }
                 }
             },
@@ -3038,36 +3006,31 @@
             "NewTextBoxApiModel": {
                 "description": "Type which describes a new TextBox which will be added to the document",
                 "type": "object",
+                "required": ["Height","Width","Top","Left","PageIndex","AssignedToRecipientEmail","Id"],
                 "properties": {
                     "Height": {
                         "description": "The height of the TextBox field",
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     },
                     "Width": {
                         "description": "The width of the TextBox field",
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     },
                     "Top": {
                         "description": "Top position for TextBox field",
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     },
                     "Left": {
                         "description": "Left position for TextBox field",
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     },
                     "PageIndex": {
                         "description": "Index of the page where TextBox field will be applied",
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     },
                     "AssignedToRecipientEmail": {
                         "description": "The recipient identifier to which this new TextBox field will be assigned to",
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     },
                     "Text": {
                         "description": "Text which will be shown in the TextBox field",
@@ -3075,8 +3038,7 @@
                     },
                     "Id": {
                         "description": "The id of the field",
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     },
                     "IsRequired": {
                         "description": "Flag which determines if form filling the TextBox is required",
@@ -3088,51 +3050,43 @@
             "NewComboBoxApiModel": {
                 "description": "Type which describes a new ComboBox which will be added to the document",
                 "type": "object",
+                "required": ["Height","Width","Top","Left","PageIndex","AssignedToRecipientEmail","Id","Items"],
                 "properties": {
                     "Height": {
                         "description": "The height of the ComboBox field",
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     },
                     "Width": {
                         "description": "The width of the ComboBox field",
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     },
                     "Top": {
                         "description": "Top position for ComboBox field",
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     },
                     "Left": {
                         "description": "Left position for ComboBox field",
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     },
                     "PageIndex": {
                         "description": "Index of the page where ComboBox field will be applied",
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     },
                     "AssignedToRecipientEmail": {
                         "description": "The recipient identifier to which this new ComboBox field will be assigned to",
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     },
                     "Id": {
                         "description": "The id of the field",
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     },
                     "Items": {
                         "description": "",
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     },
                     "SelectedItem": {
                         "description": "The value which is selected",
                         "type": "array",
-                        "required": false,
                         "items": {
                             "type": "string"
                         }
@@ -3143,36 +3097,31 @@
             "NewCheckBoxApiModel": {
                 "description": "Type which describes a new CheckBox which will be added to the document",
                 "type": "object",
+                "required": ["Height","Width","Top","Left","PageIndex","AssignedToRecipientEmail","IsChecked"],
                 "properties": {
                     "Height": {
                         "description": "The height of the CheckBox field",
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     },
                     "Width": {
                         "description": "The width of the CheckBox field",
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     },
                     "Top": {
                         "description": "Top position for CheckBox field",
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     },
                     "Left": {
                         "description": "Left position for CheckBox field",
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     },
                     "PageIndex": {
                         "description": "Index of the page where CheckBox field will be applied",
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     },
                     "AssignedToRecipientEmail": {
                         "description": "The recipient identifier to which this new CheckBox field will be assigned to",
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     },
                     "Id": {
                         "description": "The id of the field",
@@ -3180,13 +3129,11 @@
                     },
                     "IsChecked": {
                         "description": "Sets if the checkbox is checked or not",
-                        "type": "boolean",
-                        "required": true
+                        "type": "boolean"
                     },
                     "IsRequired": {
                         "description": "Flag which determines if form filling the CheckBox is required",
-                        "type": "boolean",
-                        "required": false
+                        "type": "boolean"
                     }
                 }
             },
@@ -3194,42 +3141,36 @@
             "NewAnnotationApiModel": {
                 "description": "Type which annotations",
                 "type": "object",
+                "required": ["Height","Top","Left","PageIndex","FontSize","Type"],
                 "properties": {
                     "Height": {
                         "description": "The height of the annotation field",
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     },
                     "Top": {
                         "description": "Top position for annotation field",
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     },
                     "Left": {
                         "description": "Left position for annotation field",
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     },
                     "PageIndex": {
                         "description": "Index of the page where annotation field will be applied",
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     },
                     "FontSize": {
                         "description": "Size of the font",
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     },
                     "Type": {
                         "description": "Type of the annotation",
                         "type": "object",
-                        "required": "true",
                         "$ref": "#/components/schemas/AnnotationTypeApi"
                     },
                     "CustomText": {
                         "description": "Annotation text. Used only if the annotation type is set to Custom",
-                        "type": "string",
-                        "required": false
+                        "type": "string"
                     }
                 }
             },
@@ -3237,41 +3178,35 @@
             "NewSignatureApiModel": {
                 "description": "Type which describes a new signature field",
                 "type": "object",
+                "required": ["Height","Width","Top","Left","PageIndex","AssignedToRecipientEmail","SignatureType"],
                 "properties": {
                     "Height": {
                         "description": "Height of the signature field",
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     },
                     "Width": {
                         "description": "Width of the signature field",
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     },
                     "Top": {
                         "description": "Top position for signature field",
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     },
                     "Left": {
                         "description": "Left position for signature field",
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     },
                     "PageIndex": {
                         "description": "Index of the PDF page to which the new signature will be added",
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     },
                     "AssignedToRecipientEmail": {
                         "description": "The recipient identifier to which this new signature field will be assigned to.",
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     },
                     "SignatureType": {
                         "description": "The signature type",
                         "type": "object",
-                        "required": true,
                         "$ref": "#/components/schemas/SignatureTypeApi"
                     }
                 }
@@ -3280,16 +3215,15 @@
             "AssignmentApiModel": {
                 "description": "Type which describes field assignment",
                 "type": "object",
+                "required": ["AssignedToRecipientEmail","Fields","Signatures"],
                 "properties": {
                     "AssignedToRecipientEmail": {
                         "description": "The form field id",
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     },
                     "Fields": {
                         "description": "Fields to assign",
                         "type": "array",
-                        "required": true,
                         "items": {
                             "$ref": "#/components/schemas/FieldAssignmentApiModel"
                         }
@@ -3297,7 +3231,6 @@
                     "Signatures": {
                         "description": "Fields to assign",
                         "type": "array",
-                        "required": true,
                         "items": {
                             "$ref": "#/components/schemas/SignatureAssignmentApiModel"
                         }
@@ -3308,16 +3241,15 @@
             "FieldAssignmentApiModel": {
                 "description": "Type which describes field assignment",
                 "type": "object",
+                "required": ["FieldId"],
                 "properties": {
                     "FieldId": {
                         "description": "The form field id",
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     },
                     "IsRequired": {
                         "description": "Flag to determine is the field needs to be marked as required or not",
-                        "type": "boolean",
-                        "required": false
+                        "type": "boolean"
                     }
                 }
             },
@@ -3325,16 +3257,15 @@
             "SignatureAssignmentApiModel": {
                 "description": "Type which describes field assignment",
                 "type": "object",
+                "required": ["FieldId", "SignatureType"],
                 "properties": {
                     "FieldId": {
                         "description": "The form field id",
-                        "type": "string",
-                        "required": "true"
+                        "type": "string"
                     },
                     "SignatureType": {
                         "description": "The signature type",
                         "type": "object",
-                        "required": true,
                         "$ref": "#/components/schemas/SignatureTypeApi"
                     }
                 }
@@ -3358,45 +3289,39 @@
             "RecipientApiModel": {
                 "description": "Model which defines a recipient",
                 "type": "object",
+                "required": ["Email","Name","Index","RecipientType"],
                 "properties": {
                     "Email": {
                         "description": "The recipient email address",
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     },
                     "Name": {
                         "description": "Full name of the recipient",
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     },
                     "Index": {
                         "description": "The index of the recipient. In serial signing mode this represents the position at which he signs the document",
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     },
                     "PersonalMessage": {
                         "description": "A specific personal message just for this recipient",
-                        "type": "string",
-                        "required": false
+                        "type": "string"
                     },
                     "RecipientType": {
                         "description": "Specify the recipient type",
                         "type": "object",
-                        "required": true,
                         "$ref": "#/components/schemas/RecipientTypeApi"
                     },
                     "RecipientAuthenticationMethods": {
                         "description": "Set authentication types",
                         "type": "array",
-                        "required": "false",
                         "items": {
                             "$ref": "#/components/schemas/RecipientAuthenticationApiModel"
                         }
                     },
                     "AutomaticSignerProfileIdentifier": {
                         "description": "The automatic signing profile",
-                        "type": "string",
-                        "required": false
+                        "type": "string"
                     }
                 }
             },
@@ -3404,16 +3329,15 @@
             "FileAccessApiModel": {
                 "description": "Custom file access type which specified to which recipient is the file assigned",
                 "type": "object",
+                "required": ["FileIndex", "RecipientIndex"],
                 "properties": {
                     "FileIndex": {
                         "description": "Index of the file",
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     },
                     "RecipientIndex": {
                         "description": "Index of the recipient",
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     }
                 }
             },
@@ -3436,26 +3360,23 @@
             "AutomaticSigningProfileApiModel": {
                 "description": "Type which specifies a profile to be used for automatic signature",
                 "type": "object",
+                "required": ["Name","CertificateTypeApi"],
                 "properties": {
                     "Name": {
                         "description": "The name of the profile",
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     },
                     "SignatureImageBase64": {
                         "description": "The signature image in base64 format. Leave empty to use the default image",
-                        "type": "string",
-                        "required": false
+                        "type": "string"
                     },
                     "SignatureImprintName": {
                         "description": "The name of the signature imprint, leave empty for no imprint. The organization imprints can be retrieved by calling GetSignaturesImprints",
-                        "type": "string",
-                        "required": false
+                        "type": "string"
                     },
                     "CertificateTypeApi": {
                         "description": "The type of certificate to be used ",
                         "type": "object",
-                        "required": true,
                         "$ref": "#/components/schemas/AutomaticSigningProfileCertificateTypeApi"
                     },
                     "StoredCertificate": {
@@ -3466,8 +3387,7 @@
                     },
                     "SignatureTypeIdentifierForRemoteSigningProvider": {
                         "description": "The remote signature type identifier. This should be set when CertificateTypeApi = RemoteSigningProvider",
-                        "type": "integer",
-                        "required": false
+                        "type": "integer"
                     }
                 }
             },
@@ -3475,16 +3395,15 @@
             "ProfileStoredCertificateApiModel": {
                 "description": "Type which specifies a stored certificate to be used for automatic signature",
                 "type": "object",
+                "required": ["CertificateBase64"],
                 "properties": {
                     "CertificateBase64": {
                         "description": "The certificate specified as a BASE64 encoded string",
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     },
                     "CertificatePassword": {
                         "description": "The certificate password",
-                        "type": "string",
-                        "required": false
+                        "type": "string"
                     }
                 }
             },
@@ -3748,18 +3667,17 @@
             "TeamShareApiModel": {
                 "description": "Type used to specify team members",
                 "type": "object",
+                "required": ["Name", "MemberEmails"],
                 "properties": {
                     "Name": {
                         "description": "Name of the team",
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     },
                     "MemberEmails": {
                         "description": "Array of organization user emails which will be added to the team",
                         "type": "array",
                         "items": {
-                            "type": "string",
-                            "required": true
+                            "type": "string"
                         }
                     }
                 }
@@ -3768,16 +3686,15 @@
             "TeamHierarchicalApiModel": {
                 "description": "Type used to specify team members of a hierarchical team",
                 "type": "object",
+                "required": ["Name", "Members"],
                 "properties": {
                     "Name": {
                         "description": "Name of the team",
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     },
                     "Members": {
                         "description": "Members of the team",
                         "type": "array",
-                        "required": true,
                         "items": {
                             "$ref": "#/components/schemas/HierarchicalTeamMember"
                         }
@@ -3968,6 +3885,7 @@
             "RecipientAuthenticationApiModel": {
                 "description": "Authentication details for recipient",
                 "type": "object",
+                "required": ["AuthorizationDetails", "AuthenticationType"],
                 "properties": {
                     "AuthenticationType": {
                         "description": "Authentication type",
@@ -3975,9 +3893,8 @@
                         "$ref": "#/components/schemas/RecipientTypeApi"
                     },
                     "AuthorizationDetails": {
-                        "description": "Set authentication data. For password authentication set the password, for SMS set the phone number  ",
-                        "type": "string",
-                        "required": true
+                        "description": "Set authentication data. For password authentication set the password, for SMS set the phone number",
+                        "type": "string"
                     }
                 }
             },
@@ -4015,16 +3932,15 @@
             "CallbackBasicAuthentication": {
                 "description": "CallbackBasicAuthentication model definition",
                 "type": "object",
+                "required": ["UserName", "Password"],
                 "properties": {
                     "UserName": {
                         "description": "Username used for authentication",
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     },
                     "Password": {
                         "description": "Password used for authentication",
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     }
                 }
             },
@@ -4032,16 +3948,15 @@
             "CallbackCustomHeaderAuthentication": {
                 "description": "CallbackCustomHeaderAuthentication model definition",
                 "type": "object",
+                "required": ["HeaderName", "HeaderValue"],
                 "properties": {
                     "HeaderName": {
                         "description": "Header name used for authentication",
-                        "type": "string",
-                        "required": "true"
+                        "type": "string"
                     },
                     "HeaderValue": {
                         "description": "Header value used for authentication",
-                        "type": "string",
-                        "required": "true"
+                        "type": "string"
                     }
                 }
             },
@@ -4049,36 +3964,31 @@
             "SignSettingsApiModel": {
                 "description": "SignSettingsApiModel definition",
                 "type": "object",
+                "required": ["SigningConfirmationForProfileAndClickToSign", "AutomaticFinishAfterSigning", "ForceSignerToReadDocument","ShowSignerIntroductionDetailsPage","EnableBrowserGeolocationRequest","AllowSignerToUploadImageForDrawToSign","AllowRejectWithoutRejectionText"],
                 "properties": {
                     "SigningConfirmationForProfileAndClickToSign": {
                         "description": "Flag which determines if the signer has to confirm when signing a ClickToSign / profile  signature",
-                        "type": "boolean",
-                        "required": "true"
+                        "type": "boolean"
                     },
                     "AutomaticFinishAfterSigning": {
                         "description": "Flag which determines if the signing process is finished automatically after the last signature field is signed",
-                        "type": "boolean",
-                        "required": "true"
+                        "type": "boolean"
                     },
                     "ForceSignerToReadDocument": {
                         "description": "Flag which determines if the signer must read the document first before being allowed to sign it",
-                        "type": "boolean",
-                        "required": "true"
+                        "type": "boolean"
                     },
                     "ShowSignerIntroductionDetailsPage": {
                         "description": "Flag which determines if the signer is shown a introduction page with details about the document sender",
-                        "type": "boolean",
-                        "required": true
+                        "type": "boolean"
                     },
                     "EnableBrowserGeolocationRequest": {
                         "description": "Flag which determines if the browser geo-location request is enabled",
-                        "type": "boolean",
-                        "required": true
+                        "type": "boolean"
                     },
                     "AllowSignerToUploadImageForDrawToSign": {
                         "description": "Flag which determines if the user is allowed to upload signature image when signing a DrawToSign signature field",
-                        "type": "boolean",
-                        "required": true
+                        "type": "boolean"
                     },
                     "DocumentDownload": {
                         "description": "Set the document download option",
@@ -4088,14 +3998,11 @@
                     },
                     "DocumentDownloadRedirectUrl": {
                         "description": "Set the redirect URL. This should be set only when DocumentDownload = RedirectToUrl",
-                        "type": "string",
-                        "required": false
+                        "type": "string"
                     },
-
                     "AllowRejectWithoutRejectionText": {
                         "description": "Flag which determines if the user is allowed to reject signing without entering the reason",
-                        "type": "boolean",
-                        "required": true
+                        "type": "boolean"
                     }
                 }
             },
@@ -4363,11 +4270,11 @@
             "FindRecipientByEmailApiModel": {
                 "description": "Input for finding a recipient by email",
                 "type": "object",
+                "required": ["RecipientEmail","RecipientType"],
                 "properties": {
                     "RecipientEmail": {
                         "description": "The email of the recipient",
-                        "type": "string",
-                        "required": "true"
+                        "type": "string"
                     },
                     "RecipientType": {
                         "description": "Specify the recipient type",
@@ -4381,11 +4288,11 @@
             "FindRecipientByIndexApiModel": {
                 "description": "Input for finding a recipient by index",
                 "type": "object",
+                "required": ["Index"],
                 "properties": {
                     "Index": {
                         "description": "The index of the recipient",
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     }
                 }
             },
@@ -4393,16 +4300,15 @@
             "SignatureDisclosureApiModel": {
                 "description": "SignatureDisclosure model",
                 "type": "object",
+                "required": ["SignatureDisclosure", "ForceSignatureDisclosureDownload"],
                 "properties": {
                     "SignatureDisclosure": {
                         "description": "The signature disclosure text",
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     },
                     "ForceSignatureDisclosureDownload": {
                         "description": "Flag which determines if the user must download the signature disclosure PDF to continue",
-                        "type": "boolean",
-                        "required": false
+                        "type": "boolean"
                     }
                 }
             },
