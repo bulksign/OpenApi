@@ -2,11 +2,9 @@
     "openapi": "3.0.0",
     "servers": [{
         "url": "https://bulksign.com/webapi/restapi/"
-    }, {
-        "url": "https://localhost/BulksignUnlockConcurrentRecipientApi/restapi/"
-    }],
+    	}],
     "info": {
-        "version": "4.17",
+        "version": "4.20",
         "title": "Bulksign REST API",
         "description": "Bulksign OpenAPI definition. For .NET/Core specifically, please use our [.NET SDK](https://www.nuget.org/packages/BulksignSdk). API code samples highlighting different integration scenarios are [on Github](https://github.com/bulksign/BulksignApiSamples)",
         "contact": {
@@ -50,18 +48,27 @@
                 ],
                 "summary": "Unlocks envelope which is currently locked by specific recipient",
                 "operationId": "UnlockConcurrentRecipient",
-                "responses": {
+                 "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json:": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UnlockConcurrentRecipientApiModel"
+                            }
+                        }
+                    }
+                },
+                 "responses": {
                     "200": {
                         "description": "OK",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/UnlockConcurrentRecipientApiModel"
+                                    "$ref": "#/components/schemas/BulksignResult"
                                 }
                             }
                         }
                     }
-
                 }
             }
 		},
@@ -217,7 +224,6 @@
             }
         },
       
-
         "/SendReminder": {
             "post": {
                 "tags": [
