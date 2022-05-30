@@ -46,7 +46,7 @@
                 "tags": [
                     "Recipient"
                 ],
-                "summary": "Unlocks envelope which is currently locked by specific recipient",
+                "summary": "Unlocks access to envelope which is currently locked by specific concurrent recipient",
                 "operationId": "UnlockConcurrentRecipient",
                  "requestBody": {
                     "required": true,
@@ -78,7 +78,7 @@
                 "tags": [
                     "Organization"
                 ],
-                "summary": "Gets the organization's users",
+                "summary": "Gets the list of organization users. Requires organization administrator rights",
                 "operationId": "GetOrganizationUsers",
                 "responses": {
                     "200": {
@@ -101,7 +101,7 @@
                 "tags": [
                     "License"
                 ],
-                "summary": "Gets license information. Can only be used by organization administrators",
+                "summary": "Gets license information. Requires organization administrator rights",
                 "operationId": "GetLicense",
                 "responses": {
                     "200": {
@@ -124,7 +124,7 @@
                 "tags": [
                     "Envelope"
                 ],
-                "summary": "Obtain a SendEnvelopeApiModel",
+                "summary": "Obtain a predefined SendEnvelopeApiModel from specified PDF documents",
                 "operationId": "PrepareSendEnvelope",
                 "requestBody": {
                     "required": true,
@@ -160,7 +160,7 @@
                 "tags": [
                     "Envelope"
                 ],
-                "summary": "Obtain a SendEnvelopeApiModel",
+                "summary": "Obtain a predefined SendEnvelopeApiModel from specified PDF documents",
                 "operationId": "PrepareSendEnvelopeBase64",
                 "requestBody": {
                     "required": true,
@@ -229,7 +229,7 @@
                 "tags": [
                     "Envelope"
                 ],
-                "summary": "Sends a email reminder for the current signer(s) of the envelope",
+                "summary": "Sends email reminder for the current signer(s) of the envelope",
                 "operationId": "SendReminder",
                 "parameters": [{
                     "name": "envelopeId",
@@ -260,7 +260,7 @@
                 "tags": [
                     "Envelope"
                 ],
-                "summary": "Send a envelope to signing from a existing draft",
+                "summary": "Send a envelope to signing from an existing draft",
                 "operationId": "SendEnvelopeFromDraft",
                 "parameters": [{
                     "name": "draftId",
@@ -324,7 +324,7 @@
                 "tags": [
                     "Envelope"
                 ],
-                "summary": "Delete a existing envelope",
+                "summary": "Deletes an existing envelope",
                 "operationId": "DeleteEnvelope",
                 "parameters": [{
                     "name": "envelopeId",
@@ -355,7 +355,7 @@
                 "tags": [
                     "Envelope"
                 ],
-                "summary": "Cancel a envelope which is in progress",
+                "summary": "Cancel an 'in progress' envelope",
                 "operationId": "CancelEnvelope",
                 "parameters": [{
                     "name": "envelopeId",
@@ -386,7 +386,7 @@
                 "tags": [
                     "Envelope"
                 ],
-                "summary": "Restarts a expired envelope",
+                "summary": "Restarts an expired envelope",
                 "operationId": "RestartEnvelope",
                 "parameters": [{
                     "name": "envelopeId",
@@ -417,7 +417,7 @@
                 "tags": [
                     "Envelope"
                 ],
-                "summary": "Get envelope details",
+                "summary": "Get detailed information about an envelope",
                 "operationId": "GetEnvelopeDetails",
                 "parameters": [{
                     "name": "envelopeId",
@@ -448,7 +448,7 @@
                 "tags": [
                     "Draft"
                 ],
-                "summary": "Search drafts",
+                "summary": "Search drafts using a specific search term",
                 "operationId": "SearchDrafts",
                 "parameters": [{
                     "name": "searchTerm",
@@ -789,7 +789,7 @@
                 "tags": [
                     "Recipient"
                 ],
-                "summary": "Model from deleting a recipient from a envelope",
+                "summary": "Deletes a recipient from a envelope",
                 "operationId": "DeleteRecipient",
                 "requestBody": {
                     "required": true,
@@ -888,7 +888,7 @@
                 "tags": [
                     "Organization"
                 ],
-                "summary": "Get the list of signature imprints defined per organization ",
+                "summary": "Get the list of signature imprints defined per organization. Requires organization administrator rights",
                 "operationId": "GetSignatureImprints",
                 "parameters": [],
                 "responses": {
@@ -914,7 +914,7 @@
                 "tags": [
                     "Organization"
                 ],
-                "summary": "Add a new organization profile for automatic signatures",
+                "summary": "Add a new organization profile for automatic signatures. Requires organization administrator rights",
                 "operationId": "AddOrganizationAutomaticSigningProfile",
                 "requestBody": {
                     "required": true,
@@ -970,7 +970,7 @@
                 "tags": [
                     "Organization"
                 ],
-                "summary": "Get the list of organization automatic signing profiles ",
+                "summary": "Get the list of organization automatic signing profiles.Requires organization administrator rights",
                 "operationId": "GetOrganizationAutomaticSigningProfiles",
                 "parameters": [],
                 "responses": {
@@ -993,7 +993,7 @@
                 "tags": [
                     "User"
                 ],
-                "summary": "Add a new contact",
+                "summary": "Adds a new contact",
                 "operationId": "AddContact",
                 "requestBody": {
                     "required": true,
@@ -1026,7 +1026,7 @@
                 "tags": [
                     "Organization"
                 ],
-                "summary": "Add a new shared contact",
+                "summary": "Adds a new shared contact. Requires organization administrator rights",
                 "operationId": "AddSharedContact",
                 "requestBody": {
                     "required": true,
@@ -1081,7 +1081,7 @@
                 "tags": [
                     "Organization"
                 ],
-                "summary": "Gets the list of shared contacts",
+                "summary": "Gets the list of shared contacts. Requires organization administrator rights",
                 "operationId": "GetSharedContacts",
                 "responses": {
                     "200": {
@@ -1147,7 +1147,7 @@
                 "tags": [
                     "Template"
                 ],
-                "summary": "Gets the list of templates available for user including shared templates",
+                "summary": "Get detailed informations about a template",
                 "operationId": "GetTemplateDetails",
                 "parameters": [{
                     "name": "templateId",
@@ -1465,7 +1465,7 @@
                 "tags": [
                     "Organization"
                 ],
-                "summary": "Creates a team where envelopes are shared between all members of the team",
+                "summary": "Creates a team where envelopes are shared between all members of the team. Requires organization administrator rights",
                 "operationId": "CreateShareTeam",
                 "requestBody": {
                     "required": true,
@@ -1498,7 +1498,7 @@
                 "tags": [
                     "Organization"
                 ],
-                "summary": "Creates a team where envelopes are shared between all members of the team",
+                "summary": "Creates a team where envelopes are shared between all members of the team. Requires organization administrator rights",
                 "operationId": "CreateHierarchicalTeam",
                 "requestBody": {
                     "required": true,
@@ -1640,7 +1640,7 @@
                 "tags": [
                     "Organization"
                 ],
-                "summary": "Updates the organization settings.",
+                "summary": "Updates the organization settings. Requires organization administrator rights",
                 "operationId": "UpdateOrganizationSettings",
                 "requestBody": {
                     "required": true,
@@ -1668,13 +1668,12 @@
             }
         },
 
-
         "/InviteUserToOrganization": {
             "post": {
                 "tags": [
                     "User"
                 ],
-                "summary": "Invite the user to your organization using name and email",
+                "summary": "Invite the user to your organization using name and email. Requires organization administrator rights",
                 "operationId": "InviteUserToOrganization",
                 "requestBody": {
                     "required": true,
@@ -1707,7 +1706,7 @@
                 "tags": [
                     "User"
                 ],
-                "summary": "Add a new user to your organization using full user data. Can only be used by organization administrators",
+                "summary": "Add a new user to your organization using full user data. Requires organization administrator rights",
                 "operationId": "AddUserToOrganization",
                 "requestBody": {
                     "required": true,
@@ -1734,12 +1733,13 @@
                 }
             }
         },
+
         "/AddUserToOrganizationForLoginWithExternalProvider": {
             "post": {
                 "tags": [
                     "User"
                 ],
-                "summary": "Add a new user to your organization which can login with a configured authentication provider. Can only be used by organization administrators",
+                "summary": "Add a new user to your organization which can login with a configured authentication provider. Requires organization administrator rights",
                 "operationId": "AddUserToOrganizationForLoginWithExternalProvider",
                 "requestBody": {
                     "required": true,
@@ -1973,7 +1973,7 @@
                 "tags": [
                     "Organization"
                 ],
-                "summary": "Retrive the organization authentication providers",
+                "summary": "Retrive the organization authentication providers. Requires organization administrator rights",
                 "operationId": "GetAuthenticationProviders",
                 "responses": {
                     "200": {
