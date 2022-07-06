@@ -888,7 +888,7 @@
                 "tags": [
                     "Organization"
                 ],
-                "summary": "Get the list of signature imprints defined per organization. Requires organization administrator rights",
+                "summary": "Get the list of signature imprints defined per organization",
                 "operationId": "GetSignatureImprints",
                 "parameters": [],
                 "responses": {
@@ -908,6 +908,119 @@
                 }
             }
         },
+
+
+        "/GetSignatureStamps": {
+            "post": {
+                "tags": [
+                    "Organization"
+                ],
+                "summary": "Get the list of signature stamps defined per organization",
+                "operationId": "GetSignatureStamps",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/BulksignResultStringArray"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/GetUserInterfaceLanguages": {
+            "post": {
+                "tags": [
+                    "Organization"
+                ],
+                "summary": "Get the list of UI languages usable by Bulksign",
+                "operationId": "GetUserInterfaceLanguages",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/BulksignResultStringArray"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/GetEmailLanguages": {
+            "post": {
+                "tags": [
+                    "Organization"
+                ],
+                "summary": "Get the list of email languages usable in the organization",
+                "operationId": "GetEmailLanguages",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/BulksignResultStringArray"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/AddSignatureStamp": {
+            "post": {
+                "tags": [
+                    "Organization"
+                ],
+                "summary": "Add a new organization signature stamp. Requires organization administrator rights",
+                "operationId": "AddSignatureStamp",
+                "requestBody": {
+                    "required": true,
+                    "description": "Input model",
+                    "content": {
+                        "application/json:": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NewStampApiModel"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BulksignResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
 
         "/AddOrganizationAutomaticSigningProfile": {
             "post": {
@@ -3214,6 +3327,37 @@
                         "description": "The signature type",
                         "type": "object",
                         "$ref": "#/components/schemas/SignatureTypeApi"
+                    },
+                    "StampSignatureConfiguration" :
+                    {
+                        "description": "Configuration for stamp signature. Only used if SignatureType = Stamp",
+                        "type": "object",
+                        "$ref": "#/components/schemas/StampSignatureConfigurationApiModel"
+                    },
+                    "RemoteSignatureProviderIdentifier" :{
+                        "description": "Configuration for stamp signature. Only used if SignatureType = RemoteSigningProvider",
+                        "type": "number"
+                    }
+                }
+            },
+
+            "StampSignatureConfigurationApiModel" :{
+                "description": "Type which describes the condiguration for a Stamp signature",
+                "type": "object",
+                "required": ["AssignedToRecipientEmail"],
+                "properties": {
+                    "ImprintName": {
+                        "description": "Name of the imprint to use",
+                        "type": "string"
+                    },
+                    "StampName": {
+                        "description": "Name of the stano to use. Is useable only when StampType = StampSignatureTypeApi.PredefinedStamp",
+                        "type": "string"
+                    },
+                    "StampType": {
+                        "description": "The type of stamp signature",
+                        "type": "object",
+                        "$ref": "#/components/schemas/SignatureTypeApi"
                     }
                 }
             },
@@ -3273,6 +3417,20 @@
                         "description": "The signature type",
                         "type": "object",
                         "$ref": "#/components/schemas/SignatureTypeApi"
+                    },
+                    "EnableTimestamp" :{
+                        "description": "Set to true to enable timestamping",
+                        "type": "boolean"
+                    },
+                    "RemoteSignatureProviderIdentifier":{
+                        "description": "Identifier for the remote signing provider. Only used if SignatureType = RemoteSigningProvider",
+                        "type": "number"
+                    },
+                    "StampSignatureConfiguration" :
+                    {
+                        "description": "Configuration for stamp signature. Only used if SignatureType = Stamp",
+                        "type": "object",
+                        "$ref": "#/components/schemas/StampSignatureConfigurationApiModel"
                     }
                 }
             },
@@ -3585,10 +3743,6 @@
                         "description": "Enable/disable the option to allow signers to reject without entering the rejection reason",
                         "type": "boolean"
                     },
-                    "AllowSignerToUploadImageForDrawToSign": {
-                        "description": "Enable/disable the option to allow the user to upload his own signature image when using a Draw2Sign signature type",
-                        "type": "boolean"
-                    },
                     "DocumentDownload": {
                         "description": "Enable/disable the option to allow the user to upload his own signature image when using a Draw2Sign signature type",
                         "$ref": "#/components/schemas/SignerDownloadDocumentActionTypeApi"
@@ -3646,6 +3800,23 @@
                         "items": {
                             "type": "string"
                         }
+                    }
+                }
+            },
+
+            "NewStampApiModel" :{
+                "description": "Describes adding a new signature stamp",
+                "type": "object",
+                "required": ["Name","Image"],
+                "properties": {
+                    "Name": {
+                        "description": "Name of the new signature stamp",
+                        "type": "string"
+                    },
+                    "Image":{
+                        "description": "The stamp image file. Must be in PNG format",
+                        "type": "string",
+                        "format": "binary"
                     }
                 }
             },
@@ -4193,6 +4364,22 @@
                 }]
             },
 
+            "StampSignatureTypeApi":{
+                "description": "Specifies the stamp signature type : UserProvided - 0 , PredefinedStamp - 1",
+                "type": "number",
+                "enum": [
+                    "0",
+                    "1"
+                ],
+                "x-enum-values": [{
+                    "numericValue": "0",
+                    "identifier": "UserProvided"
+                }, {
+                    "numericValue": "1",
+                    "identifier": "PredefinedStamp"
+                }]
+            },
+
             "EnvelopeStatusTypeApi": {
                 "description": "Specifies the envelope status : InProgress - 3 , Completed - 4, Canceled = 5, Expired = 6, Deleted = 7",
                 "type": "number",
@@ -4236,12 +4423,15 @@
             },
 
             "SignatureTypeApi": {
-                "description": "Specifies the signature type : DrawTypeToSign - 0 , ClickToSign - 1, OTPSign = 2",
+                "description": "Specifies the signature type : DrawTypeToSign - 0 , ClickToSign - 1, OTPSign = 2, LocalCertificate = 3, RemoteSignatureProvider = 4, Stamp = 5",
                 "type": "number",
                 "enum": [
                     "0",
                     "1",
-                    "2"
+                    "2",
+                    "3",
+                    "4",
+                    "5"                    
                 ],
 
                 "x-enum-values": [{
@@ -4253,7 +4443,17 @@
                 }, {
                     "numericValue": "2",
                     "identifier": "OTPSign"
-                }]
+                },{
+                    "numericValue": "3",
+                    "identifier": "LocalCertificate"
+                },{
+                    "numericValue": "4",
+                    "identifier": "RemoteSignatureProvider"
+                },{
+                    "numericValue": "5",
+                    "identifier": "Stamp"
+                }
+                ]
             },
 
             "AutomaticSigningProfileCertificateTypeApi": {
