@@ -4,7 +4,7 @@
         "url": "https://bulksign.com/webapi/restapi/"
     	}],
     "info": {
-        "version": "4.20",
+        "version": "4.22",
         "title": "Bulksign REST API",
         "description": "Bulksign OpenAPI definition. For .NET/Core specifically, please use our [.NET SDK](https://www.nuget.org/packages/BulksignSdk). API code samples highlighting different integration scenarios are [on Github](https://github.com/bulksign/BulksignApiSamples)",
         "contact": {
@@ -14,7 +14,11 @@
     "tags": [{
         "name": "Envelope",
         "description": "Envelope specific APIs"
-    }, {
+    },
+    {
+        "name": "Configuration",
+        "description": "APIs which support different configurations"
+    },{
         "name": "Recipient",
         "description": "Recipient specific APIs"
     }, {
@@ -886,7 +890,7 @@
         "/GetSignatureImprints": {
             "post": {
                 "tags": [
-                    "Organization"
+                    "Configuration"
                 ],
                 "summary": "Get the list of signature imprints defined per organization",
                 "operationId": "GetSignatureImprints",
@@ -909,11 +913,36 @@
             }
         },
 
+        "/GetCustomUserRoles": {
+            "post": {
+                "tags": [
+                    "Configuration"
+                ],
+                "summary": "Get the list of custom user roles defined per organization. Requires administrator or custom role with acces to users",
+                "operationId": "GetCustomUserRoles",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/BulksignResultStringArray"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
 
         "/GetSignatureStamps": {
             "post": {
                 "tags": [
-                    "Organization"
+                    "Configuration"
                 ],
                 "summary": "Get the list of signature stamps defined per organization",
                 "operationId": "GetSignatureStamps",
@@ -939,7 +968,7 @@
         "/GetUserInterfaceLanguages": {
             "post": {
                 "tags": [
-                    "Organization"
+                    "Configuration"
                 ],
                 "summary": "Get the list of UI languages usable by Bulksign",
                 "operationId": "GetUserInterfaceLanguages",
@@ -965,7 +994,7 @@
         "/GetEmailLanguages": {
             "post": {
                 "tags": [
-                    "Organization"
+                    "Configuration"
                 ],
                 "summary": "Get the list of email languages usable in the organization",
                 "operationId": "GetEmailLanguages",
@@ -993,7 +1022,7 @@
                 "tags": [
                     "Organization"
                 ],
-                "summary": "Add a new organization signature stamp. Requires organization administrator rights",
+                "summary": "Add a new organization signature stamp. Requires organization administrator rights or custom role with acces to signature stamps",
                 "operationId": "AddSignatureStamp",
                 "requestBody": {
                     "required": true,
@@ -1021,13 +1050,12 @@
             }
         },
 
-
         "/AddOrganizationAutomaticSigningProfile": {
             "post": {
                 "tags": [
                     "Organization"
                 ],
-                "summary": "Add a new organization profile for automatic signatures. Requires organization administrator rights",
+                "summary": "Add a new organization profile for automatic signatures. Requires organization administrator rights or custom role with acces to automatic signing profiles",
                 "operationId": "AddOrganizationAutomaticSigningProfile",
                 "requestBody": {
                     "required": true,
@@ -1083,7 +1111,7 @@
                 "tags": [
                     "Organization"
                 ],
-                "summary": "Get the list of organization automatic signing profiles.Requires organization administrator rights",
+                "summary": "Get the list of organization automatic signing profiles",
                 "operationId": "GetOrganizationAutomaticSigningProfiles",
                 "parameters": [],
                 "responses": {
@@ -1139,7 +1167,7 @@
                 "tags": [
                     "Organization"
                 ],
-                "summary": "Adds a new shared contact. Requires organization administrator rights",
+                "summary": "Adds a new shared contact. Requires organization administrator rights or custom role with acces to signature stamps",
                 "operationId": "AddSharedContact",
                 "requestBody": {
                     "required": true,
@@ -1194,7 +1222,7 @@
                 "tags": [
                     "Organization"
                 ],
-                "summary": "Gets the list of shared contacts. Requires organization administrator rights",
+                "summary": "Gets the list of shared contacts",
                 "operationId": "GetSharedContacts",
                 "responses": {
                     "200": {
@@ -2633,7 +2661,7 @@
             "NewUserApiModel": {
                 "description": "NewUserApiModel type definition",
                 "type": "object",
-                "required": ["FirstName","LastName","Email","IsAdministrator","PhoneNumber"],
+                "required": ["FirstName","LastName","Email","Role","PhoneNumber"],
                 "properties": {
                     "FirstName": {
                         "description": "The user first name",
@@ -2647,10 +2675,13 @@
                         "description": "The user email address",
                         "type": "string"
                     },
-                    "IsAdministrator": {
-                        "description": "Flag to determine if the new user will be a organization administrator",
-                        "type": "boolean",
-                        "default": "false"
+                    "Role": {
+                        "description": "Set the user role",
+                        "$ref": "#/components/schemas/UserRoleApiType"
+                    },
+                    "CustomRoleName" :{
+                        "description": "If Role = Custom, set the name of the custom user role. Case insensitive",
+                        "type": "string"
                     },
                     "JobTitle": {
                         "description": "The user job title",
@@ -2718,7 +2749,7 @@
             "UserInvitationApiModel": {
                 "description": "Type description for UserInvitation model",
                 "type": "object",
-                "required": ["FirstName","LastName","Email","IsAdministrator"],
+                "required": ["FirstName","LastName","Email","Role"],
                 "properties": {
                     "FirstName": {
                         "description": "The user's first name",
@@ -2735,10 +2766,13 @@
                         "type": "string",
                         "example": "test@test.com"
                     },
-                    "IsAdministrator": {
-                        "description": "Flag to determine if the new user will be a organization administrator",
-                        "type": "boolean",
-                        "example": "true"
+                    "Role": {
+                        "description": "Set the user role",
+                        "$ref": "#/components/schemas/UserRoleApiType"
+                    },
+                    "CustomRoleName" :{
+                        "description": "If Role = Custom, set the name of the custom user role. Case insensitive",
+                        "type": "string"
                     }
                 }
             },
@@ -4530,6 +4564,16 @@
                 ]
             },
 
+            "UserRoleApiType" :{
+                "description": "Specifies the user role : User - 0 , Administrator - 1, Custom = 2",
+                "type": "number",
+                "enum": [
+                    "0",
+                    "1",
+                    "2"
+                ]
+            },
+
             "FillFormInputApiModel": {
                 "description": "Input for GetFinishedFormFields",
                 "type": "object",
@@ -4632,9 +4676,13 @@
                         "description": "Email address of the user",
                         "type": "string"
                     },
-                    "OrganizationAdministrator": {
-                        "description": "Flag which determines if the user is a organization administrator",
-                        "type": "boolean"
+                    "Role": {
+                        "description": "Set the user role",
+                        "$ref": "#/components/schemas/UserRoleApiType"
+                    },
+                    "CustomRoleName" :{
+                        "description": "If Role = Custom, set the name of the custom user role. Case insensitive",
+                        "type": "string"
                     }
                 }
             },
