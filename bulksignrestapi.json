@@ -4,7 +4,7 @@
         "url": "https://bulksign.com/webapi/restapi/"
     	}],
     "info": {
-        "version": "4.22",
+        "version": "4.24",
         "title": "Bulksign REST API",
         "description": "Bulksign OpenAPI definition. For .NET/Core specifically, please use our [.NET SDK](https://www.nuget.org/packages/BulksignSdk). API code samples highlighting different integration scenarios are [on Github](https://github.com/bulksign/BulksignApiSamples)",
         "contact": {
@@ -132,49 +132,13 @@
                 "operationId": "PrepareSendEnvelope",
                 "requestBody": {
                     "required": true,
-                    "description": "Input files",
+                    "description": "Specifies the input files for the envelope and info about document parsing",
                     "content": {
                         "application/json": {
                             "schema": {
                                 "type": "array",
                                 "items": {
-                                    "$ref": "#/components/schemas/FileInput"
-                                }
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/EnvelopeApiModel"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-
-        "/PrepareSendEnvelopeBase64": {
-            "post": {
-                "tags": [
-                    "Envelope"
-                ],
-                "summary": "Obtain a predefined SendEnvelopeApiModel from specified PDF documents",
-                "operationId": "PrepareSendEnvelopeBase64",
-                "requestBody": {
-                    "required": true,
-                    "description": "Input files",
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/components/schemas/FileInputBase64"
+                                    "$ref": "#/components/schemas/PrepareEnvelopeApiModel"
                                 }
                             }
                         }
@@ -2185,6 +2149,11 @@
                         "items": {
                             "$ref": "#/components/schemas/RecipientApiModel"
                         }
+                    },
+                    "DocumentParsingOptions" :{
+                        "description": "Document parsing options",
+                        "type": "object",
+                        "$ref": "#/components/schemas/DocumentParseOptionApiModel"
                     }
                 }
             },
@@ -2209,6 +2178,11 @@
                         "items": {
                             "$ref": "#/components/schemas/RecipientApiModel"
                         }
+                    },
+                    "DocumentParsingOptions" :{
+                        "description": "Document parsing options",
+                        "type": "object",
+                        "$ref": "#/components/schemas/DocumentParseOptionApiModel"
                     }
                 }
             },
@@ -4788,6 +4762,45 @@
                         "description": "If the form field is a signature, this will contain the signature type",
                         "type": "object",
                         "$ref": "#/components/schemas/SignatureTypeApi"
+                    }
+                }
+            },
+
+            "DocumentParseOptionApiModel" : {
+                "type": "object",
+                "properties": {
+                    "ParseTags": {
+                        "description": "Boolean flag which determines if the document is searched for tags",
+                        "type": "boolean"
+                    },
+                    "DeleteTagText" :{
+                        "description": "Boolean flag which indicates if tag's text will be deleted from docuemnt after the form fields are created",
+                        "type": "boolean"
+                    }
+                }
+            },
+
+            "PrepareEnvelopeApiModel" :{
+                "type": "object",
+                "properties": {
+                    "Files": {
+                        "description": "The files which will be part of the envelope",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/FileInput"
+                        }
+                    },
+                    "FilesBase64": {
+                        "description": "The files which will be part of the envelope (base64 format)",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/FileInputBase64"
+                        }
+                    },
+                    "DocumentParsingOptions" :{
+                        "description": "Document parsing options",
+                        "type": "object",
+                        "$ref": "#/components/schemas/DocumentParseOptionApiModel"
                     }
                 }
             },
