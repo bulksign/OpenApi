@@ -4,7 +4,7 @@
         "url": "https://bulksign.com/webapi/restapi/"
     	}],
     "info": {
-        "version": "4.24",
+        "version": "4.25",
         "title": "Bulksign REST API",
         "description": "Bulksign OpenAPI definition. For .NET/Core specifically, please use our [.NET SDK](https://www.nuget.org/packages/BulksignSdk). API code samples highlighting different integration scenarios are [on Github](https://github.com/bulksign/BulksignApiSamples)",
         "contact": {
@@ -14,6 +14,10 @@
     "tags": [{
         "name": "Envelope",
         "description": "Envelope specific APIs"
+    },
+    {
+        "name": "Document",
+        "description": "APIs which enable working with a single document"
     },
     {
         "name": "Configuration",
@@ -1631,13 +1635,114 @@
             }
         },
 
-        "/AnalyzeFileInput": {
+        "/StoreTemporaryFileBinary": {
             "post": {
                 "tags": [
-                    "Envelope"
+                    "Document"
+                ],
+                "summary": "Stores the specified file, to be used afterwards from SendEnvelope/PrepareSendEnvelope",
+                "operationId": "StoreTemporaryFileBinary",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/octet-stream:": {
+                            "schema": {
+                                "type": "string",
+                                "format": "binary"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BulksignResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+
+        "/StoreTemporaryFile": {
+            "post": {
+                "tags": [
+                    "Document"
+                ],
+                "summary": "Stores the specified file, to be used afterwards from SendEnvelope/PrepareSendEnvelope",
+                "operationId": "StoreTemporaryFile",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json:": {
+                            "schema": {
+                                "$ref": "#/components/schemas/FileInput"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BulksignResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+
+        
+        "/StoreTemporaryFileBase64": {
+            "post": {
+                "tags": [
+                    "Document"
+                ],
+                "summary": "Stores the specified file, to be used afterwards from SendEnvelope/PrepareSendEnvelope",
+                "operationId": "StoreTemporaryFileBase64",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json:": {
+                            "schema": {
+                                "$ref": "#/components/schemas/FileInputBase64"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BulksignResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+
+        "/AnalyzeFileBinary": {
+            "post": {
+                "tags": [
+                    "Document"
                 ],
                 "summary": "Analyze the specified PDF file, stores the file and returns information about form fields",
-                "operationId": "AnalyzeFileInput",
+                "operationId": "AnalyzeFileBinary",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -1670,7 +1775,7 @@
         "/AnalyzeFile": {
             "post": {
                 "tags": [
-                    "Envelope"
+                    "Document"
                 ],
                 "summary": "Analyze the specified PDF file, stores the file and returns information about form fields",
                 "operationId": "AnalyzeFile",
@@ -1706,7 +1811,7 @@
         "/AnalyzeFileBase64": {
             "post": {
                 "tags": [
-                    "Envelope"
+                    "Document"
                 ],
                 "summary": "Analyze the specified PDF file and returns information about form fields",
                 "operationId": "AnalyzeFileBase64",
@@ -3116,9 +3221,9 @@
                 "description": "AnalyzeFile return type",
                 "type": "object",
                 "properties": {
-                    "FileIdentifier": {
-                        "description": "Identifier for stored file",
-                        "type": "string"
+                    "NumberOfPages" :{
+                        "description": "Number of pages of the document",
+                        "type": "number"
                     },
                     "Fields": {
                         "description": "Parsed fields ",
