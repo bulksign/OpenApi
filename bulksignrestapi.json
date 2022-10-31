@@ -2776,6 +2776,10 @@
                     "SenderName": {
                         "description": "The name of the envelope sender",
                         "type": "string"
+                    },
+                    "IsEnvelopeSender" :{
+                        "description": "Flag that determines if the user is also the envelope sender",
+                        "type": "boolean"
                     }
                 }
             },
@@ -2900,7 +2904,7 @@
             },
 
             "RecipientResultApiModel": {
-                "description": "Type description for BulksignRecipientResult",
+                "description": "The type which describes the recipient information",
                 "type": "object",
                 "properties": {
 
@@ -2944,12 +2948,16 @@
                         "description": "The rejection message of the recipient (only when the SignStep is rejected)",
                         "type": "string"
                     },
-
                     "SigningUrl": {
                         "description": "The url to which the user should be redirected to sign",
                         "type": "string"
+                    },
+                    "FinishedDate":{
+                        "description": "The url to which the user should be redirected to sign",
+                        "type": "string",
+                        "format":"date-time"
+                        
                     }
-
                 }
             },
 
@@ -2997,7 +3005,8 @@
                     },
                     "SentDateUTC": {
                         "description": "The date at which the envelope was sent for signing",
-                        "type": "string"
+                        "type": "string",
+                        "format": "date-time"
                     },
                     "SentFormattedDateUTC": {
                         "description": "The date at which the envelope was sent for signing in ISO 8601 format",
@@ -4182,7 +4191,10 @@
                         "description": "Flag which determines if the document form fields will be disabled on envelope completion",
                         "type": "boolean"
                     },
-
+                    "AllowEditIncognitoMode" :{
+                        "description": "Flag which determines if the draft canm be edited in incognito mode",
+                        "type": "boolean"
+                    },
                     "FileAccessMode": {
                         "description": "Set to true to enable recipient delegation",
                         "type": "object",
