@@ -1,12 +1,12 @@
 {
     "openapi": "3.0.0",
     "servers": [{
-        "url": "https://bulksign.com/webapi/restapi/"
+        "url": "https://bulksign.com/webapi/rest/"
     	}],
     "info": {
-        "version": "4.26",
+        "version": "4.50",
         "title": "Bulksign REST API",
-        "description": "Bulksign OpenAPI definition. For .NET/Core specifically, please use our [.NET SDK](https://www.nuget.org/packages/BulksignSdk). API code samples highlighting different integration scenarios are [on Github](https://github.com/bulksign/BulksignApiSamples)",
+        "description": "Bulksign OpenAPI definition. For .NET specifically, please use our [.NET SDK](https://www.nuget.org/packages/BulksignSdk). API code samples highlighting different integration scenarios are [on Github](https://github.com/bulksign/BulksignApiSamples)",
         "contact": {
             "email": "contact@bulksign.com"
         }
@@ -476,6 +476,36 @@
                 }
             }
         },
+        "SearchEnvelopes" :{
+            "post": {
+                "tags": [
+                    "Envelope"
+                ],
+                "summary": "Search the envelopes",
+                "operationId": "SearchEnvelopes",
+                "parameters": [{
+                    "name": "searchTerm",
+                    "in": "query",
+                    "description": "The search term",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetItemsArrayResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
 
         "/SearchTeamMembersEnvelopes": {
             "post": {
@@ -576,7 +606,7 @@
                     "Envelope"
                 ],
                 "summary": "Gets an array of envelopes which have the specified status",
-                "operationId": "GetEnvelopeByStatus",
+                "operationId": "GetEnvelopesByStatus",
                 "parameters": [{
                     "name": "status",
                     "in": "query",
@@ -762,7 +792,7 @@
                     "Recipient"
                 ],
                 "summary": "Deletes a recipient from a envelope",
-                "operationId": "DeleteRecipient",
+                "operationId": "DeleteEnvelopeRecipient",
                 "requestBody": {
                     "required": true,
                     "description": "Input model",
