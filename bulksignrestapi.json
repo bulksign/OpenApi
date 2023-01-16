@@ -81,6 +81,79 @@
             }
 		},
 
+        "/AddEmailTemplate" :{
+            "post": {
+                "tags": [
+                    "Organization"
+                ],
+                "summary": "",
+                "operationId": "AddEmailTemplate",
+                "requestBody": {
+                    "required": true,
+                    "description": "Specifies the email template input",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/EmailTemplateApiModel"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BulksignResult"
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+        },
+        "/CreateOrganization":{
+            "post": {
+                "tags": [
+                    "Organization"
+                ],
+                "summary": "Creates a new organization. Requires organization administrator rights. This endpoint ONLY works for on-premise version",
+                "operationId": "CreateOrganization",
+                "requestBody": {
+                    "required": true,
+                    "description": "Specifies the input files for the envelope and info about document parsing",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/CreateOrganizationApiModel"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BulksignResult"
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+        },
+
         "/GetOrganizationUsers": {
             "post": {
                 "tags": [
@@ -4335,6 +4408,74 @@
                     }
                 }
             },
+            "EmailTemplateApiModel" :{
+                "description": "Definition for creating a new organization",
+                "type": "object",
+                "required": ["Language"],
+                "properties": {
+                    "Language": {
+                        "description": "The language for which the new email template will be created",
+                        "type": "string"
+                    },
+                    "Templates" :{
+                        "description": "The templates",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/EmailTemplateDescriptorApiModel"
+                        }
+                    }
+                }
+            },
+
+            "EmailTemplateDescriptorApiModel" :{
+                "description": "",
+                "type": "object",
+                "required": ["Subject","Body"],
+                "properties": {
+ 
+                    "Subject": {
+                        "description": "The subject of the email template",
+                        "type": "string"
+                    },
+                    "Body": {
+                        "description": "The body of the email template",
+                        "type": "string"
+                    },
+                    "TemplateType" :{
+                        "description" : "The email template type",
+                        "type" :"object",
+                        "$ref" : "#/components/schemas/EmailTemplateTypeApi"                        
+                    }
+                }
+            },
+
+            "CreateOrganizationApiModel" :{
+                "description": "Definition for creating a new organization",
+                "type": "object",
+                "required": ["OrganizationName","AdministratorFirstName", "AdministratorLastName", "AdministratorEmail", "AdministratorPassword"],
+                "properties": {
+                    "OrganizationName": {
+                        "description": "The name of the new organization",
+                        "type": "string"
+                    },
+                    "AdministratorFirstName" :{
+                        "description": "The first name of the org administrator",
+                        "type": "string"
+                    },
+                    "AdministratorLastName" :{
+                        "description": "The last name of the org administrator",
+                        "type": "string"
+                    },
+                    "AdministratorEmail" :{
+                        "description": "The email address of the org administrator",
+                        "type": "string"
+                    },
+                    "AdministratorPassword" :{
+                        "description": "The password of the org administrator. Must be changed on first login",
+                        "type": "string"
+                    }
+                }
+            },
 
             "SignSettingsApiModel": {
                 "description": "SignSettingsApiModel definition",
@@ -4380,6 +4521,28 @@
                         "type": "boolean"
                     }
                 }
+            },
+
+            "EmailTemplateTypeApi" : {
+                "description": "Specifies the email templates type",
+                "type": "number",
+                "enum": [
+                    "0",
+                    "1",
+                    "2"
+                ],
+                "x-enum-values": [{
+                    "numericValue": "0",
+                    "identifier": "Main"
+                }, {
+                    "numericValue": "1",
+                    "identifier": "Sign"
+                }, {
+                    "numericValue": "3",
+                    "identifier": "EnvelopeExpiredSender"
+                }],
+                "x-ms-enum": []
+
             },
 
             "CallbackAuthenticationTypeApi": {
