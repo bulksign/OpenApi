@@ -4,7 +4,7 @@
         "url": "https://bulksign.com/webapi/rest/"
     	}],
     "info": {
-        "version": "4.50",
+        "version": "4.51",
         "title": "Bulksign REST API",
         "description": "Bulksign OpenAPI definition. For .NET specifically, please use our [.NET SDK](https://www.nuget.org/packages/BulksignSdk). API code samples highlighting different integration scenarios are [on Github](https://github.com/bulksign/BulksignApiSamples)",
         "contact": {
@@ -3754,6 +3754,13 @@
                     "AutomaticSignerProfileIdentifier": {
                         "description": "The automatic signing profile",
                         "type": "string"
+                    },
+                    "RemoteSignatureConfiguration" :{
+                        "description": "Configuration for remote signatures",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/RemoteSignatureConfigurationApiModel"
+                        }
                     }
                 }
             },
@@ -4445,6 +4452,26 @@
                         "description" : "The email template type",
                         "type" :"object",
                         "$ref" : "#/components/schemas/EmailTemplateTypeApi"                        
+                    }
+                }
+            },
+
+            "RemoteSignatureConfigurationApiModel":{
+                "description": "",
+                "type": "object",
+                "required": ["RemoteSignatureName","Configuration"],
+                "properties": {
+ 
+                    "RemoteSignatureName": {
+                        "description": "The name of the remote signature type",
+                        "type": "string"
+                    },
+                    "Configuration": {
+                        "description": "Dictionary with sigganture specific configuration",
+                        "type": "object",
+                        "additionalProperties" :{
+                            "type":"string"
+                        }
                     }
                 }
             },
