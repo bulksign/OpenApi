@@ -4,7 +4,7 @@
         "url": "https://bulksign.com/webapi/rest/"
     	}],
     "info": {
-        "version": "4.51",
+        "version": "4.51.1",
         "title": "Bulksign REST API",
         "description": "Bulksign OpenAPI definition. For .NET specifically, please use our [.NET SDK](https://www.nuget.org/packages/BulksignSdk). API code samples highlighting different integration scenarios are [on Github](https://github.com/bulksign/BulksignApiSamples)",
         "contact": {
@@ -3602,8 +3602,8 @@
                         "type": "object",
                         "$ref": "#/components/schemas/StampSignatureConfigurationApiModel"
                     },
-                    "RemoteSignatureProviderIdentifier" :{
-                        "description": "Configuration for stamp signature. Only used if SignatureType = RemoteSigningProvider",
+                    "RemoteSignatureName" :{
+                        "description": "The name of the remote signature. Only used if SignatureType = RemoteSigningProvider",
                         "type": "number"
                     }
                 }
@@ -3690,8 +3690,8 @@
                         "description": "Set to true to enable timestamping",
                         "type": "boolean"
                     },
-                    "RemoteSignatureProviderIdentifier":{
-                        "description": "Identifier for the remote signing provider. Only used if SignatureType = RemoteSigningProvider",
+                    "RemoteSignatureName":{
+                        "description": "Name of the remote signature. Only used if SignatureType = RemoteSigningProvider",
                         "type": "number"
                     },
                     "StampSignatureConfiguration" :
