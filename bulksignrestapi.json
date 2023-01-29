@@ -549,12 +549,12 @@
                 }
             }
         },
-        "SearchEnvelopes" :{
+        "/SearchEnvelopes" :{
             "post": {
                 "tags": [
                     "Envelope"
                 ],
-                "summary": "Search the envelopes",
+                "summary": "Search the user's envelopes",
                 "operationId": "SearchEnvelopes",
                 "parameters": [{
                     "name": "searchTerm",
