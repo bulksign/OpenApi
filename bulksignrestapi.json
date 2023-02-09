@@ -4,7 +4,7 @@
         "url": "https://bulksign.com/webapi/rest/"
     	}],
     "info": {
-        "version": "4.51.1",
+        "version": "4.53",
         "title": "Bulksign REST API",
         "description": "Bulksign OpenAPI definition. For .NET specifically, please use our [.NET SDK](https://www.nuget.org/packages/BulksignSdk). API code samples highlighting different integration scenarios are [on Github](https://github.com/bulksign/BulksignApiSamples)",
         "contact": {
@@ -3195,8 +3195,8 @@
                         "description": "The envelope identifier",
                         "type": "string"
                     },
-                    "AccessCodes": {
-                        "description": "The envelope identifier",
+                    "RecipientAccess": {
+                        "description": "SignStep access information for recipient(s)",
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/RecipientAccessCodeApiModel"
@@ -3209,12 +3209,20 @@
                 "description": "Access code for recipient",
                 "type": "object",
                 "properties": {
-                    "RecipientName": {
-                        "description": "Name of the recipient",
+                    "RecipientEmail": {
+                        "description": "Email address of the recipient",
                         "type": "string"
                     },
                     "AccessCode": {
                         "description": "The access code for the recipient",
+                        "type": "string"
+                    },
+                    "SigningUrl" :{
+                        "description": "The signing url",
+                        "type": "string"
+                    },
+                    "SignStepIdentifier" :{
+                        "description": "The SignStep identifier",
                         "type": "string"
                     }
                 }
