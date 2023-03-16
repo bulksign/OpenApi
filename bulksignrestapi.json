@@ -937,7 +937,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/UserDetailsApModel"
+                                    "$ref": "#/components/schemas/GetUserDetailsResult"
                                 }
                             }
                         }
@@ -1179,7 +1179,7 @@
                 "tags": [
                     "User"
                 ],
-                "summary": "Get the list of user automatic signing profiles ",
+                "summary": "Get the list of user automatic signing profiles",
                 "operationId": "GetUserAutomaticSigningProfiles",
                 "parameters": [],
                 "responses": {
@@ -1188,7 +1188,7 @@
                         "content": {
                             "application/json:": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/AutomaticSigningProfileResultApiModel"
+                                    "$ref": "#/components/schemas/GetUserAutomaticSigningProfilesResult"
                                 }
                             }
                         }
@@ -2316,7 +2316,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/AuthenticationProviderResultApiModel"
+                                        "$ref": "#/components/schemas/GetAuthenticationProvidersResult"
                                     }
                                 }
                             }
@@ -2342,6 +2342,24 @@
                     }
                 }
 			},
+
+            "GetAuthenticationProvidersResult" :{
+                "description": "GetAuthenticationProvidersResult",
+                "type": "object",
+                "allOf": [{
+                    "$ref": "#/components/schemas/BulksignResult",
+                    "type": "object"
+                }],
+                "properties": {
+                    "Result": {
+                        "description": "The result of the API request",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/AuthenticationProviderResultApiModel"
+                        }
+                    }
+                }
+            },
 
             "AuthenticationProviderResultApiModel": {
                 "type": "object",
@@ -3789,6 +3807,43 @@
                 }
             },
 
+
+            "GetUserAutomaticSigningProfilesResult" :{
+                "description": "GetUserAutomaticSigningProfiles result",
+                "type": "object",
+                "allOf": [{
+                    "$ref": "#/components/schemas/BulksignResult",
+                    "type": "object"
+                }],
+                "properties": {
+                    "Result": {
+                        "description": "The result of the API request",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/AutomaticSigningProfileResultApiModel"
+                        }
+                    }
+                }
+            },
+
+            "GetOrganizationAutomaticSigningProfilesResult" :{
+                "description": "GetOrganizationAutomaticSigningProfiles result",
+                "type": "object",
+                "allOf": [{
+                    "$ref": "#/components/schemas/BulksignResult",
+                    "type": "object"
+                }],
+                "properties": {
+                    "Result": {
+                        "description": "The result of the API request",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/GetOrganizationAutomaticSigningProfilesResult"
+                        }
+                    }
+                }
+            },
+
             "AutomaticSigningProfileResultApiModel": {
                 "description": "Specifies the return type for a automatic signing profile",
                 "type": "object",
@@ -5221,14 +5276,24 @@
                     }
                 }
             },
-
-            "UserDetailsApModel" : {
-                "description": "The result type",
+            "GetUserDetailsResult" :{
+                "description": "GetUserDetails result",
                 "type": "object",
                 "allOf": [{
                     "$ref": "#/components/schemas/BulksignResult",
                     "type": "object"
                 }],
+                "properties": {
+                    "Result": {
+                        "description": "The result of the API request",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/UserDetailsApModel"
+                        }
+                    }
+                }
+            },
+            "UserDetailsApModel" : {
                 "properties": {
                     "FirstName": {
                         "description": "The first name of the user",
