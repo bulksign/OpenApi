@@ -4699,7 +4699,7 @@
             },
 
             "FormFieldTypeApi": {
-                "description": "Specifies the type of form field : 1 - TextBox, 2 - RadioButton, 3 - CheckBox, 4 - ComboxBox, 5 - ListBox, 6 - Signature, 7 - Attachment",
+                "description": "Specifies the type of form field : TextBox = 1, RadioButton = 2, CheckBox = 3, ComboxBox = 4, ListBox = 5, Signature = 6, Attachment = 7",
                 "type": "number",
                 "enum": [
                     "1",
@@ -4736,7 +4736,7 @@
             },
 
             "FileAccessModeApi": {
-                "description": "Specifies the file type access : 1 - AllFiles , 2 - Custom",
+                "description": "Specifies the file type access : AllFiles = 1, Custom = 2",
                 "type": "number",
                 "enum": [
                     "1",
@@ -4752,7 +4752,7 @@
             },
 
             "AnnotationTypeApi": {
-                "description": "Specifies the type of annotation : 1 - SenderName , 2 - SenderEmail, 3 - OrganizationName, 4 - Custom",
+                "description": "Specifies the type of annotation : SenderName = 1, SenderEmail = 2, OrganizationName = 3,Custom = 4",
                 "type": "number",
                 "enum": [
                     "1",
@@ -4776,7 +4776,7 @@
             },
 
             "RecipientTypeApi": {
-                "description": "Specifies the recipient type : 1 - Signer, 2 - ReceivesCopy",
+                "description": "Specifies the recipient type : Signer = 1, ReceivesCopy = 2",
                 "type": "number",
                 "enum": [
                     "1",
@@ -4800,7 +4800,7 @@
             },
 
             "RecipientAuthenticationTypeApi": {
-                "description": "Specifies the recipient type : Password - 1 , SMS - 2",
+                "description": "Specifies the recipient type : Password = 1 , SMS = 2",
                 "type": "number",
                 "enum": [
                     "1",
@@ -4816,7 +4816,7 @@
             },
 
             "StampSignatureTypeApi":{
-                "description": "Specifies the stamp signature type : UserProvided - 0 , PredefinedStamp - 1",
+                "description": "Specifies the stamp signature type : UserProvided = 0 , PredefinedStamp = 1",
                 "type": "number",
                 "enum": [
                     "0",
@@ -4832,7 +4832,7 @@
             },
 
             "EnvelopeStatusTypeApi": {
-                "description": "Specifies the envelope status : InProgress - 3 , Completed - 4, Canceled = 5, Expired = 6, Deleted = 7",
+                "description": "Specifies the envelope status : InProgress = 3 , Completed = 4, Canceled = 5, Expired = 6, Deleted = 7",
                 "type": "number",
                 "enum": [
                     "3",
@@ -4874,7 +4874,7 @@
             },
 
             "SignatureTypeApi": {
-                "description": "Specifies the signature type : DrawTypeToSign - 0 , ClickToSign - 1, OTPSign = 2, LocalCertificate = 3, RemoteSignatureProvider = 4, Stamp = 5",
+                "description": "Specifies the signature type : DrawTypeToSign = 0 , ClickToSign = 1, OTPSign = 2, LocalCertificate = 3, RemoteSignatureProvider = 4, Stamp = 5",
                 "type": "number",
                 "enum": [
                     "0",
@@ -4908,7 +4908,7 @@
             },
 
             "AutomaticSigningProfileCertificateTypeApi": {
-                "description": "Specifies the certificate type : Default - 1 , StoredInProfile - 1",
+                "description": "Specifies the certificate type : Default = 1 , StoredInProfile = 1",
                 "type": "number",
                 "enum": [
                     "1",
@@ -4971,7 +4971,7 @@
             },
 
             "RecipientStatusApi": {
-                "description": "Specifies the recipient status : NotSigned - 0 , Opened - 1, Signed = 2, Rejected = 3",
+                "description": "Specifies the recipient status : NotSigned = 0 , Opened = 1, Signed = 2, Rejected = 3",
                 "type": "number",
                 "enum": [
                     "0",
@@ -4982,11 +4982,11 @@
             },
 
             "UserRoleApiType" :{
-                "description": "Specifies the user role : User - 0 , Administrator - 1, Custom = 2",
+                "description": "Specifies the user role : User = 0 , Administrator = -1, Custom = 2",
                 "type": "number",
                 "enum": [
                     "0",
-                    "1",
+                    "-1",
                     "2"
                 ]
             },
