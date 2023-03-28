@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";
+
+
+service BulksignApi
+{
+    rpc GetVersion() returns Version;
+
+
+}
+
+message Version
+{
+    string Version = 1;
+}
+
+message UnlockConcurrentRecipientApiModel
+{
+    string EnvelopeId = 1;
+    string RecipientEmail = 2;
+}
+
+message AuthenticationProviderResultApiModel
+{
+    string Name = 1;
+    string Identifier = 2;
+}
+ 
+message AddDocumentsOrRecipientsToDraftApiModel
+{
+    string DraftId =1;
+
+}
+
+message FileIdentifier
+{
+    string Identifier = 1;
+}
+
+message FileNetworkShare
+{
+    string Path = 1;
+}
+
+
+message DocumentApiModel
+{
+    int32 Index = 1;
+}
