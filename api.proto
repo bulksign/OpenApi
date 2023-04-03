@@ -1,50 +1,114 @@
 syntax = "proto3";
 
-import "google/protobuf/wrappers.proto";
+option csharp_namespace = "BulksignGrpc";
 
 
-service BulksignApi
+service GrpcApi
 {
-    rpc GetVersion() returns Version;
+   rpc GetVersion(EmptyInput) returns (VersionResult);
 
+   rpc GetAuthenticationProviders(GetAuthenticationProvidersInput) returns  (GetAuthenticationProvidersResult);
+
+   rpc SearchTeamMembersEnvelopes(SearchTeamMembersEnvelopesInput) returns  (SearchTeamMembersEnvelopesResult);
+
+   rpc SearchDrafts(SearchDraftsInput) returns (SearchDraftsResult);
+
+   rpc SearchTeamMembersDrafts (SearchTeamMembersDraftsInput) returns (SearchTeamMembersDraftsResult);
 
 }
 
-message Version
+message EmptyInput
+{
+	string Empty = 1;
+}
+
+message VersionResult
 {
     string Version = 1;
 }
 
-message UnlockConcurrentRecipientApiModel
+message  AuthenticationApiModel
 {
-    string EnvelopeId = 1;
-    string RecipientEmail = 2;
+	string UserEmail = 1;
+	string Key = 2;
+}
+
+message GetAuthenticationProvidersInput
+{
+	AuthenticationApiModel Authentication = 3;
+}
+
+message GetAuthenticationProvidersResult
+{
+	string ErrorMessage = 1;
+	bool IsSuccessful = 2;
+	int32 ErrorCode = 3;
+	string RequestId = 4;
+	repeated AuthenticationProviderResultApiModel Result = 5;
 }
 
 message AuthenticationProviderResultApiModel
 {
-    string Name = 1;
-    string Identifier = 2;
-}
- 
-message AddDocumentsOrRecipientsToDraftApiModel
-{
-    string DraftId =1;
-
-}
-
-message FileIdentifier
-{
-    string Identifier = 1;
-}
-
-message FileNetworkShare
-{
-    string Path = 1;
+	string Name = 1;
+	string Identifier = 2;
 }
 
 
-message DocumentApiModel
+message SearchTeamMembersEnvelopesInput
 {
-    int32 Index = 1;
+	AuthenticationApiModel Authentication = 3;
+	string SearchTerm = 4;
+}
+
+message SearchTeamMembersEnvelopesResult
+{
+	string ErrorMessage = 1;
+	bool IsSuccessful = 2;
+	int32 ErrorCode = 3;
+	string RequestId = 4;
+	repeated ItemResultApiModel Result = 5;
+}
+
+
+
+message SearchDraftsInput
+{
+	AuthenticationApiModel Authentication = 3;
+	string SearchTerm = 4;
+}
+
+message SearchDraftsResult
+{
+	string ErrorMessage = 1;
+	bool IsSuccessful = 2;
+	int32 ErrorCode = 3;
+	string RequestId = 4;
+	repeated ItemResultApiModel Result = 5;
+}
+
+
+
+message SearchTeamMembersDraftsInput
+{
+	AuthenticationApiModel Authentication = 3;
+	string SearchTerm = 4;
+}
+
+message SearchTeamMembersDraftsResult
+{
+	string ErrorMessage = 1;
+	bool IsSuccessful = 2;
+	int32 ErrorCode = 3;
+	string RequestId = 4;
+	repeated ItemResultApiModel Result = 5;
+}
+
+
+
+//generic return types
+message ItemResultApiModel
+{
+	string Id = 1;
+	string Name = 2;
+	string LastUpdatedDateUTC = 3;
 }
