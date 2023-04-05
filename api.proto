@@ -15,7 +15,27 @@ service GrpcApi
 
    rpc SearchTeamMembersDrafts (SearchTeamMembersDraftsInput) returns (SearchTeamMembersDraftsResult);
 
+   rpc SearchTeamMembersTemplates (SearchTeamMembersTemplatesInput) returns (SearchTeamMembersTemplatesResult);
+
+   rpc SearchTemplates (SearchTemplatesInput) returns (SearchTemplatesResult);
+
+   rpc SearchEnvelopes(SearchEnvelopesInput) returns (SearchEnvelopesResult);
+
+   rpc CreateOrganization(CreateOrganizationApiModel) returns (CreateOrganizationResult);
+
+   rpc UpdateOrganizationSettings(OrganizationUpdateSettingsApiModel) returns (EmptyResult);
 }
+
+
+message EmptyResult
+{
+	string ErrorMessage = 1;
+	bool IsSuccessful = 2;
+	int32 ErrorCode = 3;
+	string RequestId = 4;
+	string Result = 5;
+}
+
 
 message EmptyInput
 {
@@ -104,6 +124,67 @@ message SearchTeamMembersDraftsResult
 }
 
 
+message SearchTeamMembersTemplatesInput
+{
+	AuthenticationApiModel Authentication = 3;
+	string SearchTerm = 4;
+}
+
+message SearchTeamMembersTemplatesResult
+{
+	string ErrorMessage = 1;
+	bool IsSuccessful = 2;
+	int32 ErrorCode = 3;
+	string RequestId = 4;
+	repeated ItemResultApiModel Result = 5;
+}
+
+message SearchTemplatesInput
+{
+	AuthenticationApiModel Authentication = 3;
+	string SearchTerm = 4;
+}
+
+
+message SearchTemplatesResult
+{
+	string ErrorMessage = 1;
+	bool IsSuccessful = 2;
+	int32 ErrorCode = 3;
+	string RequestId = 4;
+	repeated ItemResultApiModel Result = 5;
+}
+
+
+
+message SearchEnvelopesInput
+{
+	AuthenticationApiModel Authentication = 3;
+	string SearchTerm = 4;
+	SearchEnvelopeStatus SearchEnvelopeStatus = 5;
+}
+
+
+message SearchEnvelopesResult
+{
+	string ErrorMessage = 1;
+	bool IsSuccessful = 2;
+	int32 ErrorCode = 3;
+	string RequestId = 4;
+	repeated ItemResultApiModel Result = 5;
+}
+
+
+message CreateOrganizationResult
+{
+	string ErrorMessage = 1;
+	bool IsSuccessful = 2;
+	int32 ErrorCode = 3;
+	string RequestId = 4;
+	string Result = 5;
+
+}
+
 
 //generic return types
 message ItemResultApiModel
@@ -111,4 +192,98 @@ message ItemResultApiModel
 	string Id = 1;
 	string Name = 2;
 	string LastUpdatedDateUTC = 3;
+}
+
+message CreateOrganizationApiModel
+{
+	AuthenticationApiModel Authentication = 3;
+	string OrganizationName = 4;
+	string AdministratorFirstName = 5;
+	string AdministratorLastName = 6;
+	string AdministratorEmail = 7;
+	string AdministratorPassword = 8; 
+}
+
+enum SearchEnvelopeStatus
+{
+	Any = 0;
+	InProgress = 3;
+	Completed = 4;
+	Canceled = 5;
+	Expired = 6;
+}
+
+message OrganizationUpdateSettingsApiModel
+{
+	AuthenticationApiModel Authentication = 3;
+	string Name = 4;
+	string DefaultEmailSubject=5;
+	string DefaultEmailBody=6;
+	string DefaultEmailTemplateLanguage=7;
+	EmailSenderTypeApi EmailSenderType=8;
+	OrganizationPoliciesApiModel Policies =9;
+	OrganizationVisualCustomizationApiModel VisualCustomization=10;
+	OrganizationDocumentRetentionApiModel DocumentRetention=11;
+	OrganizationSigningSettingsApiModel SignatureSettings=12;
+
+}
+
+enum EmailSenderTypeApi
+{
+	None=0;
+	User = 1;
+	Organization = 2;
+	ApplicationName = 3;
+}
+
+message OrganizationPoliciesApiModel
+{
+	bool RequireSignerAuthentication =1;
+	bool EnableTags=2;
+	bool DeleteTagText=3;
+	MetadataEditorRedirectApiModel MetadataEditorRedirect =4;
+}
+
+message  MetadataEditorRedirectApiModel
+{
+	bool EnableRedirect =1;
+	string Url =2;
+}
+
+message OrganizationVisualCustomizationApiModel
+{
+	string OrganizationLogoBase64 =1;
+	string CSSCustomization=2;
+}
+
+message OrganizationDocumentRetentionApiModel
+{
+	bool EnableDocumentRetention =1;
+	int32 NumberOfDays=2;
+}
+
+message OrganizationSigningSettingsApiModel
+{
+	bool AutomaticFinishAfterSigning =1;
+	bool ForceSignerToReadDocument =2;
+	bool ShowSignerIntroductionDetailsPage =3;
+	bool SigningConfirmationForProfileAndClickToSign =4;
+	bool EnableBrowserGeolocationRequest =5;
+	bool AllowRejectWithoutRejectionText =6;
+	SignerDownloadDocumentActionTypeApi  DocumentDownload =7;
+	string DocumentDownloadRedirectUrl = 8;
+	bool SendNotificationOnEnvelopeCancel =9;
+	bool SendNotificationOnEnvelopeDelete=10;
+	bool ApplyImprintForDraw2SignSignatures=11;
+	bool ApplyImprintForProfileSignatures=12;
+	bool EnableLongTermValidation=13;
+
+}
+
+enum SignerDownloadDocumentActionTypeApi
+{
+		None_=0;
+		Allow = 1;
+		Prevent = 2;
+		RedirectToUrl = 3;
 }
