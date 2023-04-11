@@ -21,9 +21,17 @@ service GrpcApi
 
    rpc SearchEnvelopes(SearchEnvelopesInput) returns (SearchEnvelopesResult);
 
-   rpc CreateOrganization(CreateOrganizationApiModel) returns (CreateOrganizationResult);
+   rpc AddDocumentsRecipientsToDraft(AddDocumentsOrRecipientsToDraftApiModelInput) returns (EmptyResult);
 
-   rpc UpdateOrganizationSettings(OrganizationUpdateSettingsApiModel) returns (EmptyResult);
+   rpc CreateOrganization(CreateOrganizationApiModelInput) returns (CreateOrganizationResult);
+
+   rpc UpdateOrganizationSettings(OrganizationUpdateSettingsApiModelInput) returns (EmptyResult);
+
+   rpc AddEmailTemplate (EmailTemplateApiModelInput) returns (EmptyResult);
+
+
+
+   
 }
 
 
@@ -194,7 +202,7 @@ message ItemResultApiModel
 	string LastUpdatedDateUTC = 3;
 }
 
-message CreateOrganizationApiModel
+message CreateOrganizationApiModelInput
 {
 	AuthenticationApiModel Authentication = 3;
 	string OrganizationName = 4;
@@ -213,7 +221,7 @@ enum SearchEnvelopeStatus
 	Expired = 6;
 }
 
-message OrganizationUpdateSettingsApiModel
+message OrganizationUpdateSettingsApiModelInput
 {
 	AuthenticationApiModel Authentication = 3;
 	string Name = 4;
@@ -286,4 +294,282 @@ enum SignerDownloadDocumentActionTypeApi
 		Allow = 1;
 		Prevent = 2;
 		RedirectToUrl = 3;
+}
+
+
+message EmailTemplateApiModelInput
+{
+	AuthenticationApiModel Authentication = 3;
+	string Langguage =4;
+	repeated  EmailTemplateDescriptorApiModel Templates = 5;
+}
+	
+message EmailTemplateDescriptorApiModel
+{
+	string Subject = 1;
+	string Body = 2;
+	EmailTemplateTypeApi TemplateType = 3;
+}
+
+enum EmailTemplateTypeApi
+{
+		Main = 0;
+		Sign = 1;
+		EnvelopeExpiredSender = 2;
+		EnvelopeExpiredRecipient = 3;
+		ActivateEmail = 4;
+		UserInvitation = 5;
+		SignStepRejected = 6;
+		SignStepFinished = 7;
+		EnvelopeCompleted = 8;
+		SignStepOpened = 9;
+		EnvelopeCanceled = 10;
+		ForgotPassword = 11;
+		SendCompletedDocumentsToReceiveCopyRecipients = 12;
+		DeliveryNotificationError = 13;
+		SendFinishedSignStepDocumentToSigner = 14;
+		RecipientDelegatedToSender = 15;
+		RecipientDelegationActionRequestToSender = 16;
+		SendCompletedDocumentsLinkToReceiveCopyRecipients = 17;
+}
+
+
+
+message AddDocumentsOrRecipientsToDraftApiModelInput
+{
+	AuthenticationApiModel Authentication = 3;
+	string DraftId = 4;
+	repeated DocumentApiModel Documents=5;
+	repeated RecipientApiModel[] Recipients=6;
+	DocumentParseOptionApiModel DocumentParseOptions=7;
+}
+
+message DocumentApiModel
+{
+	FileIdentifier FileIdentifier =1;
+	FileContentByteArray FileContentByteArray =2;
+	FileContentBase64String FileContentBase64String = 3;
+	FileNetworkShare FileNetworkShare = 4;
+	string FileName = 5;
+	int32 Index = 6;
+	repeated AssignmentApiModel FieldAssignments=7;
+	repeated NewSignatureApiModel NewSignatures =8;
+	repeated NewAnnotationApiModel NewAnnotations=9;
+	repeated NewAttachmentApiModel NewAttachments=10;
+	repeated NewTextBoxApiModel NewTextBoxes=11;
+	repeated NewComboBoxApiModel NewComboBoxes=12;
+	repeated NewCheckBoxApiModel NewCheckBoxes=13;
+	repeated OverwriteFieldValueApiModel OverwriteValues=14;
+}
+
+message FileIdentifier
+{
+	string Identifier = 1;
+}
+
+
+message FileContentBase64String
+{
+	string FileContent = 1;
+}
+
+message FileNetworkShare
+{
+	string Path = 1;
+}
+
+message FileContentByteArray
+{
+	bytes ContentBytes =1;
+}
+
+message AssignmentApiModel
+{
+	string AssignedToRecipientEmail =1;
+	repeated FieldAssignmentApiModel Fields=2;
+	repeated  SignatureAssignmentApiModel Signatures=3;
+}
+
+message  FieldAssignmentApiModel
+{
+	string FieldId =1;
+	bool IsRequired =2;
+}
+
+message InputValidationApiModel
+{
+
+}
+
+message SignatureAssignmentApiModel
+{
+	string FieldId =1;
+	SignatureTypeApi SignatureType=2;
+	string RemoteSignatureName=3;
+	bool EnableTimestamp=4;
+	StampSignatureConfigurationApiModel StampSignatureConfiguration=5;
+}
+
+enum SignatureTypeApi
+{
+	DrawTypeToSign = 0;
+	ClickToSign = 1;
+	OTPSign = 2;
+	LocalCertificate = 3;
+	RemoteSignatureProvider = 4;
+	Stamp = 5;
+}
+
+message StampSignatureConfigurationApiModel
+{
+	StampSignatureTypeApi StampType=1;
+	string StampName=2;
+	string ImprintName=3;
+}
+
+enum StampSignatureTypeApi
+{
+	UserProvided = 0;
+	PredefinedStamp = 1;
+}
+
+message NewSignatureApiModel
+{
+	 int32 Height=1;
+	 int32 Width=2;
+	 int32 Top=3;
+	 int32 Left=4;
+	 string AssignedToRecipientEmail=5;
+	 int32 PageIndex=6;
+	 SignatureTypeApi SignatureType=7;
+	 bool EnableTimestamp=8;
+	 string RemoteSignatureName=9;
+	 StampSignatureConfigurationApiModel StampSignatureConfiguration=10;
+}
+
+
+enum AnnotationTypeApi
+{
+	SenderName = 1;
+	SenderEmail = 2;
+	SenderOrganizationName = 3;
+	RecipientName = 4;
+	RecipientEmail = 5;
+	RecipientCustom = 6;
+	SenderCustom = 9;
+}
+
+message NewAnnotationApiModel
+{
+	 int32 Top=1;
+	 int32 Left=2;
+	 int32 PageIndex=3;
+	 int32 FontSize=4;
+	 AnnotationTypeApi Type=5;
+	 string CustomText=6;
+	 string AssignedToRecipientEmail=7;
+}
+
+message NewAttachmentApiModel
+{
+	string Id =1;
+	string Text =2;
+	string AssignedToRecipientEmail=3;
+}
+
+message NewTextBoxApiModel
+{
+	 string Id=1;
+	 string Text=2;
+	 int32 Height=3;
+	 int32 Width=4;
+	 int32 Top=5;
+	 int32 Left=6;
+	 int32 PageIndex=7;
+	 string AssignedToRecipientEmail=8;
+	 bool IsRequired=9;
+
+}
+
+
+message NewComboBoxApiModel
+{
+	string Id=1;
+	int32 Height=2;
+	int32 Width=3;
+	int32 Top=4;
+	int32 Left=5;
+	int32 PageIndex=6;
+	string AssignedToRecipientEmail=7;
+	string SelectedItem=8;
+	repeated string Items=9;
+}
+
+message NewCheckBoxApiModel
+{
+	string Id=1;
+	int32 Height=2;
+	int32 Width=3;
+	int32 Top=4;
+	int32 Left=5;
+	int32 PageIndex=6;
+	string AssignedToRecipientEmail=7;
+	bool IsChecked=8;
+	bool IsRequired=9;
+}
+
+message OverwriteFieldValueApiModel
+{
+	string FieldName=1;
+	string FieldValue=2;
+}
+
+message DocumentParseOptionApiModel
+{
+	bool ParseTags=1;
+	bool DeleteTagText=2;
+}
+
+
+enum RecipientTypeApi
+{
+	Signer = 1;
+	ReceivesCopy = 2;
+	AutomaticSigner = 3;
+	Approver = 4;
+}
+
+
+message RecipientApiModel
+{
+	 string Identifier=1;
+	 string Email=2;
+	 string Name=3;
+	 int32 Index=4;
+	 string PersonalMessage=5;
+	 repeated RecipientAuthenticationApiModel[] RecipientAuthenticationMethods=6;
+	 RecipientTypeApi RecipientType=7;
+	 string AutomaticSignerProfileIdentifier=8;
+	 repeated RemoteSignatureConfigurationApiModel[] RemoteSignatureConfiguration=9;
+}
+
+
+enum RecipientAuthenticationTypeApi
+{
+	Password = 1;
+	SMS = 2;
+	AuthenticationProvider = 3;
+}
+
+
+message RecipientAuthenticationApiModel
+{
+	RecipientAuthenticationTypeApi AuthenticationType=1;
+	string Details=2;
+}
+
+message RemoteSignatureConfigurationApiModel
+{
+	string RemoteSignatureName=1;
+	map<string, string> Configuration=2;
 }
