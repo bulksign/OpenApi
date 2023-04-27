@@ -1,4 +1,4 @@
-# Open Api Specification for Bulksign REST API
+# OpenAPI specification for Bulksign REST API
 This is the repository for the Bulksign <a href="https://www.openapis.org/">OpenAPI</a> specification for its REST API.
 <br/>
 
@@ -19,3 +19,9 @@ Bulksign supports SOAP API too, please see the <a href="https://bulksign.com/doc
 
 ### Which OpenAPI spec version is supported
 We support the latest one, version 3.0 . 
+
+<br/>
+<br/>
+
+# GRPC specification
+This also contains the <a href="https://github.com/bulksign/OpenApi/blob/master/api.proto"> proto specification file </a> for the GRPC API.
