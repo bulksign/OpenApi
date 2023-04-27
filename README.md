@@ -24,4 +24,4 @@ We support the latest one, version 3.0 .
 <br/>
 
 # GRPC specification
-This also contains the <a href="https://github.com/bulksign/OpenApi/blob/master/api.proto"> proto specification file </a> for the GRPC API.
+This also contains the <a href="https://github.com/bulksign/OpenApi/blob/master/api.proto"> proto specification file </a> for the GRPC API. Please also see the <a href="https://bulksign.com/docs/api.htm#grpc-api">GRPC API specific notes</a>
