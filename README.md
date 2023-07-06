@@ -17,11 +17,11 @@ Bulksign supports SOAP API too, please see the <a href="https://bulksign.com/doc
 
 <br/>
 
-### Which OpenAPI spec version is supported
-We support the latest one, version 3.0 . 
+### Which OpenAPI spec version is supported ?
+Version 3.x
 
 <br/>
 <br/>
 
 # GRPC specification
-This also contains the <a href="https://github.com/bulksign/OpenApi/blob/master/api.proto"> proto specification file </a> for the GRPC API. Please also see the <a href="https://bulksign.com/docs/api.htm#grpc-api-notes">GRPC API specific notes</a>
+This also contains the <a href="https://github.com/bulksign/OpenApi/blob/master/api.proto"> proto specification file </a> for the GRPC API. Please also see the <a href="https://bulksign.com/docs/api.htm#grpc-api-notes">GRPC API specific notes</a> and <a href="https://github.com/bulksign/GRPC-API-Samples">GRPC sample code</a>
