@@ -1821,8 +1821,9 @@ message InputValidationApiModel
 message ResetSignatureTypeApiModelInput
 {
 	AuthenticationApiModel Authentication = 1;
-	FindRecipientByIndexApiModel ByIndex=2;
-	FindRecipientByEmailApiModel ByEmail=3;
-	FindRecipientByIdentifierApiModel ByIdentifier=4;
-	ResetSignatureType SignatureType=5;
+	string EnvelopeId =2;
+	FindRecipientByIndexApiModel ByIndex=3;
+	FindRecipientByEmailApiModel ByEmail=4;
+	FindRecipientByIdentifierApiModel ByIdentifier=5;
+	ResetSignatureType SignatureType=6;
 }
