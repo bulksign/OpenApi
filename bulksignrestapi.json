@@ -49,6 +49,38 @@
     }],
     "paths": {
 
+        "/ResetSignatureType" :	{
+			"post": {
+                "tags": [
+                    "Recipient"
+                ],
+                "summary": "Changes all the reamining unsigned signature types for a specific recipient",
+                "operationId": "ResetSignatureType",
+                 "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json:": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ResetSignatureTypeApiModel"
+                            }
+                        }
+                    }
+                },
+                 "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BulksignResultNumeric"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+		},
+
 		"/UnlockConcurrentRecipient" :	{
 			"post": {
                 "tags": [
@@ -828,12 +860,14 @@
             }
         },
 
+        
+
         "/DownloadEnvelopeCompletedDocuments": {
             "post": {
                 "tags": [
                     "Documents Download"
                 ],
-                "summary": "Returns a zip file with finished documents and the audit trail",
+                "summary": "Returns a zip file which contains the envelope completed documents and the audit trail",
                 "operationId": "DownloadEnvelopeCompletedDocuments",
                 "parameters": [{
                     "name": "envelopeId",
@@ -851,6 +885,37 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/DownloadEnvelopeCompletedDocumentsResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/DownloadEnvelopeCompletedAttachments": {
+            "post": {
+                "tags": [
+                    "Documents Download"
+                ],
+                "summary": "Returns a zip file with all the PDF file attachments for a completed envelope",
+                "operationId": "DownloadEnvelopeCompletedAttachments",
+                "parameters": [{
+                    "name": "envelopeId",
+                    "in": "query",
+                    "description": "Id of the envelope",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DownloadEnvelopeCompletedAttachmentsResult"
                                 }
                             }
                         }
@@ -2328,6 +2393,43 @@
     },
     "components": {
         "schemas": {
+
+
+            "ResetSignatureTypeApiModel" : {
+                "type": "object",
+                "required": ["EnvelopeId","SignatureType"],
+                "properties": {
+                    "EnvelopeId": {
+                        "description": "The envelope identifier",
+                        "type": "string"
+                    },
+                    "ByIndex": {
+                        "description": "The index of the recipient for which the signatures will be reset",
+                        "type": "object",
+                        "required": "false",
+                        "$ref": "#/components/schemas/FindRecipientByIndexApiModel"
+                    },
+                    "ByEmail": {
+                        "description": "The email of the recipient for which the signatures will be reset",
+                        "type": "object",
+                        "required": "false",
+                        "$ref": "#/components/schemas/FindRecipientByEmailApiModel"
+                    },
+                    "ByIdentifier": {
+                        "description": "The email of the recipient for which the signatures will be reset",
+                        "type": "object",
+                        "required": "false",
+                        "$ref": "#/components/schemas/FindRecipientByIdentifierApiModel"
+                    },
+                    "SignatureType":{
+                        "description": "The email of the recipient for which the signatures will be reset",
+                        "type": "object",
+                        "required": "true",
+                        "$ref": "#/components/schemas/ResetSignatureType"
+                    }
+                }
+			},
+
 
 			"UnlockConcurrentRecipientApiModel" : {
                 "type": "object",
@@ -4635,6 +4737,30 @@
 
             },
 
+
+            "ResetSignatureType":{
+                "description": "Specifies the type of signature to be set",
+                "type": "number",
+                "enum": [
+                    "0",
+                    "1",
+                    "3"
+                ],
+                "x-enum-values": [{
+                    "numericValue": "0",
+                    "identifier": "DrawTypeToSign"
+                }, {
+                    "numericValue": "1",
+                    "identifier": "ClickToSign"
+                }, {
+                    "numericValue": "3",
+                    "identifier": "LocalCertificate"
+                }],
+                "x-ms-enum": []
+            },
+
+
+
             "CallbackAuthenticationTypeApi": {
                 "description": "Specifies the callback authentication : 0 - None, 1 - Basic, 2 - CustomHeader",
                 "type": "number",
@@ -4953,6 +5079,19 @@
                     }
                 }
             },
+
+            "FindRecipientByIdentifierApiModel": {
+                "description": "Input for finding a recipient by identifier",
+                "type": "object",
+                "required": ["Identifier"],
+                "properties": {
+                    "Index": {
+                        "description": "The identifier of the recipient",
+                        "type": "string"
+                    }
+                }
+            },
+
 
             "SignatureDisclosureApiModel": {
                 "description": "SignatureDisclosure model",
@@ -5363,6 +5502,22 @@
             },
 
             "DownloadEnvelopeCompletedDocumentsResult": {
+                "description": "The result type",
+                "type": "object",
+                "allOf": [{
+                    "$ref": "#/components/schemas/BulksignResult",
+                    "type": "object"
+                }],
+                "properties": {
+                    "Result": {
+                        "description": "The result of the API request",
+                        "type": "string",
+                        "format": "binary"
+                    }
+                }
+            },
+
+            "DownloadEnvelopeCompletedAttachmentsResult":{
                 "description": "The result type",
                 "type": "object",
                 "allOf": [{
