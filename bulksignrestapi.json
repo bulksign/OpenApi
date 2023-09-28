@@ -4926,11 +4926,13 @@
             },
 
             "RecipientAuthenticationTypeApi": {
-                "description": "Specifies the recipient type : Password = 1 , SMS = 2",
+                "description": "Specifies the recipient authentication type : Password = 1 , SMS = 2, AuthenticationProvider=3, ManualIdentityVerification=4 ",
                 "type": "number",
                 "enum": [
                     "1",
-                    "2"
+                    "2",
+                    "3",
+                    "4"
                 ],
                 "x-enum-values": [{
                     "numericValue": "1",
@@ -4938,6 +4940,12 @@
                 }, {
                     "numericValue": "2",
                     "identifier": "SMS"
+                },{
+                    "numericValue": "3",
+                    "identifier": "AuthenticationProvider"
+                },{
+                    "numericValue": "4",
+                    "identifier": "ManualIdentityVerification"
                 }]
             },
 

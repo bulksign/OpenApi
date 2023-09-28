@@ -717,6 +717,7 @@ enum RecipientAuthenticationTypeApi
 	Password = 1;
 	SMS = 2;
 	AuthenticationProvider = 3;
+	ManualIdentityVerification=4;
 }
 
 
