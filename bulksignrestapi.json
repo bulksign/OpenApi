@@ -4,7 +4,7 @@
         "url": "https://bulksign.com/webapi/rest/"
     	}],
     "info": {
-        "version": "4.64",
+        "version": "4.73",
         "title": "Bulksign REST API",
         "description": "Bulksign OpenAPI definition. For .NET specifically, please use our [.NET SDK](https://www.nuget.org/packages/BulksignSdk). API code samples highlighting different integration scenarios are [on Github](https://github.com/bulksign/BulksignApiSamples)",
         "contact": {
@@ -2588,11 +2588,11 @@
                         "type": "object",
                         "$ref": "#/components/schemas/SignSettingsApiModel"
                     },
-                    "OverwriteSignatureDisclosure": {
-                        "description": "Overwrites the signature disclosure settings",
+                    "OverwriteDisclosureAgreement": {
+                        "description": "Overwrites the disclosure agreements setting",
                         "type": "object",
                         "required": false,
-                        "$ref": "#/components/schemas/SignatureDisclosureApiModel"
+                        "$ref": "#/components/schemas/DisclosureAgreementApiModel"
                     },
                     "AllowRecipientDelegation": {
                         "description": "Set to true to enable recipient delegation",
@@ -2831,11 +2831,11 @@
                         "required": false,
                         "$ref": "#/components/schemas/SignSettingsApiModel"
                     },
-                    "OverwriteSignatureDisclosure": {
-                        "description": "Overwrites the signature disclosure settings",
+                    "OverwriteDisclosureAgreement": {
+                        "description": "Overwrites the disclosure agreements setting",
                         "type": "object",
                         "required": false,
-                        "$ref": "#/components/schemas/SignatureDisclosureApiModel"
+                        "$ref": "#/components/schemas/DisclosureAgreementApiModel"
                     },
                     "AllowRecipientDelegation": {
                         "description": "Set to true to enable recipient delegation",
@@ -3857,6 +3857,10 @@
                     },
                     "Name": {
                         "description": "Full name of the recipient",
+                        "type": "string"
+                    },
+                    "Language":{
+                        "description": "Overwrites the recipient language set at the envelope level",
                         "type": "string"
                     },
                     "Index": {
@@ -5101,21 +5105,42 @@
             },
 
 
-            "SignatureDisclosureApiModel": {
-                "description": "SignatureDisclosure model",
+            "DisclosureAgreementApiModel": {
+                "description": "DisclosureAgreement model",
                 "type": "object",
-                "required": ["SignatureDisclosure", "ForceSignatureDisclosureDownload"],
+                "required": ["SignatureDisclosure", "ForceDisclosureAgreementDownload"],
                 "properties": {
-                    "SignatureDisclosure": {
-                        "description": "The signature disclosure text",
-                        "type": "string"
+                    "DisclosureTexts": {
+                        "description": "The signature disclosure texts in multiple languages",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/DisclosureAgreementTextApiModel"
+                        }
                     },
-                    "ForceSignatureDisclosureDownload": {
-                        "description": "Flag which determines if the user must download the signature disclosure PDF to continue",
+                    "ForceDisclosureAgreementDownload": {
+                        "description": "Flag which determines if the user must download the disclosure agreement PDF to continue",
                         "type": "boolean"
                     }
                 }
             },
+
+
+            "DisclosureAgreementTextApiModel" :{
+                "description": "Model which allows setting disclosure agreement in a specific language",
+                "type": "object",
+                "required": ["Text", "ForceDisclosureAgreementDownload"],
+                "properties": {
+                    "LanguageCode": {
+                        "description": "The language code for this specific agreement",
+                        "type": "string"
+                    },
+                    "Text": {
+                        "description": "The disclosure agreement text. Html is allowed",
+                        "type": "string"
+                    }
+                }
+            },
+
 
             "RecipientStatusApi": {
                 "description": "Specifies the recipient status : NotSigned = 0 , Opened = 1, Signed = 2, Rejected = 3",
