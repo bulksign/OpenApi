@@ -4906,11 +4906,13 @@
             },
 
             "RecipientTypeApi": {
-                "description": "Specifies the recipient type : Signer = 1, ReceivesCopy = 2",
+                "description": "Specifies the recipient type : Signer = 1, ReceivesCopy = 2, AutomaticSigner=3, Approver=4",
                 "type": "number",
                 "enum": [
                     "1",
-                    "2"
+                    "2",
+                    "3",
+                    "4"
                 ],
                 "x-enum-values": [{
                     "numericValue": "1",
@@ -4918,14 +4920,26 @@
                 }, {
                     "numericValue": "2",
                     "identifier": "ReceivesCopy"
+                },
+                {
+                    "numericValue": "3",
+                    "identifier": "AutomaticSigner"
+                },
+                {
+                    "numericValue": "4",
+                    "identifier": "Approver"
                 }],
                 "x-enum-varnames": [
                     "Signer",
-                    "ReceivesCopy"
+                    "ReceivesCopy",
+                    "AutomaticSigner",
+                    "Approver"
                 ],
                 "x-enum-descriptions": [
                     "Signer",
-                    "ReceivesCopy"
+                    "ReceivesCopy",
+                    "AutomaticSigner",
+                    "Approver"
                 ]
             },
 
@@ -5278,16 +5292,22 @@
 
             "TemplateReplaceRecipientApiModel": {
                 "type": "object",
+                "required": ["Name","Email"],
                 "properties": {
                     "ByIndex": {
-                        "description": "Specify the index",
+                        "description": "Specify the index of the recipient",
                         "type": "object",
                         "$ref": "#/components/schemas/FindRecipientByIndexApiModel"
                     },
                     "ByEmail": {
-                        "description": "The email of the recipient which will be deleted",
+                        "description": "Specify the email of the recipient",
                         "type": "object",
                         "$ref": "#/components/schemas/FindRecipientByEmailApiModel"
+                    },
+                    "ByIdentifier": {
+                        "description": "Specify the identifier of the recipient",
+                        "type": "object",
+                        "$ref": "#/components/schemas/FindRecipientByIdentifierApiModel"
                     },
                     "Email": {
                         "description": "The new recipient email",
@@ -5305,6 +5325,10 @@
                         "description": "The new recipient personal message",
                         "type": "string"
                     },
+                    "Language":{
+                        "description": "The recipient language",
+                        "type": "string"
+                    },
                     "RecipientAuthenticationMethods": {
                         "description": "Set authentication types",
                         "type": "array",
@@ -5317,11 +5341,7 @@
 
             "ReplaceEnvelopeRecipientApiModel": {
                 "type": "object",
-                "allOf": [{
-                    "$ref": "#/components/schemas/TemplateReplaceRecipientApiModel",
-                    "type": "object"
-                }],
-
+                "required": ["Name","Email"],
                 "properties": {
                     "EnvelopeId": {
                         "description": "The id of the envelope",
@@ -5331,7 +5351,51 @@
                     "AutomaticSignerProfileIdentifier": {
                         "description": "Identifier for automatic profile",
                         "type": "string"
+                    },
+
+                    "ByIndex": {
+                        "description": "Specify the index of the recipient",
+                        "type": "object",
+                        "$ref": "#/components/schemas/FindRecipientByIndexApiModel"
+                    },
+                    "ByEmail": {
+                        "description": "Specify the email of the recipient",
+                        "type": "object",
+                        "$ref": "#/components/schemas/FindRecipientByEmailApiModel"
+                    },
+                    "ByIdentifier": {
+                        "description": "Specify the identifier of the recipient",
+                        "type": "object",
+                        "$ref": "#/components/schemas/FindRecipientByIdentifierApiModel"
+                    },
+                    "Email": {
+                        "description": "The new recipient email",
+                        "type": "string"
+                    },
+                    "Name": {
+                        "description": "The new recipient name",
+                        "type": "string"
+                    },
+                    "PhoneNumber": {
+                        "description": "The recipient phone number",
+                        "type": "string"
+                    },
+                    "PersonalMessage": {
+                        "description": "The new recipient personal message",
+                        "type": "string"
+                    },
+                    "Language":{
+                        "description": "The recipient language",
+                        "type": "string"
+                    },
+                    "RecipientAuthenticationMethods": {
+                        "description": "Set authentication types",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/RecipientAuthenticationApiModel"
+                        }
                     }
+
                 }
             },
 

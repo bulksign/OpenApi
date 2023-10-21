@@ -708,7 +708,6 @@ message RecipientApiModel
 	 RecipientTypeApi RecipientType=7;
 	 string AutomaticSignerProfileIdentifier=8;
 	 repeated RemoteSignatureConfigurationApiModel RemoteSignatureConfiguration=9;
-	 string Language=10;
 }
 
 
@@ -718,7 +717,6 @@ enum RecipientAuthenticationTypeApi
 	Password = 1;
 	SMS = 2;
 	AuthenticationProvider = 3;
-	ManualIdentityVerification=4;
 }
 
 
@@ -754,7 +752,7 @@ message UpdateDraftApiModelInput
 	NullableBoolean DisableSignersShouldReceiveFinishedDocument=10;
 	CallbackApiModel OverwriteCallbackUrls=11;
 	SignSettingsApiModel OverwriteSignSettings=12;
-	DisclosureAgreementApiModel OverwriteDisclosureAgreement=13;
+	SignatureDisclosureApiModel OverwriteSignatureDisclosure=13;
 	NullableBoolean AllowRecipientDelegation=14;
 	NullableBoolean CertifyDocumentsBeforeSending=15;
 	NullableBoolean PreventFormFieldEditOnEnvelopeCompletion=16;
@@ -816,16 +814,10 @@ enum SignerDownloadDocumentActionTypeApi
 	RedirectToUrl = 3;
 }
 
-message DisclosureAgreementApiModel
+message SignatureDisclosureApiModel
 {
-	repeated DisclosureAgreementTextApiModel DisclosureTexts=1;
-	bool ForceDisclosureAgreementDownload=2;
-}
-
-message DisclosureAgreementTextApiModel
-{
-	string LanguageCode=1;
-	string Text=2;
+	string SignatureDisclosure=1;
+	bool ForceSignatureDisclosureDownload=2;
 }
 
 enum DocumentTimestampTypeApi
@@ -862,7 +854,7 @@ message UpdateTemplateApiModelInput
 	NullableBoolean DisableSignersShouldReceiveFinishedDocument=11;
 	CallbackApiModel OverwriteCallbackUrls=12;
 	SignSettingsApiModel OverwriteSignSettings=13;
-	DisclosureAgreementApiModel OverwriteDisclosureAgreement=14;
+	SignatureDisclosureApiModel OverwriteSignatureDisclosure=14;
 	NullableBoolean AllowRecipientDelegation=15;
 	NullableBoolean CertifyDocumentsBeforeSending=16;
 	NullableBoolean PreventFormFieldEditOnEnvelopeCompletion=17;
@@ -912,6 +904,7 @@ message ReplaceEnvelopeRecipientApiModelInput
 	string PersonalMessage=9;
 	repeated RecipientAuthenticationApiModel RecipientAuthenticationMethods=10;
 	string AutomaticSignerProfileIdentifier=11;
+	string Language = 12;
 }
 
 
@@ -1142,7 +1135,7 @@ message TemplateApiModelInput
 	string Name =11;
 	CallbackApiModel OverwriteCallbackUrls=12;
 	SignSettingsApiModel OverwriteSignSettings=13;
-	DisclosureAgreementApiModel OverwriteDisclosureAgreement=14;
+	SignatureDisclosureApiModel OverwriteSignatureDisclosure=14;
 	NullableBoolean DisableSignersShouldReceiveFinishedDocument=15;
 	NullableBoolean AllowRecipientDelegation=16;
 	NullableBoolean CertifyDocumentsBeforeSending=17;
@@ -1170,7 +1163,7 @@ message DraftApiModelInput
 	string Name =11;
 	CallbackApiModel OverwriteCallbackUrls=12;
 	SignSettingsApiModel OverwriteSignSettings=13;
-	DisclosureAgreementApiModel OverwriteDisclosureAgreement=14;
+	SignatureDisclosureApiModel OverwriteSignatureDisclosure=14;
 	NullableBoolean DisableSignersShouldReceiveFinishedDocument=15;
 	NullableBoolean AllowRecipientDelegation=16;
 	NullableBoolean CertifyDocumentsBeforeSending=17;
@@ -1336,6 +1329,7 @@ message TemplateReplaceRecipientApiModel
 	string PhoneNumber=6;
 	string PersonalMessage=7;
 	repeated RecipientAuthenticationApiModel RecipientAuthenticationMethods=8;
+	string Language=9;
 }
 
 message TemplateReplaceFormFieldsApiModel
@@ -1372,7 +1366,7 @@ message EnvelopeApiModelInput
 	NullableBoolean DisableSignersShouldReceiveFinishedDocument=12;
 	CallbackApiModel OverwriteCallbackUrls=13;
 	SignSettingsApiModel OverwriteSignSettings=14;
-	DisclosureAgreementApiModel OverwriteDisclosureAgreement=15;
+	SignatureDisclosureApiModel OverwriteSignatureDisclosure=15;
 	bool AllowRecipientDelegation=16;
 	bool CertifyDocumentsBeforeSending=17;
 	bool PreventFormFieldEditOnEnvelopeCompletion=18;
