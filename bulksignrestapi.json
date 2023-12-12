@@ -1647,21 +1647,12 @@
                 ],
                 "summary": "Creates a new draft from file",
                 "operationId": "CreateDraftFromFileBase64",
-                "parameters": [{
-                    "name": "fileName",
-                    "in": "query",
-                    "description": "The name of the file including extension",
-                    "required": true,
-                    "schema": {
-                        "type": "string"
-                    }
-                }],
                 "requestBody": {
                     "required": true,
                     "content": {
-                        "text/plain": {
+                        "application/json:": {
                             "schema": {
-                                "type": "string"
+                                "$ref": "#/components/schemas/FileInputBase64"
                             }
                         }
                     }
