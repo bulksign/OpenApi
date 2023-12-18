@@ -16,8 +16,8 @@
         "description": "Envelope specific APIs"
     },
     {
-        "name": "Document",
-        "description": "APIs which enable working with a single document"
+        "name": "File",
+        "description": "APIs which enable working with a single files"
     },
     {
         "name": "Configuration",
@@ -26,7 +26,7 @@
         "name": "Recipient",
         "description": "Recipient specific APIs"
     }, {
-        "name": "Documents Download",
+        "name": "Document Download",
         "description": "APIs to download completed OR partially signed documents"
     }, {
         "name": "Draft",
@@ -799,7 +799,7 @@
         "/GetCompletedFormFields": {
             "post": {
                 "tags": [
-                    "Documents Download"
+                    "Document Download"
                 ],
                 "summary": "Get the values of the form fields filled by the envelope signers",
                 "operationId": "GetCompletedFormFields",
@@ -832,7 +832,7 @@
         "/DownloadEnvelopeIncompleteDocuments": {
             "post": {
                 "tags": [
-                    "Documents Download"
+                    "Document Download"
                 ],
                 "summary": "Returns a zip file with partially signed documents. If nobody signed the document yet, the envelope original files will be returned",
                 "operationId": "DownloadEnvelopeIncompleteDocuments",
@@ -865,7 +865,7 @@
         "/DownloadEnvelopeCompletedDocuments": {
             "post": {
                 "tags": [
-                    "Documents Download"
+                    "Document Download"
                 ],
                 "summary": "Returns a zip file which contains the envelope completed documents and the audit trail",
                 "operationId": "DownloadEnvelopeCompletedDocuments",
@@ -896,7 +896,7 @@
         "/DownloadEnvelopeCompletedAttachments": {
             "post": {
                 "tags": [
-                    "Documents Download"
+                    "Document Download"
                 ],
                 "summary": "Returns a zip file with all the PDF file attachments for a completed envelope",
                 "operationId": "DownloadEnvelopeCompletedAttachments",
@@ -1817,7 +1817,7 @@
         "/StoreTemporaryFileBinary": {
             "post": {
                 "tags": [
-                    "Document"
+                    "File"
                 ],
                 "summary": "Stores the specified file, to be used afterwards from SendEnvelope/PrepareSendEnvelope",
                 "operationId": "StoreTemporaryFileBinary",
@@ -1851,7 +1851,7 @@
         "/StoreTemporaryFile": {
             "post": {
                 "tags": [
-                    "Document"
+                    "File"
                 ],
                 "summary": "Stores the specified file, to be used afterwards from SendEnvelope/PrepareSendEnvelope",
                 "operationId": "StoreTemporaryFile",
@@ -1885,7 +1885,7 @@
         "/StoreTemporaryFileBase64": {
             "post": {
                 "tags": [
-                    "Document"
+                    "File"
                 ],
                 "summary": "Stores the specified file, to be used afterwards from SendEnvelope/PrepareSendEnvelope",
                 "operationId": "StoreTemporaryFileBase64",
@@ -1918,7 +1918,7 @@
         "/AnalyzeFileBinary": {
             "post": {
                 "tags": [
-                    "Document"
+                    "File"
                 ],
                 "summary": "Analyze the specified PDF file, stores the file and returns information about form fields",
                 "operationId": "AnalyzeFileBinary",
@@ -1954,7 +1954,7 @@
         "/AnalyzeFile": {
             "post": {
                 "tags": [
-                    "Document"
+                    "File"
                 ],
                 "summary": "Analyze the specified PDF file, stores the file and returns information about form fields",
                 "operationId": "AnalyzeFile",
@@ -1990,7 +1990,7 @@
         "/AnalyzeFileBase64": {
             "post": {
                 "tags": [
-                    "Document"
+                    "File"
                 ],
                 "summary": "Analyze the specified PDF file and returns information about form fields",
                 "operationId": "AnalyzeFileBase64",
