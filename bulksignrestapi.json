@@ -2753,11 +2753,11 @@
             "BaseDocumentApiInput": {
                 "description": "",
                 "type": "object",
-                "required": ["EmailSubject", "Recipients", "Name"],
+                "required": ["Documents", "Recipients"],
                 "properties": {
 
                     "EmailSubject": {
-                        "description": "Envelope email subject. If left empty, will be imported from settings",
+                        "description": "Envelope email subject. If left empty, will be imported from organization settings",
                         "type": "string",
                         "minLength": 1,
                         "maxLength": 300
@@ -2767,7 +2767,7 @@
                         "type": "string"
                     },
                     "Language": {
-                        "description": "Language for email notifications. If left empty, the default language setting will be used",
+                        "description": "Language for email notifications. If left empty, the default draft language setting will be used",
                         "type": "string"
                     },
                     "Metadata": {
@@ -2777,7 +2777,7 @@
                         "maxLength": 4000
                     },
                     "DaysUntilExpire": {
-                        "description": "Sets the expiration day for envelope in days. If not set, default value will be used",
+                        "description": "Sets the expiration day for envelope in days. If not set, default configured value will be used",
                         "type": "number"
                     },
                     "Documents": {
@@ -2803,7 +2803,7 @@
                         "$ref": "#/components/schemas/EnvelopeTypeApi"
                     },
                     "Name": {
-                        "description": "Set the name to identify the envelope/draft/template",
+                        "description": "Set the name to identify the envelope/draft/template. If not set, the name 'Please sign this document' will be used",
                         "type": "string"
                     },
                     "DisableSignersShouldReceiveFinishedDocument": {
