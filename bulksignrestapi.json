@@ -4,7 +4,7 @@
         "url": "https://bulksign.com/webapi/rest/"
     	}],
     "info": {
-        "version": "4.79",
+        "version": "4.87",
         "title": "Bulksign REST API",
         "description": "Bulksign OpenAPI definition. For .NET specifically, please use our [.NET SDK](https://www.nuget.org/packages/BulksignSdk). API code samples highlighting different integration scenarios are [on Github](https://github.com/bulksign/BulksignApiSamples)",
         "contact": {
@@ -4063,11 +4063,23 @@
             },
 
             "OrganizationPoliciesApiModel": {
-                "description": "Type description for UserInvitation model",
+                "description": "Type description for OrganizationPoliciesApiModel model",
                 "type": "object",
                 "properties": {
                     "RequireSignerAuthentication": {
                         "description": "This flag determines if signer authentication must be enforce for each new sent envelope",
+                        "type": "boolean"
+                    },
+                    "AllowLockedDocuments":{
+                        "description": "This flag determines if locked/un-signable PDF documents are allowed as part of the envelope",
+                        "type": "boolean"
+                    },
+                    "EnableTags":{
+                        "description": "This flag determines processing tags is enabled",
+                        "type": "boolean"
+                    },   
+                    "DeleteTagText" :{
+                        "description": "This flag determines if tags text is deleted after being processed",
                         "type": "boolean"
                     },
                     "MetadataEditorRedirect": {
@@ -4115,16 +4127,8 @@
                         "description": "Set the organization name",
                         "type": "string"
                     },
-                    "DefaultEmailSubject": {
-                        "description": "Set the default email subject for 'Sign' emails",
-                        "type": "string"
-                    },
-                    "DefaultEmailBody": {
-                        "description": "Set the default email body for 'Sign' emails",
-                        "type": "string"
-                    },
-                    "DefaultEmailTemplateLanguage": {
-                        "description": "Set the default language for new drafts. Call GetEmailTemplateLanguages to obtain the list of all supported languages",
+                    "InvitationEmailLanguage": {
+                        "description": "Set the default language used in the email sent for inviting new users to your organization. Call GetEmailTemplateLanguages to obtain the list of all supported languages",
                         "type": "string"
                     },
                     "EmailSenderType": {

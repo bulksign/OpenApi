@@ -393,9 +393,7 @@ message OrganizationUpdateSettingsApiModelInput
 {
 	AuthenticationApiModel Authentication = 3;
 	string Name = 4;
-	string DefaultEmailSubject=5;
-	string DefaultEmailBody=6;
-	string DefaultEmailTemplateLanguage=7;
+	string InvitationEmailLanguage=7;
 	EmailSenderTypeApi EmailSenderType=8;
 	OrganizationPoliciesApiModel Policies =9;
 	OrganizationVisualCustomizationApiModel VisualCustomization=10;
@@ -418,6 +416,7 @@ message OrganizationPoliciesApiModel
 	bool EnableTags=2;
 	bool DeleteTagText=3;
 	MetadataEditorRedirectApiModel MetadataEditorRedirect =4;
+	bool AllowLockedDocuments=5;
 }
 
 message  MetadataEditorRedirectApiModel
