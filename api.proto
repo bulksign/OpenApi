@@ -716,6 +716,8 @@ enum RecipientAuthenticationTypeApi
 	Password = 1;
 	SMS = 2;
 	AuthenticationProvider = 3;
+	ManualIdentityVerification =4;
+	ActiveDirectory =5;
 }
 
 
@@ -741,23 +743,22 @@ message UpdateDraftApiModelInput
 {
 	AuthenticationApiModel Authentication = 1;
 	string DraftId=2;
-	string EmailSubject=3;
-	string EmailMessage=4;
-	string Language=5;
-	string Metadata=6;
-	NullableInt32 DaysUntilExpire=7;
-	ReminderOptionsApiModel ReminderOptions=8;
-	string Name =9;
-	NullableBoolean DisableSignersShouldReceiveFinishedDocument=10;
-	CallbackApiModel OverwriteCallbackUrls=11;
-	SignSettingsApiModel OverwriteSignSettings=12;
-	SignatureDisclosureApiModel OverwriteSignatureDisclosure=13;
-	NullableBoolean AllowRecipientDelegation=14;
-	NullableBoolean CertifyDocumentsBeforeSending=15;
-	NullableBoolean PreventFormFieldEditOnEnvelopeCompletion=16;
-	NullableBoolean EnableBatchSign=17;
-	NullableBoolean DisableSignerEmailNotifications=18;
-	DocumentTimestampTypeApi DocumentTimestampType=19;
+	repeated MessageApiModel Messages =3;
+	string Language=4;
+	string Metadata=5;
+	NullableInt32 DaysUntilExpire=6;
+	ReminderOptionsApiModel ReminderOptions=7;
+	string Name =8;
+	NullableBoolean DisableSignersShouldReceiveFinishedDocument=9;
+	CallbackApiModel OverwriteCallbackUrls=10;
+	SignSettingsApiModel OverwriteSignSettings=11;
+	SignatureDisclosureApiModel OverwriteSignatureDisclosure=12;
+	NullableBoolean AllowRecipientDelegation=13;
+	NullableBoolean CertifyDocumentsBeforeSending=14;
+	NullableBoolean PreventFormFieldEditOnEnvelopeCompletion=15;
+	NullableBoolean EnableBatchSign=16;
+	NullableBoolean DisableSignerEmailNotifications=17;
+	DocumentTimestampTypeApi DocumentTimestampType=18;
 }
 
 
@@ -842,24 +843,22 @@ message UpdateTemplateApiModelInput
 	AuthenticationApiModel Authentication = 1;
 	string TemplateId=2;
 	NullableBoolean IsSharedTemplate=3;
-
-	string EmailSubject=4;
-	string EmailMessage=5;
-	string Language=6;
-	string Metadata=7;
-	NullableInt32 DaysUntilExpire=8;
-	ReminderOptionsApiModel ReminderOptions=9;
-	string Name =10;
-	NullableBoolean DisableSignersShouldReceiveFinishedDocument=11;
-	CallbackApiModel OverwriteCallbackUrls=12;
-	SignSettingsApiModel OverwriteSignSettings=13;
-	SignatureDisclosureApiModel OverwriteSignatureDisclosure=14;
-	NullableBoolean AllowRecipientDelegation=15;
-	NullableBoolean CertifyDocumentsBeforeSending=16;
-	NullableBoolean PreventFormFieldEditOnEnvelopeCompletion=17;
-	NullableBoolean EnableBatchSign=18;
-	NullableBoolean DisableSignerEmailNotifications=19;
-	DocumentTimestampTypeApi DocumentTimestampType=20;
+	repeated MessageApiModel Messages =4;
+	string Language=5;
+	string Metadata=6;
+	NullableInt32 DaysUntilExpire=7;
+	ReminderOptionsApiModel ReminderOptions=8;
+	string Name =9;
+	NullableBoolean DisableSignersShouldReceiveFinishedDocument=10;
+	CallbackApiModel OverwriteCallbackUrls=11;
+	SignSettingsApiModel OverwriteSignSettings=12;
+	SignatureDisclosureApiModel OverwriteSignatureDisclosure=13;
+	NullableBoolean AllowRecipientDelegation=14;
+	NullableBoolean CertifyDocumentsBeforeSending=15;
+	NullableBoolean PreventFormFieldEditOnEnvelopeCompletion=16;
+	NullableBoolean EnableBatchSign=17;
+	NullableBoolean DisableSignerEmailNotifications=18;
+	DocumentTimestampTypeApi DocumentTimestampType=19;
 
 }
 
@@ -1123,27 +1122,26 @@ message TemplateApiModelInput
 {
 	AuthenticationApiModel Authentication = 1;
 	bool IsSharedTemplate=2;
-	string EmailSubject=3;
-	string EmailMessage=4;
-	string Language=5;
-	string Metadata=6;
-	NullableInt32 DaysUntilExpire=7;
-	repeated DocumentResultApiModel Documents=8;
-	repeated RecipientApiModel Recipients=9;
-	ReminderOptionsApiModel ReminderOptions=10;
-	string Name =11;
-	CallbackApiModel OverwriteCallbackUrls=12;
-	SignSettingsApiModel OverwriteSignSettings=13;
-	SignatureDisclosureApiModel OverwriteSignatureDisclosure=14;
-	NullableBoolean DisableSignersShouldReceiveFinishedDocument=15;
-	NullableBoolean AllowRecipientDelegation=16;
-	NullableBoolean CertifyDocumentsBeforeSending=17;
-	NullableBoolean PreventFormFieldEditOnEnvelopeCompletion=18;
-	NullableBoolean EnableBatchSign=19;
-	FileAccessModeTypeApi FileAccessMode=20;
-	repeated CustomFileAccessApiModel CustomFileAccess=21;
-	DocumentTimestampTypeApi DocumentTimestampType=22;
-	EnvelopeTypeApi EnvelopeType=23;
+	repeated MessageApiModel Messages =3;
+	string Language=4;
+	string Metadata=5;
+	NullableInt32 DaysUntilExpire=6;
+	repeated DocumentResultApiModel Documents=7;
+	repeated RecipientApiModel Recipients=8;
+	ReminderOptionsApiModel ReminderOptions=9;
+	string Name =10;
+	CallbackApiModel OverwriteCallbackUrls=11;
+	SignSettingsApiModel OverwriteSignSettings=12;
+	SignatureDisclosureApiModel OverwriteSignatureDisclosure=13;
+	NullableBoolean DisableSignersShouldReceiveFinishedDocument=14;
+	NullableBoolean AllowRecipientDelegation=15;
+	NullableBoolean CertifyDocumentsBeforeSending=16;
+	NullableBoolean PreventFormFieldEditOnEnvelopeCompletion=17;
+	NullableBoolean EnableBatchSign=18;
+	FileAccessModeTypeApi FileAccessMode=19;
+	repeated CustomFileAccessApiModel CustomFileAccess=20;
+	DocumentTimestampTypeApi DocumentTimestampType=21;
+	EnvelopeTypeApi EnvelopeType=22;
 }
 
 
@@ -1151,23 +1149,22 @@ message DraftApiModelInput
 {
 	AuthenticationApiModel Authentication = 1;
 	bool EnableEditIncognitoMode=2;
-	string EmailSubject=3;
-	string EmailMessage=4;
-	string Language=5;
-	string Metadata=6;
-	NullableInt32 DaysUntilExpire=7;
-	repeated DocumentResultApiModel Documents=8;
-	repeated RecipientApiModel Recipients=9;
-	ReminderOptionsApiModel ReminderOptions=10;
-	string Name =11;
-	CallbackApiModel OverwriteCallbackUrls=12;
-	SignSettingsApiModel OverwriteSignSettings=13;
-	SignatureDisclosureApiModel OverwriteSignatureDisclosure=14;
-	NullableBoolean DisableSignersShouldReceiveFinishedDocument=15;
-	NullableBoolean AllowRecipientDelegation=16;
-	NullableBoolean CertifyDocumentsBeforeSending=17;
-	NullableBoolean PreventFormFieldEditOnEnvelopeCompletion=18;
-	NullableBoolean EnableBatchSign=19;
+	repeated MessageApiModel Messages =3;
+	string Language=4;
+	string Metadata=5;
+	NullableInt32 DaysUntilExpire=6;
+	repeated DocumentResultApiModel Documents=7;
+	repeated RecipientApiModel Recipients=8;
+	ReminderOptionsApiModel ReminderOptions=9;
+	string Name =10;
+	CallbackApiModel OverwriteCallbackUrls=11;
+	SignSettingsApiModel OverwriteSignSettings=12;
+	SignatureDisclosureApiModel OverwriteSignatureDisclosure=13;
+	NullableBoolean DisableSignersShouldReceiveFinishedDocument=14;
+	NullableBoolean AllowRecipientDelegation=15;
+	NullableBoolean CertifyDocumentsBeforeSending=16;
+	NullableBoolean PreventFormFieldEditOnEnvelopeCompletion=17;
+	NullableBoolean EnableBatchSign=18;
 	FileAccessModeTypeApi FileAccessMode=20;
 	repeated CustomFileAccessApiModel CustomFileAccess=21;
 	DocumentTimestampTypeApi DocumentTimestampType=22;
@@ -1353,27 +1350,26 @@ message EnvelopeApiModelInput
 {
 	AuthenticationApiModel Authentication = 1;
 	bool DisableSignerEmailNotifications =2;
-	string EmailSubject=3;
-	string EmailMessage=4;
-	string Language=5;
-	string Metadata=6;
-	int32 DaysUntilExpire=7;
-	repeated DocumentApiModel Documents=8;
-	repeated RecipientApiModel Recipients=9;
-	ReminderOptionsApiModel ReminderOptions=10;
-	string Name =11;
-	NullableBoolean DisableSignersShouldReceiveFinishedDocument=12;
-	CallbackApiModel OverwriteCallbackUrls=13;
-	SignSettingsApiModel OverwriteSignSettings=14;
-	SignatureDisclosureApiModel OverwriteSignatureDisclosure=15;
-	bool AllowRecipientDelegation=16;
-	bool CertifyDocumentsBeforeSending=17;
-	bool PreventFormFieldEditOnEnvelopeCompletion=18;
-	bool EnableBatchSign=19;
-	FileAccessModeTypeApi FileAccessMode=20;
-	repeated CustomFileAccessApiModel CustomFileAccess=21;
-	DocumentTimestampTypeApi DocumentTimestampType=22;
-	EnvelopeTypeApi EnvelopeType=23;
+	repeated MessageApiModel Messages =3;
+	string Language=4;
+	string Metadata=5;
+	int32 DaysUntilExpire=6;
+	repeated DocumentApiModel Documents=7;
+	repeated RecipientApiModel Recipients=8;
+	ReminderOptionsApiModel ReminderOptions=9;
+	string Name =10;
+	NullableBoolean DisableSignersShouldReceiveFinishedDocument=11;
+	CallbackApiModel OverwriteCallbackUrls=12;
+	SignSettingsApiModel OverwriteSignSettings=13;
+	SignatureDisclosureApiModel OverwriteSignatureDisclosure=14;
+	bool AllowRecipientDelegation=15;
+	bool CertifyDocumentsBeforeSending=16;
+	bool PreventFormFieldEditOnEnvelopeCompletion=17;
+	bool EnableBatchSign=18;
+	FileAccessModeTypeApi FileAccessMode=19;
+	repeated CustomFileAccessApiModel CustomFileAccess=20;
+	DocumentTimestampTypeApi DocumentTimestampType=21;
+	EnvelopeTypeApi EnvelopeType=22;
 }
 
 
@@ -1827,4 +1823,11 @@ message ResetSignatureTypeApiModelInput
 	FindRecipientByEmailApiModel ByEmail=4;
 	FindRecipientByIdentifierApiModel ByIdentifier=5;
 	ResetSignatureType SignatureType=6;
+}
+
+message MessageApiModel
+{
+	string Subject=1;
+	string Message =2;
+	string Language=3;
 }

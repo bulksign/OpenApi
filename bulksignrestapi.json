@@ -4,7 +4,7 @@
         "url": "https://bulksign.com/webapi/rest/"
     	}],
     "info": {
-        "version": "4.87",
+        "version": "4.89",
         "title": "Bulksign REST API",
         "description": "Bulksign OpenAPI definition. For .NET specifically, please use our [.NET SDK](https://www.nuget.org/packages/BulksignSdk). API code samples highlighting different integration scenarios are [on Github](https://github.com/bulksign/BulksignApiSamples)",
         "contact": {
@@ -2529,16 +2529,12 @@
             "BaseUpdateApiModel": {
                 "type": "object",
                 "properties": {
-
-                    "EmailSubject": {
-                        "description": "Draft email subject",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 300
-                    },
-                    "EmailMessage": {
-                        "description": "Draft email body",
-                        "type": "string"
+                    "Messages":{
+                        "description": "Set the messages",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/MessageApiModel"
+                        }
                     },
                     "Language": {
                         "description": "Language for email notifications",
@@ -2670,7 +2666,24 @@
                     }
                 }
             },
-
+            "MessageApiModel":{
+                "description": "Type which describes a envelope/organization message model",
+                "type": "object",
+                "properties": {
+                    "Subject": {
+                        "description": "The subject of the email message",
+                        "type": "string"
+                    },
+                    "Message": {
+                        "description": "The subject of the email message",
+                        "type": "string"
+                    },
+                    "Language":{
+                        "description": "The language of the message",
+                        "type": "string"
+                    }
+                }
+            },
             "UserUpdateSettingsApiModel": {
                 "description": "Type which describes user settings. Everything is optional, you should only sent the setting values that need to be updated",
                 "type": "object",
@@ -2755,16 +2768,12 @@
                 "type": "object",
                 "required": ["Documents", "Recipients"],
                 "properties": {
-
-                    "EmailSubject": {
-                        "description": "Envelope email subject. If left empty, will be imported from organization settings",
-                        "type": "string",
-                        "minLength": 1,
-                        "maxLength": 300
-                    },
-                    "EmailMessage": {
-                        "description": "Envelope email body. If left empty, will be imported from organization settings",
-                        "type": "string"
+                    "Messages":{
+                        "description": "Set the messages",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/MessageApiModel"
+                        }
                     },
                     "Language": {
                         "description": "Language for email notifications. If left empty, the default draft language setting will be used",
@@ -4939,13 +4948,14 @@
             },
 
             "RecipientAuthenticationTypeApi": {
-                "description": "Specifies the recipient authentication type : Password = 1 , SMS = 2, AuthenticationProvider=3, ManualIdentityVerification=4 ",
+                "description": "Specifies the recipient authentication type : Password = 1 , SMS = 2, AuthenticationProvider=3, ManualIdentityVerification=4, ActiveDirectory=5 ",
                 "type": "number",
                 "enum": [
                     "1",
                     "2",
                     "3",
-                    "4"
+                    "4",
+                    "5"
                 ],
                 "x-enum-values": [{
                     "numericValue": "1",
@@ -4959,6 +4969,9 @@
                 },{
                     "numericValue": "4",
                     "identifier": "ManualIdentityVerification"
+                },{
+                    "numericValue": "5",
+                    "identifier": "ActiveDirectory"
                 }]
             },
 
