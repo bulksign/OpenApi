@@ -4,7 +4,7 @@
         "url": "https://bulksign.com/webapi/rest/"
     	}],
     "info": {
-        "version": "4.89",
+        "version": "4.96",
         "title": "Bulksign REST API",
         "description": "Bulksign OpenAPI definition. For .NET specifically, please use our [.NET SDK](https://www.nuget.org/packages/BulksignSdk). API code samples highlighting different integration scenarios are [on Github](https://github.com/bulksign/BulksignApiSamples)",
         "contact": {
@@ -4084,7 +4084,11 @@
                         "type": "boolean"
                     },
                     "EnableTags":{
-                        "description": "This flag determines processing tags is enabled",
+                        "description": "This flag determines if tags processing is enabled",
+                        "type": "boolean"
+                    },
+                    "ForceBatchSign" :{
+                        "description": "This flag determines if batch signing is automatically enabled for all envelopes",
                         "type": "boolean"
                     },   
                     "DeleteTagText" :{

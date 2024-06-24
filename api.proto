@@ -417,6 +417,7 @@ message OrganizationPoliciesApiModel
 	bool DeleteTagText=3;
 	MetadataEditorRedirectApiModel MetadataEditorRedirect =4;
 	bool AllowLockedDocuments=5;
+	bool ForceBatchSign =6;
 }
 
 message  MetadataEditorRedirectApiModel
