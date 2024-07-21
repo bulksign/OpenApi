@@ -4,7 +4,7 @@
         "url": "https://bulksign.com/webapi/rest/"
     	}],
     "info": {
-        "version": "4.96",
+        "version": "4.97",
         "title": "Bulksign REST API",
         "description": "Bulksign OpenAPI definition. For .NET specifically, please use our [.NET SDK](https://www.nuget.org/packages/BulksignSdk). API code samples highlighting different integration scenarios are [on Github](https://github.com/bulksign/BulksignApiSamples)",
         "contact": {
@@ -2123,38 +2123,6 @@
             }
         },
 
-        "/AddUserToOrganizationForLoginWithExternalProvider": {
-            "post": {
-                "tags": [
-                    "User"
-                ],
-                "summary": "Add a new user to your organization which can login with a configured authentication provider. Requires organization administrator rights",
-                "operationId": "AddUserToOrganizationForLoginWithExternalProvider",
-                "requestBody": {
-                    "required": true,
-                    "description": "Input model",
-                    "content": {
-                        "application/json:": {
-                            "schema": {
-                                "$ref": "#/components/schemas/NewUserApiModel"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/BulksignResult"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/GetVersion": {
             "post": {
                 "tags": [
@@ -2349,6 +2317,30 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/BulksignResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/GetOrganizationSignGroups": {
+            "post": {
+                "tags": [
+                    "Organization"
+                ],
+                "summary": "Retrive the organization sign groups. Requires organization administrator rights",
+                "operationId": "GetOrganizationSignGroups",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/OrganizationSignGroupResultApiModel"
+                                    }
                                 }
                             }
                         }
@@ -2610,6 +2602,26 @@
                     }
 
                 }
+            },
+
+            "AccountLoginTypeApi" :{
+                "description": "Specifies the type of account login",
+                "type": "number",
+                "enum": [
+                    "0",
+                    "1"
+                ],
+                "x-enum-values": [{
+                    "numericValue": "0",
+                    "identifier": "None"
+                }, {
+                    "numericValue": "0",
+                    "identifier": "Password"
+                }, {
+                    "numericValue": "1",
+                    "identifier": "OIDC_SAML"
+                }],
+                "x-ms-enum": []
             },
 
             "DocumentTimestampTypeApi": {
@@ -3091,6 +3103,10 @@
                         "description": "A BASE64 encoded image in JPEG format that will be used as the user's image",
                         "type": "string",
                         "default": ""
+                    },
+                    "AccountLoginType":{
+                        "description": "Set the user login type",
+                        "$ref": "#/components/schemas/AccountLoginTypeApi"
                     }
                 }
             },
@@ -3126,11 +3142,15 @@
                 }
             },
 
-            "RecipientResultApiModel": {
-                "description": "The type which describes the recipient information",
+            "RecipientResultApiModel":{
+                "description": "Type which describes the recipient result information",
                 "type": "object",
                 "properties": {
-
+                 
+                    "Identifier":{
+                        "description": "The recipient unique identifier",
+                        "type": "string"
+                    },
                     "Email": {
                         "description": "The recipient's email",
                         "type": "string"
@@ -3147,21 +3167,93 @@
                         "description": "The personal message",
                         "type": "string"
                     },
-                    "AccessCode": {
-                        "description": "The access code of the recipient",
-                        "type": "string"
-                    },
-                    "Status": {
-                        "description": "The current status of the recipient",
-                        "$ref": "#/components/schemas/RecipientStatusApi"
+                    "RecipientAuthenticationMethods": {
+                        "description": "The recipient authentication methods",
+                        "$ref": "#/components/schemas/RecipientAuthenticationApiModel"
                     },
                     "RecipientType": {
                         "description": "The recipient types",
                         "$ref": "#/components/schemas/RecipientTypeApi"
                     },
+                    "AutomaticSignerProfileIdentifier":{
+                        "description": "The automatic signer profile identifier. Only set if RecipientType is AutomaticSigner",
+                        "type": "string"
+                    },
+                    "SignNotificationChannel":{
+                        "description": "The notification channel for this recipient",
+                        "$ref": "#/components/schemas/SignNotificationChannelTypeApi"
+                    },
+                    "SignGroup":{
+                        "description": "The name of he sign group this recipient is a part of",
+                        "type": "string"
+                    },
+                    "Language":{
+                        "description": "The language of the recipient",
+                        "type": "string"
+                    }
+                }
+            },
+
+            "EnvelopeRecipientResultApiModel": {
+                "description": "The type which describes the recipient information",
+                "type": "object",
+                "properties": {
+
+                    "Identifier":{
+                        "description": "The recipient unique identifier",
+                        "type": "string"
+                    },
+                    "Email": {
+                        "description": "The recipient email address",
+                        "type": "string"
+                    },
+                    "Name": {
+                        "description": "The recipient name",
+                        "type": "string"
+                    },
+                    "Language":{
+                        "description": "The recipient language",
+                        "type": "string"
+                    },
+                    "Index": {
+                        "description": "The recipient index",
+                        "type": "number"
+                    },
+                    "PersonalMessage": {
+                        "description": "The personal message",
+                        "type": "string"
+                    },
                     "RecipientAuthenticationMethods": {
                         "description": "The recipient authentication methods",
                         "$ref": "#/components/schemas/RecipientAuthenticationApiModel"
+                    },
+                    "RecipientType": {
+                        "description": "The recipient types",
+                        "$ref": "#/components/schemas/RecipientTypeApi"
+                    },
+                    "AutomaticSignerProfileIdentifier":{
+                        "description": "The automatic signer profile identifier. Only set if RecipientType is AutomaticSigner",
+                        "type": "string"
+                    },
+                    "SignNotificationChannel":{
+                        "description": "The notification channel for this recipient",
+                        "$ref": "#/components/schemas/SignNotificationChannelTypeApi"
+                    },
+                    "Status": {
+                        "description": "The current status of the recipient",
+                        "$ref": "#/components/schemas/RecipientStatusApi"
+                    },
+                    "SignGroup":{
+                        "description": "The name of he sign group this recipient is a part of",
+                        "type": "string"
+                    },
+                    "AccessCode": {
+                        "description": "The access code of the recipient",
+                        "type": "string"
+                    },
+                    "SigningUrl": {
+                        "description": "The url to which the user should be redirected to sign",
+                        "type": "string"
                     },
                     "HasBeenDelegated": {
                         "description": "Flag which indicates if the recipient has been delegated",
@@ -3171,15 +3263,19 @@
                         "description": "The rejection message of the recipient (only when the SignStep is rejected)",
                         "type": "string"
                     },
-                    "SigningUrl": {
-                        "description": "The url to which the user should be redirected to sign",
-                        "type": "string"
+                    "Attachments":{
+                        "description": "The completed attachments",
+                        "$ref": "#/components/schemas/CompletedAttachmentApiModel"
                     },
-                    "FinishedDate":{
-                        "description": "The url to which the user should be redirected to sign",
+                    "LockedDate":{
+                        "description": "The date at which this signer locked the envelope",
                         "type": "string",
                         "format":"date-time"
-                        
+                    },
+                    "FinishedDate":{
+                        "description": "The date at which the signer finished signing",
+                        "type": "string",
+                        "format":"date-time"
                     }
                 }
             },
@@ -3215,7 +3311,7 @@
                         "description": "The envelope recipients",
                         "type": "array",
                         "items": {
-                            "$ref": "#/components/schemas/RecipientResultApiModel"
+                            "$ref": "#/components/schemas/EnvelopeRecipientResultApiModel"
                         }
                     },
                     "Status": {
@@ -3859,10 +3955,6 @@
                         "description": "Full name of the recipient",
                         "type": "string"
                     },
-                    "Language":{
-                        "description": "Overwrites the recipient language set at the envelope level",
-                        "type": "string"
-                    },
                     "Index": {
                         "description": "The index of the recipient. In serial signing mode this represents the position at which he signs the document",
                         "type": "number"
@@ -3871,11 +3963,6 @@
                         "description": "A specific personal message just for this recipient",
                         "type": "string"
                     },
-                    "RecipientType": {
-                        "description": "Specify the recipient type",
-                        "type": "object",
-                        "$ref": "#/components/schemas/RecipientTypeApi"
-                    },
                     "RecipientAuthenticationMethods": {
                         "description": "Set authentication types",
                         "type": "array",
@@ -3883,8 +3970,26 @@
                             "$ref": "#/components/schemas/RecipientAuthenticationApiModel"
                         }
                     },
+                    "RecipientType": {
+                        "description": "Specify the recipient type",
+                        "type": "object",
+                        "$ref": "#/components/schemas/RecipientTypeApi"
+                    },
                     "AutomaticSignerProfileIdentifier": {
                         "description": "The automatic signing profile",
+                        "type": "string"
+                    },
+                    "SignNotificationChannel" :{
+                        "description": "Notification channel used for this recipient",
+                        "type": "object",
+                        "$ref": "#/components/schemas/SignNotificationChannelTypeApi"
+                    },
+                    "SignGroup":{
+                        "description": "The name of the sign group this recipient is a part of",
+                        "type": "string"
+                    },
+                    "Language":{
+                        "description": "Overwrites the recipient language set at the envelope level",
                         "type": "string"
                     },
                     "RemoteSignatureConfiguration" :{
@@ -4346,6 +4451,39 @@
                 }
             },
 
+            "OrganizationSignGroupResultApiModel" :{
+                "description": "Describes a sign group",
+                "type": "object",
+                "properties": {
+                    "Name": {
+                        "description": "The name of the sign group",
+                        "type": "string"
+                    },
+                    "Members": {
+                        "description": "Members of sign group",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/SignGroupMemberResultApiModel"
+                        }
+                    }
+                }
+            },
+
+            "SignGroupMemberResultApiModel":{
+                "description": "Describes a sign group memeber",
+                "type": "object",
+                "properties": {
+                    "Name": {
+                        "description": "Member name",
+                        "type": "string"
+                    },
+                    "Email": {
+                        "description": "Member email address",
+                        "type": "string"
+                    }
+                }
+            },
+
             "TemplateDetailsResultApiModel": {
                 "description": "Template details type",
                 "type": "object",
@@ -4491,6 +4629,21 @@
                         "description": "Set the type of timestamping for serial envelope. To be set only if EnableDocumentTimestamp is enabled and the the of envelope is serial",
                         "type": "object",
                         "$ref": "#/components/schemas/DocumentTimestampTypeApi"
+                    }
+                }
+            },
+
+            "CompletedAttachmentApiModel":{
+                "description": "Completed attachment model",
+                "type": "object",
+                "properties": {
+                    "Id": {
+                        "description": "The identifier of the attachment",
+                        "type": "string"
+                    },
+                    "FileName": {
+                        "description": "The name of the attachment file",
+                        "type": "string"
                     }
                 }
             },
@@ -4749,6 +4902,22 @@
 
             },
 
+            "SignNotificationChannelTypeApi":{
+                "description": "Specifies the sign notification type",
+                "type": "number",
+                "enum": [
+                    "0",
+                    "1"
+                ],
+                "x-enum-values": [{
+                    "numericValue": "0",
+                    "identifier": "Email"
+                }, {
+                    "numericValue": "1",
+                    "identifier": "SMS"
+                }],
+                "x-ms-enum": []
+            },
 
             "ResetSignatureType":{
                 "description": "Specifies the type of signature to be set",
@@ -5592,6 +5761,7 @@
                 }
             },
 
+            
             "GetContactsResult": {
                 "description": "The result type",
                 "type": "object",
