@@ -4,7 +4,7 @@
         "url": "https://bulksign.com/webapi/rest/"
     	}],
     "info": {
-        "version": "4.97",
+        "version": "4.97.1",
         "title": "Bulksign REST API",
         "description": "Bulksign OpenAPI definition. For .NET specifically, please use our [.NET SDK](https://www.nuget.org/packages/BulksignSdk). API code samples highlighting different integration scenarios are [on Github](https://github.com/bulksign/BulksignApiSamples)",
         "contact": {
@@ -17,12 +17,9 @@
     },
     {
         "name": "File",
-        "description": "APIs which enable working with a single files"
+        "description": "APIs which enable working with a single document file"
     },
     {
-        "name": "Configuration",
-        "description": "APIs which support different configurations"
-    },{
         "name": "Recipient",
         "description": "Recipient specific APIs"
     }, {
@@ -1046,7 +1043,7 @@
         "/GetSignatureImprints": {
             "post": {
                 "tags": [
-                    "Configuration"
+                    "Organization"
                 ],
                 "summary": "Get the list of signature imprints defined per organization",
                 "operationId": "GetSignatureImprints",
@@ -1072,7 +1069,7 @@
         "/GetCustomUserRoles": {
             "post": {
                 "tags": [
-                    "Configuration"
+                    "Organization"
                 ],
                 "summary": "Get the list of custom user roles defined per organization. Requires administrator or custom role with acces to users",
                 "operationId": "GetCustomUserRoles",
@@ -1098,7 +1095,7 @@
         "/GetSignatureStamps": {
             "post": {
                 "tags": [
-                    "Configuration"
+                    "Organization"
                 ],
                 "summary": "Get the list of signature stamps defined per organization",
                 "operationId": "GetSignatureStamps",
@@ -1124,7 +1121,7 @@
         "/GetUserInterfaceLanguages": {
             "post": {
                 "tags": [
-                    "Configuration"
+                    "Organization"
                 ],
                 "summary": "Get the list of UI languages usable by Bulksign",
                 "operationId": "GetUserInterfaceLanguages",
@@ -1150,7 +1147,7 @@
         "/GetEmailLanguages": {
             "post": {
                 "tags": [
-                    "Configuration"
+                    "Organization"
                 ],
                 "summary": "Get the list of email languages usable in the organization",
                 "operationId": "GetEmailLanguages",
@@ -2522,7 +2519,7 @@
                 "type": "object",
                 "properties": {
                     "Messages":{
-                        "description": "Set the messages",
+                        "description": "Set the envelope messages",
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/MessageApiModel"
@@ -2589,12 +2586,10 @@
                         "description": "Flag to enable support for batch signing. Batch signing allows the signer to sign multiple signature fields with a single click",
                         "type": "boolean"
                     },
-
-                    "DisableSignerEmailNotifications": {
-                        "description": "Flag to enable support for batch signing. Batch signing allows the signer to sign multiple signature fields with a single click",
+                    "DisableRecipientNotifications": {
+                        "description": "Flag which allows to disable ALL recipient notifications",
                         "type": "boolean"
                     },
-
                     "DocumentTimestampType": {
                         "description": "Set the type of timestamping for serial envelope. To be set only if EnableDocumentTimestamp is enabled and the the of envelope is serial",
                         "type": "object",
@@ -3367,6 +3362,10 @@
                         "description": "Language for email notifications.If left empty, the default language set by user will be used",
                         "type": "string"
                     },
+                    "DisableRecipientNotifications":{
+                        "description": "Flag that determines if recipient notifications are disabled",
+                        "type": "boolean"
+                    },
                     "SignersShouldReceiveFinishedDocument": {
                         "description": "Flag which shows if the signers will also received the finished documents",
                         "type": "boolean"
@@ -3396,8 +3395,8 @@
                     "type": "object"
                 }],
                 "properties": {
-                    "DisableNotifications": {
-                        "description": "Set this to true to disable ALL email notifications for the envelope recipients",
+                    "DisableRecipientNotifications": {
+                        "description": "Set this to true to disable ALL recipient notifications",
                         "type": "boolean"
                     }
                 }
