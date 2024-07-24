@@ -766,7 +766,7 @@ message UpdateDraftApiModelInput
 	NullableBoolean CertifyDocumentsBeforeSending=14;
 	NullableBoolean PreventFormFieldEditOnEnvelopeCompletion=15;
 	NullableBoolean EnableBatchSign=16;
-	NullableBoolean DisableSignerEmailNotifications=17;
+	NullableBoolean DisableRecipientNotifications=17;
 	DocumentTimestampTypeApi DocumentTimestampType=18;
 }
 
@@ -866,7 +866,7 @@ message UpdateTemplateApiModelInput
 	NullableBoolean CertifyDocumentsBeforeSending=15;
 	NullableBoolean PreventFormFieldEditOnEnvelopeCompletion=16;
 	NullableBoolean EnableBatchSign=17;
-	NullableBoolean DisableSignerEmailNotifications=18;
+	NullableBoolean DisableRecipientNotifications=18;
 	DocumentTimestampTypeApi DocumentTimestampType=19;
 
 }
@@ -1092,7 +1092,7 @@ message TemplateDetailsResultApiModel
 	bool PreventFormFieldEditOnEnvelopeCompletion=13;
 	bool EnableBatchSign=14;
 	bool AllowRecipientDelegation=15;
-	bool DisableSignerEmailNotifications=16;
+	bool DisableRecipientNotifications=16;
 	bool DisableSignersShouldReceiveCompletedDocuments=17;
 	DocumentTimestampTypeApi DocumentTimestampType=18;
 }
@@ -1216,7 +1216,7 @@ message DraftDetailsResultApiModel
 	bool PreventFormFieldEditOnEnvelopeCompletion=13;
 	bool EnableBatchSign=14;
 	bool AllowRecipientDelegation=15;
-	bool DisableSignerEmailNotifications=16;
+	bool DisableRecipientNotifications=16;
 	bool DisableSignersShouldReceiveCompletedDocuments=17;
 	DocumentTimestampTypeApi DocumentTimestampType=18;
 	bool AllowEditIncognitoMode=19;
@@ -1358,7 +1358,7 @@ message EnvelopeFromTemplateApiModelInput
 message EnvelopeApiModelInput
 {
 	AuthenticationApiModel Authentication = 1;
-	bool DisableSignerEmailNotifications =2;
+	bool DisableRecipientNotifications =2;
 	repeated MessageApiModel Messages =3;
 	string Language=4;
 	string Metadata=5;
@@ -1412,7 +1412,7 @@ message EnvelopeDetailsResultApiModel
 	bool PreventFormFieldEditOnEnvelopeCompletion=15;
 	bool EnableBatchSign=16;
 	bool AllowRecipientDelegation=17;
-	bool DisableSignerEmailNotifications=18;
+	bool DisableRecipientNotifications=18;
 	bool DisableSignersShouldReceiveCompletedDocuments=19;
 	DocumentTimestampTypeApi DocumentTimestampType=20;
 }
