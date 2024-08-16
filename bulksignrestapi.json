@@ -4,7 +4,7 @@
         "url": "https://bulksign.com/webapi/rest/"
     	}],
     "info": {
-        "version": "4.97.1",
+        "version": "4.101",
         "title": "Bulksign REST API",
         "description": "Bulksign OpenAPI definition. For .NET specifically, please use our [.NET SDK](https://www.nuget.org/packages/BulksignSdk). API code samples highlighting different integration scenarios are [on Github](https://github.com/bulksign/BulksignApiSamples)",
         "contact": {
@@ -2535,9 +2535,13 @@
                         "minLength": 0,
                         "maxLength": 4000
                     },
-                    "DaysUntilExpire": {
+                    "ExpirationDays": {
                         "description": "Sets the expiration day for envelope in days",
                         "type": "number"
+                    },
+                    "ExpirationDateAbsolute" :{
+                        "description": "Sets the absolute expiration day as UTC timestamp",
+                        "type": "string"
                     },
 
                     "ReminderOptions": {
@@ -2792,9 +2796,13 @@
                         "minLength": 0,
                         "maxLength": 4000
                     },
-                    "DaysUntilExpire": {
-                        "description": "Sets the expiration day for envelope in days. If not set, default configured value will be used",
+                    "ExpirationDays": {
+                        "description": "Sets the expiration day for envelope as number of days.",
                         "type": "number"
+                    },
+                    "ExpirationDateAbsolute" :{
+                        "description": "Sets the expiration date for envelope as a UTC timestamp.",
+                        "type": "string"
                     },
                     "Documents": {
                         "description": "Set the PDF documents which will be signed",

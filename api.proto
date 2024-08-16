@@ -755,7 +755,7 @@ message UpdateDraftApiModelInput
 	repeated MessageApiModel Messages =3;
 	string Language=4;
 	string Metadata=5;
-	NullableInt32 DaysUntilExpire=6;
+	NullableInt32 ExpirationDays=6;
 	ReminderOptionsApiModel ReminderOptions=7;
 	string Name =8;
 	NullableBoolean DisableSignersShouldReceiveFinishedDocument=9;
@@ -768,6 +768,7 @@ message UpdateDraftApiModelInput
 	NullableBoolean EnableBatchSign=16;
 	NullableBoolean DisableRecipientNotifications=17;
 	DocumentTimestampTypeApi DocumentTimestampType=18;
+	string ExpirationDateAbsolute = 19;
 }
 
 
@@ -855,7 +856,7 @@ message UpdateTemplateApiModelInput
 	repeated MessageApiModel Messages =4;
 	string Language=5;
 	string Metadata=6;
-	NullableInt32 DaysUntilExpire=7;
+	NullableInt32 ExpirationDays=7;
 	ReminderOptionsApiModel ReminderOptions=8;
 	string Name =9;
 	NullableBoolean DisableSignersShouldReceiveFinishedDocument=10;
@@ -868,6 +869,7 @@ message UpdateTemplateApiModelInput
 	NullableBoolean EnableBatchSign=17;
 	NullableBoolean DisableRecipientNotifications=18;
 	DocumentTimestampTypeApi DocumentTimestampType=19;
+	string ExpirationDateAbsolute = 20;
 
 }
 
@@ -1362,7 +1364,7 @@ message EnvelopeApiModelInput
 	repeated MessageApiModel Messages =3;
 	string Language=4;
 	string Metadata=5;
-	int32 DaysUntilExpire=6;
+	int32 ExpirationDays=6;
 	repeated DocumentApiModel Documents=7;
 	repeated RecipientApiModel Recipients=8;
 	ReminderOptionsApiModel ReminderOptions=9;
@@ -1379,6 +1381,7 @@ message EnvelopeApiModelInput
 	repeated CustomFileAccessApiModel CustomFileAccess=20;
 	DocumentTimestampTypeApi DocumentTimestampType=21;
 	EnvelopeTypeApi EnvelopeType=22;
+	string ExpirationDateAbsolute =23;
 }
 
 
