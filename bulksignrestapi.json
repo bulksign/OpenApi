@@ -4,7 +4,7 @@
         "url": "https://bulksign.com/webapi/rest/"
     	}],
     "info": {
-        "version": "4.101",
+        "version": "4.103",
         "title": "Bulksign REST API",
         "description": "Bulksign OpenAPI definition. For .NET specifically, please use our [.NET SDK](https://www.nuget.org/packages/BulksignSdk). API code samples highlighting different integration scenarios are [on Github](https://github.com/bulksign/BulksignApiSamples)",
         "contact": {
@@ -4882,6 +4882,10 @@
                     },
                     "AllowRejectWithoutRejectionText": {
                         "description": "Flag which determines if the user is allowed to reject signing without entering the reason",
+                        "type": "boolean"
+                    },
+                    "ShowPhoneNumber":{
+                        "description": "Flag which determines if the recipient phone number is shown when sending OTP by SMS",
                         "type": "boolean"
                     }
                 }

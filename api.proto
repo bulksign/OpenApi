@@ -814,6 +814,7 @@ message SignSettingsApiModel
 	string DocumentDownloadRedirectUrl=8;
 	bool AllowRejectWithoutRejectionText=9;
 	bool AutoNavigationOnOpen=10;
+	bool ShowPhoneNumber = 11;
 }
 
 enum SignerDownloadDocumentActionTypeApi
