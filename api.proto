@@ -154,6 +154,8 @@ service GrpcApi
    rpc ResetSignatureType(ResetSignatureTypeApiModelInput) returns(NumericResult);
 
    rpc GetOrganizationSignGroups(AuthenticationApiModel) returns (GetOrganizationSignGroupsResult);
+
+   rpc GetCompletedAuditTrail(EnvelopeIdInput) returns (GetCompletedAuditTrailResult);
 }
 
 
@@ -1892,4 +1894,82 @@ message GetOrganizationSignGroupsResult
 	repeated OrganizationSignGroupResultApiModel Result=5;
 }
 
+message RequestInformationApiModel
+{
+	string UserAgent =1;
+	string IP = 2;
+}
 
+enum AuditTrailType
+{
+	AuditTrailType_NONE=0;
+	SignPageLoaded = 1;
+	SignatureDisclosureApproved = 2;
+	SignatureDisclosureRejected = 3;
+	AuthenticationSucceeded = 4;
+	AuthenticationFailed = 5;
+	SignedManually = 6;
+	AuditTrailType_Finished = 7;
+	BatchSigned = 8;
+	GeoLocation = 10;
+	RedirectedWithAccessCode = 11;
+	FormFieldValueUpdate = 12;
+	NavigatedToSignatureField = 13;
+	FinishedWithRejection = 16;
+	SMSSentForAuthentication = 17;
+	AddFileAttachment = 18;
+	AuditTrailType_Custom = 19;
+	DeleteRecipient = 20;
+	ReadPageLoaded = 21;
+	ReadDocumentsConfirmation = 22;
+	Delegated = 23;
+	SenderConfirmedDelegation = 24;
+	IntroductionConfirmation = 25;
+	StartedSigningSession = 27;
+	DocumentImagesLoaded = 28;
+	RecipientReplaced = 29;
+	SMSSentForSignature = 30;
+	OTPSignatureAuthenticationSuccess = 31;
+	OTPSignatureAuthenticationFailed = 32;
+	SignedAutomatically = 33;
+	OTPBatchSignatureAuthenticationSuccess = 34;
+	OTPBatchSignatureAuthenticationFailed = 35;
+	ExpiredEnvelopeWasRestarted = 36;
+	SignatureDisclosurePdfDownload = 37;
+	AuditTrailType_ResetSignatureType = 38;
+	ReplacedBouncedEmail = 39;
+	DisposableAcceptedIssuerAgreement = 40;
+	DisposableSentOtp = 41;
+	EnvelopeSenderConfirmSignerIdentity = 45;
+	EnvelopeSenderRejectedSignerIdentity = 46;
+	IdentitySubmitted = 47;
+	NotificationSignEmail = 2000;
+	NotificationSignSMS = 2001;
+	NotificationEnvelopeCanceled = 2010;
+	NotificationEnvelopeExpired = 2011;
+	NotificationDeliveredReceiveCopy = 2012;
+	NotificationApproveEmail = 2013;
+	NotificationUnlockedManual = 2014;
+	NotificationUnlockedAutomatic = 2015;
+	NotificationIdentityAccepted = 2016;
+	NotificationIdentityRejected = 2017;
+}
+
+message AuditTrailEntryApiModel
+{
+	string Value = 1;
+	string EntryDateUTC = 2;
+	RequestInformationApiModel RequestInformation = 3;
+	AuditTrailType AuditTrailType = 4;
+	string RecipientIdentifier = 5;
+}
+
+
+message GetCompletedAuditTrailResult
+{
+	string ErrorMessage = 1;
+	bool IsSuccessful = 2;
+	int32 ErrorCode = 3;
+	string RequestId = 4;
+	repeated AuditTrailEntryApiModel Result=5;
+}

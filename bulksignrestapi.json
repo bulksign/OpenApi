@@ -4,7 +4,7 @@
         "url": "https://bulksign.com/webapi/rest/"
     	}],
     "info": {
-        "version": "4.103",
+        "version": "4.105",
         "title": "Bulksign REST API",
         "description": "Bulksign OpenAPI definition. For .NET specifically, please use our [.NET SDK](https://www.nuget.org/packages/BulksignSdk). API code samples highlighting different integration scenarios are [on Github](https://github.com/bulksign/BulksignApiSamples)",
         "contact": {
@@ -23,8 +23,8 @@
         "name": "Recipient",
         "description": "Recipient specific APIs"
     }, {
-        "name": "Document Download",
-        "description": "APIs to download completed OR partially signed documents"
+        "name": "Completed Envelope Download",
+        "description": "APIs to download completed envelope documents"
     }, {
         "name": "Draft",
         "description": "Draft specific APIs"
@@ -796,7 +796,7 @@
         "/GetCompletedFormFields": {
             "post": {
                 "tags": [
-                    "Document Download"
+                    "Completed Envelope Download"
                 ],
                 "summary": "Get the values of the form fields filled by the envelope signers",
                 "operationId": "GetCompletedFormFields",
@@ -829,7 +829,7 @@
         "/DownloadEnvelopeIncompleteDocuments": {
             "post": {
                 "tags": [
-                    "Document Download"
+                    "Completed Envelope Download"
                 ],
                 "summary": "Returns a zip file with partially signed documents. If nobody signed the document yet, the envelope original files will be returned",
                 "operationId": "DownloadEnvelopeIncompleteDocuments",
@@ -862,7 +862,7 @@
         "/DownloadEnvelopeCompletedDocuments": {
             "post": {
                 "tags": [
-                    "Document Download"
+                    "Completed Envelope Download"
                 ],
                 "summary": "Returns a zip file which contains the envelope completed documents and the audit trail",
                 "operationId": "DownloadEnvelopeCompletedDocuments",
@@ -893,7 +893,7 @@
         "/DownloadEnvelopeCompletedAttachments": {
             "post": {
                 "tags": [
-                    "Document Download"
+                    "Completed Envelope Download"
                 ],
                 "summary": "Returns a zip file with all the PDF file attachments for a completed envelope",
                 "operationId": "DownloadEnvelopeCompletedAttachments",
@@ -2362,6 +2362,39 @@
                                     "type": "array",
                                     "items": {
                                         "$ref": "#/components/schemas/GetAuthenticationProvidersResult"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/GetCompletedAuditTrail": {
+            "post": {
+                "tags": [
+                    "Completed Envelope Download"
+                ],
+                "summary": "Retrive the entries for a completed envelope audit trail",
+                "operationId": "GetCompletedAuditTrail",
+                "parameters": [{
+                    "name": "envelopeId",
+                    "in": "query",
+                    "description": "Id of the envelope",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/AuditTrailEntryApiModel"
                                     }
                                 }
                             }
@@ -6009,6 +6042,305 @@
                         "items": {
                             "$ref": "#/components/schemas/OrganizationUserApiModel"
                         }
+                    }
+                }
+            },
+
+
+            "AuditTrailTypeApi" : {
+                "description": "Specifies the types for audit trail entries",
+                "type": "number",
+                "enum": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7",
+                    "8",
+                    "10",
+                    "11",
+                    "12",
+                    "13",
+                    "16",
+                    "17",
+                    "18",
+                    "19",
+                    "20",
+                    "21",
+                    "22",
+                    "23",
+                    "24",
+                    "25",
+                    "27",
+                    "28",
+                    "29",
+                    "30",
+                    "31",
+                    "32",
+                    "33",
+                    "34",
+                    "35",
+                    "36",
+                    "37",
+                    "38",
+                    "39",
+                    "40",
+                    "41",
+                    "45",
+                    "46",
+                    "47",
+                    "2000",
+                    "2001",
+                    "2010",
+                    "2011",
+                    "2012",
+                    "2013",
+                    "2014",
+                    "2015",
+                    "2016",
+                    "2017"
+                ],
+                "x-enum-values": [{
+                    "numericValue": "1",
+                    "identifier": "SignPageLoaded"
+                }, {
+                    "numericValue": "2",
+                    "identifier": "SignatureDisclosureApproved"
+                }, {
+                    "numericValue": "3",
+                    "identifier": "SignatureDisclosureRejected"
+                },
+                {
+                    "numericValue": "4",
+                    "identifier": "AuthenticationSucceeded"
+                },
+                {
+                    "numericValue": "5",
+                    "identifier": "AuthenticationFailed"
+                },
+                {
+                    "numericValue": "6",
+                    "identifier": "SignedManually"
+                },
+                {
+                    "numericValue": "7",
+                    "identifier": "Finished"
+                },
+                {
+                    "numericValue": "8",
+                    "identifier": "BatchSigned"
+                },
+                {
+                    "numericValue": "10",
+                    "identifier": "GeoLocation"
+                },
+                {
+                    "numericValue": "11",
+                    "identifier": "RedirectedWithAccessCode"
+                },
+                {
+                    "numericValue": "12",
+                    "identifier": "FormFieldValueUpdate"
+                },
+                {
+                    "numericValue": "13",
+                    "identifier": "NavigatedToSignatureField"
+                },
+                {
+                    "numericValue": "16",
+                    "identifier": "FinishedWithRejection"
+                },
+                {
+                    "numericValue": "17",
+                    "identifier": "SMSSentForAuthentication"
+                },
+                {
+                    "numericValue": "18",
+                    "identifier": "AddFileAttachment"
+                },
+                {
+                    "numericValue": "19",
+                    "identifier": "Custom"
+                },
+                {
+                    "numericValue": "20",
+                    "identifier": "DeleteRecipient"
+                },
+                {
+                    "numericValue": "21",
+                    "identifier": "ReadPageLoaded"
+                },
+                {
+                    "numericValue": "22",
+                    "identifier": "ReadDocumentsConfirmation"
+                },
+                {
+                    "numericValue": "23",
+                    "identifier": "Delegated"
+                },
+                {
+                    "numericValue": "24",
+                    "identifier": "SenderConfirmedDelegation"
+                },
+                {
+                    "numericValue": "25",
+                    "identifier": "IntroductionConfirmation"
+                },
+                {
+                    "numericValue": "27",
+                    "identifier": "StartedSigningSession"
+                },
+                {
+                    "numericValue": "28",
+                    "identifier": "DocumentImagesLoaded"
+                },
+                {
+                    "numericValue": "29",
+                    "identifier": "RecipientReplaced"
+                },
+                {
+                    "numericValue": "30",
+                    "identifier": "SMSSentForSignature"
+                },
+                {
+                    "numericValue": "31",
+                    "identifier": "OTPSignatureAuthenticationSuccess"
+                },
+                {
+                    "numericValue": "32",
+                    "identifier": "OTPSignatureAuthenticationFailed"
+                },
+                {
+                    "numericValue": "33",
+                    "identifier": "SignedAutomatically"
+                },
+                {
+                    "numericValue": "34",
+                    "identifier": "OTPBatchSignatureAuthenticationSuccess"
+                },  {
+                    "numericValue": "35",
+                    "identifier": "OTPBatchSignatureAuthenticationFailed"
+                },  {
+                    "numericValue": "36",
+                    "identifier": "ExpiredEnvelopeWasRestarted"
+                },  {
+                    "numericValue": "37",
+                    "identifier": "SignatureDisclosurePdfDownload"
+                },  {
+                    "numericValue": "38",
+                    "identifier": "ResetSignatureType"
+                },  {
+                    "numericValue": "39",
+                    "identifier": "ReplacedBouncedEmail"
+                },  {
+                    "numericValue": "40",
+                    "identifier": "DisposableAcceptedIssuerAgreement"
+                },  {
+                    "numericValue": "41",
+                    "identifier": "DisposableSentOtp"
+                },  {
+                    "numericValue": "45",
+                    "identifier": "EnvelopeSenderConfirmSignerIdentity"
+                },  {
+                    "numericValue": "46",
+                    "identifier": "EnvelopeSenderRejectedSignerIdentity"
+                },  {
+                    "numericValue": "47",
+                    "identifier": "IdentitySubmitted"
+                },
+                {
+                    "numericValue": "2000",
+                    "identifier": "NotificationSignEmail"
+                },
+                {
+                    "numericValue": "2000",
+                    "identifier": "NotificationSignEmail"
+                },
+                {
+                    "numericValue": "2001",
+                    "identifier": "NotificationSignSMS"
+                },               
+                {
+                    "numericValue": "2010",
+                    "identifier": "NotificationEnvelopeCanceled"
+                },
+                {
+                    "numericValue": "2011",
+                    "identifier": "NotificationDeliveredReceiveCopy"
+                },
+                {
+                    "numericValue": "2012",
+                    "identifier": "NotificationDeliveredReceiveCopy"
+                },
+                {
+                    "numericValue": "2013",
+                    "identifier": "NotificationApproveEmail"
+                },
+                {
+                    "numericValue": "2014",
+                    "identifier": "NotificationUnlockedManual"
+                },
+                {
+                    "numericValue": "2015",
+                    "identifier": "NotificationUnlockedAutomatic"
+                },
+                {
+                    "numericValue": "2016",
+                    "identifier": "NotificationIdentityAccepted"
+                },
+                {
+                    "numericValue": "2017",
+                    "identifier": "NotificationIdentityRejected"
+                }
+            ],
+                "x-ms-enum": []
+            },
+
+            "AuditTrailEntryApiModel" :{
+                "description": "The descriptor type for audit trail entry",
+                "type": "object",
+                "properties": {
+                    "Value": {
+                        "description": "The value of the audit trail entry. Can be either JSON document or string",
+                        "type": "string"
+                    },
+                    "EntryDateUTC": {
+                        "description": "UTC timestamp of the audit trail entry",
+                        "type": "string"
+                    },
+
+                    "AuditTrailType" :{
+                        "description": "UTC timestamp of the audit trail entry",
+                        "type": "string"
+                    },
+                    "RecipientIdentifier" :{
+                        "description" : "The internal identifier of the recipient who performed this action. This will be null for envelope specific actions",
+                        "type":"string"
+                    },
+                    "RequestInformation": {
+                        "description": "The request information",
+                        "type": "object",
+                        "items": {
+                            "$ref": "#/components/schemas/RequestInformationApiModel"
+                        }
+                    }
+                }
+            },
+
+
+            "RequestInformationApiModel" :{
+                "description": "The descriptor type for request information",
+                "type": "object",
+                "properties": {
+                    "UserAgent": {
+                        "description": "The user agent of the request",
+                        "type": "string"
+                    },
+                    "IP": {
+                        "description": "The IP address of the request",
+                        "type": "string"
                     }
                 }
             },
