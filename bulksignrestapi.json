@@ -4,7 +4,7 @@
         "url": "https://bulksign.com/webapi/rest/"
     	}],
     "info": {
-        "version": "4.105",
+        "version": "4.109",
         "title": "Bulksign REST API",
         "description": "Bulksign OpenAPI definition. For .NET specifically, please use our [.NET SDK](https://www.nuget.org/packages/BulksignSdk). API code samples highlighting different integration scenarios are [on Github](https://github.com/bulksign/BulksignApiSamples)",
         "contact": {
@@ -69,7 +69,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResultNumeric"
+                                    "$ref": "#/components/schemas/ApiResultNumeric"
                                 }
                             }
                         }
@@ -101,7 +101,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResult"
+                                    "$ref": "#/components/schemas/ApiResult"
                                 }
                             }
                         }
@@ -137,7 +137,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResult"
+                                    "$ref": "#/components/schemas/ApiResult"
                                 }
                             }
                         }
@@ -173,7 +173,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResult"
+                                    "$ref": "#/components/schemas/ApiResult"
                                 }
                             }
                         }
@@ -320,7 +320,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResult"
+                                    "$ref": "#/components/schemas/ApiResult"
                                 }
                             }
                         }
@@ -351,7 +351,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResultId"
+                                    "$ref": "#/components/schemas/ApiResultId"
                                 }
                             }
                         }
@@ -384,7 +384,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResultId"
+                                    "$ref": "#/components/schemas/ApiResultId"
                                 }
                             }
                         }
@@ -415,7 +415,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResult"
+                                    "$ref": "#/components/schemas/ApiResult"
                                 }
                             }
                         }
@@ -446,7 +446,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResult"
+                                    "$ref": "#/components/schemas/ApiResult"
                                 }
                             }
                         }
@@ -477,7 +477,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResult"
+                                    "$ref": "#/components/schemas/ApiResult"
                                 }
                             }
                         }
@@ -759,7 +759,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResult"
+                                    "$ref": "#/components/schemas/ApiResult"
                                 }
                             }
                         }
@@ -945,7 +945,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResult"
+                                    "$ref": "#/components/schemas/ApiResult"
                                 }
                             }
                         }
@@ -978,7 +978,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResult"
+                                    "$ref": "#/components/schemas/ApiResult"
                                 }
                             }
                         }
@@ -1031,7 +1031,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResult"
+                                    "$ref": "#/components/schemas/ApiResult"
                                 }
                             }
                         }
@@ -1056,7 +1056,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/BulksignResultStringArray"
+                                        "$ref": "#/components/schemas/ApiResultStringArray"
                                     }
                                 }
                             }
@@ -1082,7 +1082,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/BulksignResultStringArray"
+                                        "$ref": "#/components/schemas/ApiResultStringArray"
                                     }
                                 }
                             }
@@ -1108,7 +1108,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/BulksignResultStringArray"
+                                        "$ref": "#/components/schemas/ApiResultStringArray"
                                     }
                                 }
                             }
@@ -1134,7 +1134,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/BulksignResultStringArray"
+                                        "$ref": "#/components/schemas/ApiResultStringArray"
                                     }
                                 }
                             }
@@ -1160,7 +1160,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/BulksignResultStringArray"
+                                        "$ref": "#/components/schemas/ApiResultStringArray"
                                     }
                                 }
                             }
@@ -1194,7 +1194,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResult"
+                                    "$ref": "#/components/schemas/ApiResult"
                                 }
                             }
                         }
@@ -1227,7 +1227,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResult"
+                                    "$ref": "#/components/schemas/ApiResult"
                                 }
                             }
                         }
@@ -1306,7 +1306,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResult"
+                                    "$ref": "#/components/schemas/ApiResult"
                                 }
                             }
                         }
@@ -1339,7 +1339,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResult"
+                                    "$ref": "#/components/schemas/ApiResult"
                                 }
                             }
                         }
@@ -1405,7 +1405,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResultNumeric"
+                                    "$ref": "#/components/schemas/ApiResultNumeric"
                                 }
                             }
                         }
@@ -1491,7 +1491,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResultId"
+                                    "$ref": "#/components/schemas/ApiResultId"
                                 }
                             }
                         }
@@ -1522,7 +1522,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResult"
+                                    "$ref": "#/components/schemas/ApiResult"
                                 }
                             }
                         }
@@ -1553,7 +1553,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResult"
+                                    "$ref": "#/components/schemas/ApiResult"
                                 }
                             }
                         }
@@ -1586,7 +1586,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResultId"
+                                    "$ref": "#/components/schemas/ApiResultId"
                                 }
                             }
                         }
@@ -1628,7 +1628,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResultId"
+                                    "$ref": "#/components/schemas/ApiResultId"
                                 }
                             }
                         }
@@ -1660,7 +1660,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResultId"
+                                    "$ref": "#/components/schemas/ApiResultId"
                                 }
                             }
                         }
@@ -1736,7 +1736,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResultNumeric"
+                                    "$ref": "#/components/schemas/ApiResultNumeric"
                                 }
                             }
                         }
@@ -1769,7 +1769,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResult"
+                                    "$ref": "#/components/schemas/ApiResult"
                                 }
                             }
                         }
@@ -1802,7 +1802,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResult"
+                                    "$ref": "#/components/schemas/ApiResult"
                                 }
                             }
                         }
@@ -1835,7 +1835,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResult"
+                                    "$ref": "#/components/schemas/ApiResult"
                                 }
                             }
                         }
@@ -1868,7 +1868,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResult"
+                                    "$ref": "#/components/schemas/ApiResult"
                                 }
                             }
                         }
@@ -1902,7 +1902,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResult"
+                                    "$ref": "#/components/schemas/ApiResult"
                                 }
                             }
                         }
@@ -2045,7 +2045,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResult"
+                                    "$ref": "#/components/schemas/ApiResult"
                                 }
                             }
                         }
@@ -2078,7 +2078,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResult"
+                                    "$ref": "#/components/schemas/ApiResult"
                                 }
                             }
                         }
@@ -2111,7 +2111,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResult"
+                                    "$ref": "#/components/schemas/ApiResult"
                                 }
                             }
                         }
@@ -2184,7 +2184,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResult"
+                                    "$ref": "#/components/schemas/ApiResult"
                                 }
                             }
                         }
@@ -2216,7 +2216,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResult"
+                                    "$ref": "#/components/schemas/ApiResult"
                                 }
                             }
                         }
@@ -2248,7 +2248,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResult"
+                                    "$ref": "#/components/schemas/ApiResult"
                                 }
                             }
                         }
@@ -2280,7 +2280,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResult"
+                                    "$ref": "#/components/schemas/ApiResult"
                                 }
                             }
                         }
@@ -2313,7 +2313,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/BulksignResult"
+                                    "$ref": "#/components/schemas/ApiResult"
                                 }
                             }
                         }
@@ -2462,7 +2462,7 @@
                 "description": "GetAuthenticationProvidersResult",
                 "type": "object",
                 "allOf": [{
-                    "$ref": "#/components/schemas/BulksignResult",
+                    "$ref": "#/components/schemas/ApiResult",
                     "type": "object"
                 }],
                 "properties": {
@@ -3317,7 +3317,7 @@
             },
 
             "DocumentResultApiModel": {
-                "description": "Type description for BulksignDocumentResult",
+                "description": "Type description for DocumentResultApiModel",
                 "type": "object",
                 "properties": {
 
@@ -4063,7 +4063,7 @@
                 "description": "GetUserAutomaticSigningProfiles result",
                 "type": "object",
                 "allOf": [{
-                    "$ref": "#/components/schemas/BulksignResult",
+                    "$ref": "#/components/schemas/ApiResult",
                     "type": "object"
                 }],
                 "properties": {
@@ -4081,7 +4081,7 @@
                 "description": "GetOrganizationAutomaticSigningProfiles result",
                 "type": "object",
                 "allOf": [{
-                    "$ref": "#/components/schemas/BulksignResult",
+                    "$ref": "#/components/schemas/ApiResult",
                     "type": "object"
                 }],
                 "properties": {
@@ -5165,7 +5165,7 @@
             },
 
             "RecipientAuthenticationTypeApi": {
-                "description": "Specifies the recipient authentication type : Password = 1 , SMS = 2, AuthenticationProvider=3, ManualIdentityVerification=4, ActiveDirectory=5 ",
+                "description": "Specifies the recipient authentication type : Password = 1 , SMS = 2, AuthenticationProvider=3, BulksignIdentity=4, ActiveDirectory=5 ",
                 "type": "number",
                 "enum": [
                     "1",
@@ -5185,7 +5185,7 @@
                     "identifier": "AuthenticationProvider"
                 },{
                     "numericValue": "4",
-                    "identifier": "ManualIdentityVerification"
+                    "identifier": "BulksignIdentity"
                 },{
                     "numericValue": "5",
                     "identifier": "ActiveDirectory"
@@ -5741,7 +5741,7 @@
                 "description": "GetUserDetails result",
                 "type": "object",
                 "allOf": [{
-                    "$ref": "#/components/schemas/BulksignResult",
+                    "$ref": "#/components/schemas/ApiResult",
                     "type": "object"
                 }],
                 "properties": {
@@ -5791,7 +5791,7 @@
                 "description": "The result type",
                 "type": "object",
                 "allOf": [{
-                    "$ref": "#/components/schemas/BulksignResult",
+                    "$ref": "#/components/schemas/ApiResult",
                     "type": "object"
                 }],
                 "properties": {
@@ -5810,7 +5810,7 @@
                 "description": "The result type",
                 "type": "object",
                 "allOf": [{
-                    "$ref": "#/components/schemas/BulksignResult",
+                    "$ref": "#/components/schemas/ApiResult",
                     "type": "object"
                 }],
                 "properties": {
@@ -5828,7 +5828,7 @@
                 "description": "The result type",
                 "type": "object",
                 "allOf": [{
-                    "$ref": "#/components/schemas/BulksignResult",
+                    "$ref": "#/components/schemas/ApiResult",
                     "type": "object"
                 }],
                 "properties": {
@@ -5844,7 +5844,7 @@
                 "description": "The result type",
                 "type": "object",
                 "allOf": [{
-                    "$ref": "#/components/schemas/BulksignResult",
+                    "$ref": "#/components/schemas/ApiResult",
                     "type": "object"
                 }],
                 "properties": {
@@ -5860,7 +5860,7 @@
                 "description": "The result type",
                 "type": "object",
                 "allOf": [{
-                    "$ref": "#/components/schemas/BulksignResult",
+                    "$ref": "#/components/schemas/ApiResult",
                     "type": "object"
                 }],
                 "properties": {
@@ -5876,7 +5876,7 @@
                 "description": "The result type",
                 "type": "object",
                 "allOf": [{
-                    "$ref": "#/components/schemas/BulksignResult",
+                    "$ref": "#/components/schemas/ApiResult",
                     "type": "object"
                 }],
                 "properties": {
@@ -5892,7 +5892,7 @@
                 "description": "The result type",
                 "type": "object",
                 "allOf": [{
-                    "$ref": "#/components/schemas/BulksignResult",
+                    "$ref": "#/components/schemas/ApiResult",
                     "type": "object"
                 }],
                 "properties": {
@@ -5910,7 +5910,7 @@
                 "description": "The result type",
                 "type": "object",
                 "allOf": [{
-                    "$ref": "#/components/schemas/BulksignResult",
+                    "$ref": "#/components/schemas/ApiResult",
                     "type": "object"
                 }],
                 "properties": {
@@ -5928,7 +5928,7 @@
                 "description": "The result type",
                 "type": "object",
                 "allOf": [{
-                    "$ref": "#/components/schemas/BulksignResult",
+                    "$ref": "#/components/schemas/ApiResult",
                     "type": "object"
                 }],
                 "properties": {
@@ -5946,7 +5946,7 @@
                 "description": "The result type",
                 "type": "object",
                 "allOf": [{
-                    "$ref": "#/components/schemas/BulksignResult",
+                    "$ref": "#/components/schemas/ApiResult",
                     "type": "object"
                 }],
                 "properties": {
@@ -5964,7 +5964,7 @@
                 "description": "The result type",
                 "type": "object",
                 "allOf": [{
-                    "$ref": "#/components/schemas/BulksignResult",
+                    "$ref": "#/components/schemas/ApiResult",
                     "type": "object"
                 }],
                 "properties": {
@@ -5982,7 +5982,7 @@
                 "description": "The result type",
                 "type": "object",
                 "allOf": [{
-                    "$ref": "#/components/schemas/BulksignResult",
+                    "$ref": "#/components/schemas/ApiResult",
                     "type": "object"
                 }],
                 "properties": {
@@ -6000,7 +6000,7 @@
                 "description": "The result type",
                 "type": "object",
                 "allOf": [{
-                    "$ref": "#/components/schemas/BulksignResult",
+                    "$ref": "#/components/schemas/ApiResult",
                     "type": "object"
                 }],
                 "properties": {
@@ -6016,7 +6016,7 @@
                 "description": "The result type",
                 "type": "object",
                 "allOf": [{
-                    "$ref": "#/components/schemas/BulksignResult",
+                    "$ref": "#/components/schemas/ApiResult",
                     "type": "object"
                 }],
                 "properties": {
@@ -6032,7 +6032,7 @@
                 "description": "The result type",
                 "type": "object",
                 "allOf": [{
-                    "$ref": "#/components/schemas/BulksignResult",
+                    "$ref": "#/components/schemas/ApiResult",
                     "type": "object"
                 }],
                 "properties": {
@@ -6345,11 +6345,11 @@
                 }
             },
 
-            "BulksignResultId": {
+            "ApiResultId": {
                 "description": "The result type",
                 "type": "object",
                 "allOf": [{
-                    "$ref": "#/components/schemas/BulksignResult",
+                    "$ref": "#/components/schemas/ApiResult",
                     "type": "object"
                 }],
                 "properties": {
@@ -6360,11 +6360,11 @@
                 }
             },
 
-            "BulksignResultNumeric": {
+            "ApiResultNumeric": {
                 "description": "The result type",
                 "type": "object",
                 "allOf": [{
-                    "$ref": "#/components/schemas/BulksignResult",
+                    "$ref": "#/components/schemas/ApiResult",
                     "type": "object"
                 }],
                 "properties": {
@@ -6375,11 +6375,11 @@
                 }
             },
 
-            "BulksignResultStringArray": {
+            "ApiResultStringArray": {
                 "description": "The result type",
                 "type": "object",
                 "allOf": [{
-                    "$ref": "#/components/schemas/BulksignResult",
+                    "$ref": "#/components/schemas/ApiResult",
                     "type": "object"
                 }],
                 "properties": {
@@ -6393,7 +6393,7 @@
                 }
             },
 
-            "BulksignResult": {
+            "ApiResult": {
                 "description": "The result type",
                 "type": "object",
                 "properties": {
@@ -6401,7 +6401,7 @@
                         "description": "Error message when the API call fails. Will be empty when successful",
                         "type": "string"
                     },
-                    "IsSuccessful": {
+                    "IsSuccess": {
                         "description": "Boolean flag which indicates if the API call was successful or not",
                         "type": "boolean"
                     },

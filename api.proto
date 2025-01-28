@@ -196,7 +196,7 @@ message DraftIdInput
 message EmptyResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	string Result = 5;
@@ -205,7 +205,7 @@ message EmptyResult
 message IdentifierResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	string Result = 5;
@@ -215,7 +215,7 @@ message IdentifierResult
 message NumericResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	int32 Result = 5;
@@ -241,7 +241,7 @@ message  AuthenticationApiModel
 message GetAuthenticationProvidersResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	repeated AuthenticationProviderResultApiModel Result = 5;
@@ -263,7 +263,7 @@ message SearchTeamMembersEnvelopesInput
 message SearchTeamMembersEnvelopesResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	repeated ItemResultApiModel Result = 5;
@@ -280,7 +280,7 @@ message SearchDraftsInput
 message SearchDraftsResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	repeated ItemResultApiModel Result = 5;
@@ -297,7 +297,7 @@ message SearchTeamMembersDraftsInput
 message SearchTeamMembersDraftsResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	repeated ItemResultApiModel Result = 5;
@@ -313,7 +313,7 @@ message SearchTeamMembersTemplatesInput
 message SearchTeamMembersTemplatesResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	repeated ItemResultApiModel Result = 5;
@@ -329,7 +329,7 @@ message SearchTemplatesInput
 message SearchTemplatesResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	repeated ItemResultApiModel Result = 5;
@@ -348,7 +348,7 @@ message SearchEnvelopesInput
 message SearchEnvelopesResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	repeated ItemResultApiModel Result = 5;
@@ -358,7 +358,7 @@ message SearchEnvelopesResult
 message CreateOrganizationResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	string Result = 5;
@@ -727,7 +727,7 @@ enum RecipientAuthenticationTypeApi
 	Password = 1;
 	SMS = 2;
 	AuthenticationProvider = 3;
-	ManualIdentityVerification =4;
+	BulksignIdentity =4;
 	ActiveDirectory =5;
 }
 
@@ -971,7 +971,7 @@ enum FormFillSignatureTypeApi
 message GetCompletedFormFieldsResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	repeated RecipientFormFillApiModel Result=5;
@@ -1000,7 +1000,7 @@ message ContactResultApiModel
 message GetSharedContactsResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	repeated ContactResultApiModel Result =5;
@@ -1010,7 +1010,7 @@ message GetSharedContactsResult
 message GetContactsResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	repeated ContactResultApiModel Result=5;
@@ -1031,7 +1031,7 @@ message LicenseResultApiModel
 message GetLicenseResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	LicenseResultApiModel Result=5;
@@ -1040,7 +1040,7 @@ message GetLicenseResult
 message GetUserInterfaceLanguagesResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	repeated string Result=5;
@@ -1049,7 +1049,7 @@ message GetUserInterfaceLanguagesResult
 message GetEmailLanguagesResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	repeated string Result=5;
@@ -1058,7 +1058,7 @@ message GetEmailLanguagesResult
 message GetTemplatesResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	repeated TemplateItemResultApiModel Result =5;
@@ -1106,7 +1106,7 @@ message TemplateDetailsResultApiModel
 message GetTemplateDetailsResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	TemplateDetailsResultApiModel Result=5;
@@ -1197,7 +1197,7 @@ message DraftItemResultApiModel
 message GetDraftsResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	repeated DraftItemResultApiModel Result=5;
@@ -1230,7 +1230,7 @@ message DraftDetailsResultApiModel
 message GetDraftDetailsResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	DraftDetailsResultApiModel Result=5;
@@ -1264,7 +1264,7 @@ message FormFieldResultApiModel
 message AnalyzeFileResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	AnalyzedFileResultApiModel Result=5;
@@ -1288,7 +1288,7 @@ message PrepareEnvelopeApiModelInput
 message PrepareSendEnvelopeResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	EnvelopeApiModelInput Result=5;
@@ -1312,7 +1312,7 @@ message SendEnvelopeResultApiModel
 message SendEnvelopeFromDraftResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	SendEnvelopeResultApiModel Result=5;
@@ -1322,7 +1322,7 @@ message SendEnvelopeFromDraftResult
 message SendEnvelopeFromTemplateResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	SendEnvelopeResultApiModel Result=5;
@@ -1391,7 +1391,7 @@ message EnvelopeApiModelInput
 message SendEnvelopeResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	SendEnvelopeResultApiModel Result =5;
@@ -1427,7 +1427,7 @@ message EnvelopeDetailsResultApiModel
 message GetEnvelopeDetailsResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	EnvelopeDetailsResultApiModel Result=5;
@@ -1448,7 +1448,7 @@ enum EnvelopeStatusTypeApi
 message GetEnvelopeStatusResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	EnvelopeStatusTypeApi Result=5;
@@ -1513,7 +1513,7 @@ message RecipientResultApiModel
 message GetEnvelopesByStatusResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	repeated ItemResultApiModel Result=5;
@@ -1523,7 +1523,7 @@ message GetEnvelopesByStatusResult
 message DownloadEnvelopeCompletedDocumentsResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	bytes Result=5;
@@ -1532,7 +1532,7 @@ message DownloadEnvelopeCompletedDocumentsResult
 message DownloadEnvelopeCompletedAttachmentsResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	bytes Result=5;
@@ -1542,7 +1542,7 @@ message DownloadEnvelopeCompletedAttachmentsResult
 message DownloadEnvelopeIncompleteDocumentsResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	bytes Result=5;
@@ -1561,7 +1561,7 @@ message EnvelopeToSignResultApiModel
 message GetEnvelopesToSignResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	repeated EnvelopeToSignResultApiModel Result =5;
@@ -1665,7 +1665,7 @@ message AutomaticSigningProfileResultApiModel
 message GetUserAutomaticSigningProfilesResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	repeated AutomaticSigningProfileResultApiModel Result=5;
@@ -1675,7 +1675,7 @@ message GetUserAutomaticSigningProfilesResult
 message GetOrganizationAutomaticSigningProfilesResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	repeated AutomaticSigningProfileResultApiModel Result=5;
@@ -1684,7 +1684,7 @@ message GetOrganizationAutomaticSigningProfilesResult
 message GetSignatureImprintsResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	repeated string Result=5;
@@ -1727,7 +1727,7 @@ message OrganizationUserApiModel
 message GetOrganizationUsersResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	repeated OrganizationUserApiModel Result=5;
@@ -1737,7 +1737,7 @@ message GetOrganizationUsersResult
 message GetSignatureStampsResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	repeated string Result=5;
@@ -1757,7 +1757,7 @@ message NewStampApiModelInput
 message GetCustomUserRolesResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	repeated string Result=5;
@@ -1780,7 +1780,7 @@ message UserDetailsApiModel
 message GetUserDetailsResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	UserDetailsApiModel Result=5;
@@ -1888,7 +1888,7 @@ message SignGroupMemberResultApiModel
 message GetOrganizationSignGroupsResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	repeated OrganizationSignGroupResultApiModel Result=5;
@@ -1968,7 +1968,7 @@ message AuditTrailEntryApiModel
 message GetCompletedAuditTrailResult
 {
 	string ErrorMessage = 1;
-	bool IsSuccessful = 2;
+	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
 	repeated AuditTrailEntryApiModel Result=5;
