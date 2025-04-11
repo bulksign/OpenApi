@@ -156,6 +156,8 @@ service GrpcApi
    rpc GetOrganizationSignGroups(AuthenticationApiModel) returns (GetOrganizationSignGroupsResult);
 
    rpc GetCompletedAuditTrail(EnvelopeIdInput) returns (GetCompletedAuditTrailResult);
+
+	rpc CreateOrganizationSignGroup(OrganizationSignGroupApiModelInput) returns (EmptyResult);
 }
 
 
@@ -1872,16 +1874,25 @@ message MessageApiModel
 }
 
 
-message OrganizationSignGroupResultApiModel
+message OrganizationSignGroupApiModel
 {
 	string Name = 1;
-	repeated SignGroupMemberResultApiModel  Members =2; 
+	repeated SignGroupMemberApiModel  Members =2; 
 }
 
-message SignGroupMemberResultApiModel
+message SignGroupMemberApiModel
 {
 	string Name = 1;
 	string Email=2;
+	string PhoneNumber=3;
+}
+
+
+message OrganizationSignGroupApiModelInput
+{
+	AuthenticationApiModel Authentication = 1;
+	string Name = 2;
+	repeated SignGroupMemberApiModel  Members =3; 
 }
 
 
@@ -1891,7 +1902,7 @@ message GetOrganizationSignGroupsResult
 	bool IsSuccess = 2;
 	int32 ErrorCode = 3;
 	string RequestId = 4;
-	repeated OrganizationSignGroupResultApiModel Result=5;
+	repeated OrganizationSignGroupApiModel Result=5;
 }
 
 message RequestInformationApiModel

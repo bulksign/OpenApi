@@ -37,7 +37,28 @@
     }, {
         "name": "Organization",
         "description": "Organization specific APIs. Can only be used by organization administrators"
-    }, {
+    },
+    {
+        "name": "Automatic Signing Profiles",
+        "description": "Designed to manage the organization automatic signing profiles. Requires organization administrator rights or custom role with acces to automatic signing profiles"
+    },
+    {
+        "name": "Teams",
+        "description": "Designed to manage the organziation teams. Requires organization administrator rights or custom role with acces to teams"
+    },
+    {
+        "name": "Shared Contacts",
+        "description": "Designed to manage the organziation shared contacts. Requires organization administrator rights or custom role with acces to shared contacts"
+    },
+    {
+        "name": "Signature Stamps",
+        "description": "Designed to manage the organziation signature stamps. Requires organization administrator rights or custom role with acces to signature stamps"
+    },
+    {
+        "name": "Sign Groups",
+        "description": "Designed to manage the organziation signing groups. Requires organization administrator rights or custom role with acces to sign groups"
+    },
+    {
         "name": "License",
         "description": "License specific APIs. Can only be used by organization administrators"
     }, {
@@ -1095,7 +1116,7 @@
         "/GetSignatureStamps": {
             "post": {
                 "tags": [
-                    "Organization"
+                    "Signature Stamps"
                 ],
                 "summary": "Get the list of signature stamps defined per organization",
                 "operationId": "GetSignatureStamps",
@@ -1173,9 +1194,9 @@
         "/AddSignatureStamp": {
             "post": {
                 "tags": [
-                    "Organization"
+                    "Signature Stamps"
                 ],
-                "summary": "Add a new organization signature stamp. Requires organization administrator rights or custom role with acces to signature stamps",
+                "summary": "Add a new organization signature stamp",
                 "operationId": "AddSignatureStamp",
                 "requestBody": {
                     "required": true,
@@ -1206,7 +1227,7 @@
         "/AddOrganizationAutomaticSigningProfile": {
             "post": {
                 "tags": [
-                    "Organization"
+                    "Automatic Signing Profiles"
                 ],
                 "summary": "Add a new organization profile for automatic signatures. Requires organization administrator rights or custom role with acces to automatic signing profiles",
                 "operationId": "AddOrganizationAutomaticSigningProfile",
@@ -1262,7 +1283,7 @@
         "/GetOrganizationAutomaticSigningProfiles": {
             "post": {
                 "tags": [
-                    "Organization"
+                    "Automatic Signing Profiles"
                 ],
                 "summary": "Get the list of organization automatic signing profiles",
                 "operationId": "GetOrganizationAutomaticSigningProfiles",
@@ -1318,9 +1339,9 @@
         "/AddSharedContact": {
             "post": {
                 "tags": [
-                    "Organization"
+                    "Shared Contacts"
                 ],
-                "summary": "Adds a new shared contact. Requires organization administrator rights or custom role with acces to signature stamps",
+                "summary": "Adds a new shared contact",
                 "operationId": "AddSharedContact",
                 "requestBody": {
                     "required": true,
@@ -1373,7 +1394,7 @@
         "/GetSharedContacts": {
             "post": {
                 "tags": [
-                    "Organization"
+                    "Shared Contacts"
                 ],
                 "summary": "Gets the list of shared contacts",
                 "operationId": "GetSharedContacts",
@@ -1748,9 +1769,9 @@
         "/CreateShareTeam": {
             "post": {
                 "tags": [
-                    "Organization"
+                    "Teams"
                 ],
-                "summary": "Creates a team where envelopes are shared between all members of the team. Requires organization administrator rights",
+                "summary": "Creates a team where envelopes are shared between all members of the team.",
                 "operationId": "CreateShareTeam",
                 "requestBody": {
                     "required": true,
@@ -1781,9 +1802,9 @@
         "/CreateHierarchicalTeam": {
             "post": {
                 "tags": [
-                    "Organization"
+                    "Teams"
                 ],
-                "summary": "Creates a team where envelopes are shared between all members of the team. Requires organization administrator rights",
+                "summary": "Creates a team where envelopes are shared between all members of the team.",
                 "operationId": "CreateHierarchicalTeam",
                 "requestBody": {
                     "required": true,
@@ -2324,9 +2345,9 @@
         "/GetOrganizationSignGroups": {
             "post": {
                 "tags": [
-                    "Organization"
+                    "Sign Groups"
                 ],
-                "summary": "Retrive the organization sign groups. Requires organization administrator rights",
+                "summary": "Retrive the organization sign groups",
                 "operationId": "GetOrganizationSignGroups",
                 "responses": {
                     "200": {
@@ -2336,7 +2357,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/OrganizationSignGroupResultApiModel"
+                                        "$ref": "#/components/schemas/OrganizationSignGroupApiModel"
                                     }
                                 }
                             }
@@ -2345,6 +2366,41 @@
                 }
             }
         },
+
+
+        "/CreateOrganizationSignGroup": {
+            "post": {
+                "tags": [
+                    "Sign Groups"
+                ],
+                "summary": "Creates a new organization SignGroup",
+                "operationId": "CreateOrganizationSignGroup",
+                "requestBody": {
+                    "required": true,
+                    "description": "Input model for CreateOrganizationSignGroup",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OrganizationSignGroupApiModel"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
 
         "/GetAuthenticationProviders": {
             "post": {
@@ -4491,8 +4547,9 @@
                 }
             },
 
-            "OrganizationSignGroupResultApiModel" :{
-                "description": "Describes a sign group",
+            "OrganizationSignGroupApiModel" :{
+                "description": "Describes a signing group",
+                "required": ["Name", "Members"],
                 "type": "object",
                 "properties": {
                     "Name": {
@@ -4503,14 +4560,15 @@
                         "description": "Members of sign group",
                         "type": "array",
                         "items": {
-                            "$ref": "#/components/schemas/SignGroupMemberResultApiModel"
+                            "$ref": "#/components/schemas/SignGroupMemberApiModel"
                         }
                     }
                 }
             },
 
-            "SignGroupMemberResultApiModel":{
-                "description": "Describes a sign group memeber",
+            "SignGroupMemberApiModel":{
+                "description": "Describes a sign group member",
+                "required": ["Name", "Email"],
                 "type": "object",
                 "properties": {
                     "Name": {
@@ -4518,6 +4576,10 @@
                         "type": "string"
                     },
                     "Email": {
+                        "description": "Member email address",
+                        "type": "string"
+                    },
+                    "PhoneNumber" : {
                         "description": "Member email address",
                         "type": "string"
                     }
