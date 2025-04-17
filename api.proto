@@ -720,6 +720,7 @@ message RecipientApiModel
 	 RecipientTypeApi RecipientType=7;
 	 string AutomaticSignerProfileIdentifier=8;
 	 repeated RemoteSignatureConfigurationApiModel RemoteSignatureConfiguration=9;
+	 string PhoneNumber=10;
 }
 
 
@@ -1509,6 +1510,7 @@ message RecipientResultApiModel
 	SignNotificationChannelTypeApi SignNotificationChannel = 9;
 	string SignGroup = 10;
 	string Language =11;
+	string PhoneNumber=12;
 }
 
 
