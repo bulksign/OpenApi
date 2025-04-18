@@ -35,6 +35,13 @@
         "name": "User",
         "description": "User specific APIs"
     }, {
+
+        "name" : "User Contacts",
+        "description" : "User contacts APIs"
+    },{
+        "name": "User Automatic Signing Profiles",
+        "description": "List of APIs designed to manage the user's automatic signing profiles"
+    },{
         "name": "Organization",
         "description": "Organization specific APIs. Can only be used by organization administrators"
     },
@@ -1031,7 +1038,7 @@
         "/AddUserAutomaticSigningProfile": {
             "post": {
                 "tags": [
-                    "User"
+                    "User Automatic Signing Profiles"
                 ],
                 "summary": "Add a new profile for automatic signatures",
                 "operationId": "AddUserAutomaticSigningProfile",
@@ -1260,7 +1267,7 @@
         "/GetUserAutomaticSigningProfiles": {
             "post": {
                 "tags": [
-                    "User"
+                    "User Automatic Signing Profiles"
                 ],
                 "summary": "Get the list of user automatic signing profiles",
                 "operationId": "GetUserAutomaticSigningProfiles",
@@ -1306,9 +1313,9 @@
         "/AddContact": {
             "post": {
                 "tags": [
-                    "User"
+                    "User Contacts"
                 ],
-                "summary": "Adds a new contact",
+                "summary": "Adds a new user contact",
                 "operationId": "AddContact",
                 "requestBody": {
                     "required": true,
@@ -1372,9 +1379,9 @@
         "/GetContacts": {
             "post": {
                 "tags": [
-                    "User"
+                    "User Contacts"
                 ],
-                "summary": "Gets the list of contacts",
+                "summary": "Gets the list of user contacts",
                 "operationId": "GetContacts",
                 "responses": {
                     "200": {
