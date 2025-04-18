@@ -6,7 +6,7 @@
     "info": {
         "version": "4.113",
         "title": "Bulksign REST API",
-        "description": "Bulksign OpenAPI definition. For .NET specifically, please use our [.NET SDK](https://www.nuget.org/packages/BulksignSdk). API code samples highlighting different integration scenarios are [on Github](https://github.com/bulksign/BulksignApiSamples)",
+        "description": "Bulksign OpenAPI definition. For .NET specifically, please use our [.NET SDK](https://www.nuget.org/packages/BulksignSdk). API code samples which demonstrate how to call ALL these APIs is available [on Github](https://github.com/bulksign/BulksignApiSamples)",
         "contact": {
             "email": "contact@bulksign.com"
         }
@@ -44,8 +44,10 @@
     },{
         "name": "Organization",
         "description": "Organization specific APIs. Can only be used by organization administrators"
-    },
-    {
+    },{
+        "name": "Organization Users",
+        "description": "APIs designed to managed the organization users. Can only be used by organization administrators"
+    },{
         "name": "Automatic Signing Profiles",
         "description": "Designed to manage the organization automatic signing profiles. Requires organization administrator rights or custom role with acces to automatic signing profiles"
     },
@@ -214,9 +216,9 @@
         "/GetOrganizationUsers": {
             "post": {
                 "tags": [
-                    "Organization"
+                    "Organization Users"
                 ],
-                "summary": "Gets the list of organization users. Requires organization administrator rights",
+                "summary": "Gets the list of organization users",
                 "operationId": "GetOrganizationUsers",
                 "responses": {
                     "200": {
@@ -2085,9 +2087,9 @@
         "/InviteUserToOrganization": {
             "post": {
                 "tags": [
-                    "User"
+                    "Organization Users"
                 ],
-                "summary": "Invite the user to your organization using name and email. Requires organization administrator rights",
+                "summary": "Invite the user to your organization using name and email",
                 "operationId": "InviteUserToOrganization",
                 "requestBody": {
                     "required": true,
@@ -2118,9 +2120,9 @@
         "/AddUserToOrganization": {
             "post": {
                 "tags": [
-                    "User"
+                    "Organization Users"
                 ],
-                "summary": "Add a new user to your organization using full user data. Requires organization administrator rights",
+                "summary": "Add a new user to your organization using full user data.",
                 "operationId": "AddUserToOrganization",
                 "requestBody": {
                     "required": true,
