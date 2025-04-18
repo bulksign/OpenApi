@@ -1,5 +1,5 @@
 #### OpenAPI specification for Bulksign REST API
-This is the repository for the Bulksign <a href="https://www.openapis.org/">OpenAPI</a> specification for its REST API.
+This is the repository for Bulksign <a href="https://www.openapis.org/">OpenAPI</a> specification for its REST API.
 <br/>
 
 #### How do i use this ?
