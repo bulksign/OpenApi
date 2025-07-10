@@ -4,7 +4,7 @@
         "url": "https://bulksign.com/webapi/rest/"
     	}],
     "info": {
-        "version": "4.113",
+        "version": "4.117",
         "title": "Bulksign REST API",
         "description": "Bulksign OpenAPI definition. For .NET specifically, please use our [.NET SDK](https://www.nuget.org/packages/BulksignSdk). API code samples which demonstrate how to call ALL these APIs is available [on Github](https://github.com/bulksign/BulksignApiSamples)",
         "contact": {
@@ -4253,6 +4253,45 @@
                 }
             },
 
+            "RecipientNotificationStatusApi" :{
+                "description": "Specifies the recipient notification status",
+                "type": "number",
+                "enum": [
+                    "0",
+                    "1",
+                    "2"
+                ],
+                "x-enum-values": [{
+                    "numericValue": "1",
+                    "identifier": "Enabled"
+                }, {
+                    "numericValue": "2",
+                    "identifier": "Disabled"
+                }, {
+                    "numericValue": "3",
+                    "identifier": "DisabledExceptReceiveCopy"
+                }],
+                "x-ms-enum": []                
+            },
+
+
+            "SenderNotificationStatusApi" :{
+                "description": "Specifies the sender notification status",
+                "type": "number",
+                "enum": [
+                    "0",
+                    "1"
+                ],
+                "x-enum-values": [{
+                    "numericValue": "0",
+                    "identifier": "Enabled"
+                }, {
+                    "numericValue": "1",
+                    "identifier": "Disabled"
+                }],
+                "x-ms-enum": []                
+            },
+
             "EmailSenderTypeApi": {
                 "description": "Specifies the signer download document action : 1 - User, 2 - Organization, 3 - ApplicationName",
                 "type": "number",
@@ -4351,20 +4390,13 @@
             },
 
             "OrganizationUpdateSettingsApiModel": {
-                "description": "Type description for updating organization settings model",
+                "description": "Type description for updating organization settings model. Only set the values that need to be updated",
                 "type": "object",
                 "properties": {
-                    "Name": {
+
+                    "Settings": {
                         "description": "Set the organization name",
-                        "type": "string"
-                    },
-                    "InvitationEmailLanguage": {
-                        "description": "Set the default language used in the email sent for inviting new users to your organization. Call GetEmailTemplateLanguages to obtain the list of all supported languages",
-                        "type": "string"
-                    },
-                    "EmailSenderType": {
-                        "description": "Set the organization name",
-                        "$ref": "#/components/schemas/EmailSenderTypeApi"
+                        "$ref": "#/components/schemas/OrganizationBasicSettingsApiModel"
                     },
                     "DocumentRetention": {
                         "description": "Set the organization name",
@@ -4383,6 +4415,35 @@
                         "$ref": "#/components/schemas/OrganizationSigningSettingsApiModel"
                     }
                 }
+            },
+
+            "OrganizationBasicSettingsApiModel" : {
+                "description": "Type description for organization sign settings",
+                "type": "object",
+                 "properties": {
+
+                    "Name": {
+                        "description": "Set the organization name",
+                        "type": "string"
+                    },
+                    "InvitationEmailLanguage": {
+                        "description": "Set the default language used in the email sent for inviting new users to your organization. Call GetEmailTemplateLanguages to obtain the list of all supported languages",
+                        "type": "string"
+                    },
+                    "EmailSenderType": {
+                        "description": "Set the organization name",
+                        "$ref": "#/components/schemas/EmailSenderTypeApi"
+                    },
+
+                    "RecipientNotification" :{
+                        "description": "Set the notification status for recipients",
+                        "$ref": "#/components/schemas/RecipientNotificationStatusApi"
+                    },
+                    "SenderNotification" :{
+                        "description": "Set the notification status for recipients",
+                        "$ref": "#/components/schemas/SenderNotificationStatusApi"
+                    }
+                 }
             },
 
             "OrganizationSigningSettingsApiModel": {

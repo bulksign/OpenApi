@@ -383,7 +383,7 @@ message CreateOrganizationApiModelInput
 	string AdministratorFirstName = 5;
 	string AdministratorLastName = 6;
 	string AdministratorEmail = 7;
-	string AdministratorPassword = 8; 
+	string AdministratorPassword = 8;
 }
 
 enum SearchEnvelopeStatus
@@ -397,15 +397,33 @@ enum SearchEnvelopeStatus
 
 message OrganizationUpdateSettingsApiModelInput
 {
-	AuthenticationApiModel Authentication = 3;
-	string Name = 4;
-	string InvitationEmailLanguage=7;
-	EmailSenderTypeApi EmailSenderType=8;
-	OrganizationPoliciesApiModel Policies =9;
-	OrganizationVisualCustomizationApiModel VisualCustomization=10;
-	OrganizationDocumentRetentionApiModel DocumentRetention=11;
-	OrganizationSigningSettingsApiModel SignatureSettings=12;
+	AuthenticationApiModel Authentication = 1;
+	OrganizationBasicSettingsApiModel Settings=2;
+	OrganizationPoliciesApiModel Policies =3;
+	OrganizationVisualCustomizationApiModel VisualCustomization=4;
+	OrganizationDocumentRetentionApiModel DocumentRetention=5;
+	OrganizationSigningSettingsApiModel SignatureSettings=6;
+}
 
+message OrganizationBasicSettingsApiModel
+{
+	string Name = 1;
+	string InvitationEmailLanguage=2;
+	EmailSenderTypeApi EmailSenderType=3;
+	RecipientNotificationStatusApi RecipientNotification=4;
+	SenderNotificationStatusApi	SenderNotification=5;
+}
+
+enum RecipientNotificationStatusApi
+{
+	RecipientNotificationStatusApi_Enabled = 0;
+	RecipientNotificationStatusApi_Disabled = 1;
+}
+
+enum SenderNotificationStatusApi
+{
+	Enabled = 0;
+	Disabled = 1;
 }
 
 enum EmailSenderTypeApi
@@ -469,7 +487,7 @@ message EmailTemplateApiModelInput
 	string Language =4;
 	repeated  EmailTemplateDescriptorApiModel Templates = 5;
 }
-	
+
 message EmailTemplateDescriptorApiModel
 {
 	string Subject = 1;
@@ -895,7 +913,7 @@ message FindRecipientByIndexApiModel
 	int32 Index=1;
 }
 
-message FindRecipientByEmailApiModel 
+message FindRecipientByEmailApiModel
 {
 	string RecipientEmail=1;
 	RecipientTypeApi RecipientType=2;
@@ -947,7 +965,7 @@ message FormFillResultApiModel
 	string FileName=5;
 }
 
-enum FormFieldTypeApi 
+enum FormFieldTypeApi
 {
 	NO_FormFieldTypeApi=0;
 	TextBox = 1;
@@ -1879,7 +1897,7 @@ message MessageApiModel
 message OrganizationSignGroupApiModel
 {
 	string Name = 1;
-	repeated SignGroupMemberApiModel  Members =2; 
+	repeated SignGroupMemberApiModel  Members =2;
 }
 
 message SignGroupMemberApiModel
@@ -1894,7 +1912,7 @@ message OrganizationSignGroupApiModelInput
 {
 	AuthenticationApiModel Authentication = 1;
 	string Name = 2;
-	repeated SignGroupMemberApiModel  Members =3; 
+	repeated SignGroupMemberApiModel  Members =3;
 }
 
 
