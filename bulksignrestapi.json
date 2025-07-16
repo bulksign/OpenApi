@@ -742,7 +742,7 @@
                 "parameters": [{
                     "name": "status",
                     "in": "query",
-                    "description": "The status  : 1 - InProgress, 2 - Completed, 3 - Canceled, 4 - Expired",
+                    "description": "The status  : 3 - InProgress, 4 - Completed, 5 - Canceled, 6 - Expired, 7 - Deleted",
                     "required": true,
                     "schema": {
                         "type": "number"
